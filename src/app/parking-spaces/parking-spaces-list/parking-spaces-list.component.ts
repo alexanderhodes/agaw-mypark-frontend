@@ -14,11 +14,9 @@ export class ParkingSpacesListComponent implements OnInit {
 
   ngOnInit() {
     this._parkingSpaces = [];
-    this._parkingSpaces.push({ number: '79', status: 'frei' });
-    this._parkingSpaces.push({ number: '80', status: 'belegt' });
-    this._parkingSpaces.push({ number: '81', status: 'frei' });
-    this._parkingSpaces.push({ number: '82', status: 'frei' });
-    this._parkingSpaces.push({ number: '83', status: 'frei' });
+    for (let i = 0; i < 15; i++) {
+      this._parkingSpaces.push({ number: '' + (79 + i), status: (79 + i) % 2 === 0 ? 'frei' : 'belegt' });
+    }
   }
 
   get parkingSpaces(): Array<{ number: string, status: string }> {
