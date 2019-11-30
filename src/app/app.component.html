@@ -1,5 +1,11 @@
 <!-- Content goes here-->
-<h1>Hallo Welt!</h1>
-<mp-parking-spaces-list></mp-parking-spaces-list>
-<router-outlet>
-</router-outlet>
+<mp-header></mp-header>
+<div uk-grid class="mt-4">
+    <div class="uk-width-1-5@m">
+        <mp-navigation></mp-navigation>
+    </div>
+    <div class="uk-width-expand@m">
+        <mp-parking-spaces-list></mp-parking-spaces-list>
+        <router-outlet></router-outlet>
+    </div>
+</div>

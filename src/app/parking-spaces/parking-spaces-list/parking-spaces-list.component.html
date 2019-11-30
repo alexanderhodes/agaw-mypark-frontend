@@ -1,9 +1,10 @@
 <h1>
     Übersicht der Parkplätze</h1>
-<div>
-    <p>Es gibt heute noch 2 freie Parkplätze, die per Sofort-Buchung reserviert werden können.</p>
+<div class="mt-1 mb-1">
+    <span>Es gibt heute noch 2 freie Parkplätze, die per Sofort-Buchung reserviert werden können.</span>
+    <mp-button icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
-<div class="table-container" style="width: 80%; margin-left: 10%; margin-right: 10%">
+<div class="table-container">
     <table>
         <thead>
             <tr>
@@ -18,11 +19,13 @@
                     <span class="number">{{ parkingSpace.number }}</span>
                 </td>
                 <td>
-                    <span class="state" style="background-color: green;">{{ parkingSpace.status }}</span>
+                    <span class="state" [style.background-color]="parkingSpace.status === 'frei' ? 'green' : 'red'">
+                      {{ parkingSpace.status }}
+                    </span>
                 </td>
                 <td>
-                    <mp-button icon="clock" (click)="book(i)" title="buchen"></mp-button>
-                    <mp-button icon="heart" title="ich mag herzen"></mp-button>
+                    <mp-button *ngIf="parkingSpace.status === 'frei'" icon="clock" (click)="book(i)" title="sofort buchen"></mp-button>
+                    <mp-button icon="warning" title="Problem melden"></mp-button>
                 </td>
             </tr>
         </tbody>
