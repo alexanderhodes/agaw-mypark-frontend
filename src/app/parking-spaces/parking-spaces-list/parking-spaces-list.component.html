@@ -1,0 +1,30 @@
+<h1>
+    Übersicht der Parkplätze</h1>
+<div>
+    <p>Es gibt heute noch 2 freie Parkplätze, die per Sofort-Buchung reserviert werden können.</p>
+</div>
+<div class="table-container" style="width: 80%; margin-left: 10%; margin-right: 10%">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" width="112px;"><span>Parkplatz</span></th>
+                <th scope="col" width="80px;">&nbsp;</th>
+                <th scope="col" style="text-align: left;"><span>Aktionen</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
+                <td>
+                    <span class="number">{{ parkingSpace.number }}</span>
+                </td>
+                <td>
+                    <span class="state" style="background-color: green;">{{ parkingSpace.status }}</span>
+                </td>
+                <td>
+                    <mp-button icon="clock" (click)="book(i)" title="buchen"></mp-button>
+                    <mp-button icon="heart" title="ich mag herzen"></mp-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
