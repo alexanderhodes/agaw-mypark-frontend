@@ -39,6 +39,17 @@ tr:nth-child(2n) {
     background-color: #f6f6f6;
 }
 
+td {
+    padding: .5rem 0;
+}
+
+input {
+    font-size: inherit;
+    border: none;
+    border-bottom: 1px #d0d0d0 solid;
+    font-weight: 300;
+}
+
 .table-container {
     border-radius: 5px;
     border: 1px #d0d0d0 solid;
@@ -76,8 +87,20 @@ span {
     top: -3px;
 }
 
+.mp-content {
+    padding-top: 90px;
+}
+
 .mb-1 {
     margin-bottom: .25rem;
+}
+
+.mb-2 {
+    margin-bottom: .5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
 }
 
 .mt-1 {

@@ -1,6 +1,9 @@
 <!-- Content goes here-->
 <mp-header></mp-header>
-<div uk-grid class="mt-4">
+<div *ngIf="!loggedIn" class="mp-content">
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="loggedIn" uk-grid class="mt-4" class="mp-content">
     <div class="uk-width-1-5@m">
         <mp-navigation></mp-navigation>
     </div>
@@ -9,3 +12,4 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+<mp-footer></mp-footer>
