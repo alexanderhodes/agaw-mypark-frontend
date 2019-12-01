@@ -87,6 +87,18 @@ span {
     top: -3px;
 }
 
+.link {
+    color: #a4a4a4;
+    line-height: 18px;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #e20074;
+    text-decoration: none;
+}
+
 .mp-content {
     padding-top: 6rem;
     padding-bottom: 3rem;

@@ -1,4 +1,4 @@
 <button>
-  <span [attr.uk-icon]="icon" class="icon"></span>
+  <span *ngIf="icon" [attr.uk-icon]="icon" class="icon"></span>
   <span>{{ title }}</span>
 </button>

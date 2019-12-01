@@ -1,0 +1,50 @@
+<div class="uk-container">
+    <h1 style="text-align: center;">Anmelden</h1>
+    <div style="display: flex;" class="mb-2">
+        <div style="flex: 1; min-width: 35%; max-width: 600px;">
+            <p>Pflichtfelder*</p>
+            <span style="display: block;">
+              <span class="input-label">Benutzername</span>
+            <input type="text" placeholder="Benutzername" />
+            <mp-info-icon text="frei wählbarer Benutzername z.B. 'Max_Mustermann'"></mp-info-icon>
+            </span>
+            <span style="display: block;">
+              <span class="input-label">E-Mail Adresse</span>
+            <input type="email" placeholder="E-Mail Adresse" />
+            <mp-info-icon text="Firmen E-Mail-Adresse"></mp-info-icon>
+            </span>
+            <span style="display: block;">
+              <span class="input-label">Kostenstelle</span>
+            <input type="text" placeholder="Kostenstelle" />
+            <mp-info-icon text="Kostenstelle, der Sie angehören"></mp-info-icon>
+            </span>
+        </div>
+        <div style="flex: 1; min-width: 35%; max-width: 600px;">
+            <p>Optionale Felder</p>
+            <span style="display: block;">
+              <span class="input-label">private E-Mail Adresse</span>
+            <input type="email" placeholder="E-Mail Adresse" />
+            <mp-info-icon text="private E-Mail-Adresse"></mp-info-icon>
+            </span>
+
+            <p>Passwort *</p>
+            <span style="display: block;">
+              <span class="input-label">Passwort</span>
+            <input type="password" placeholder="Passwort" />
+            <mp-info-icon text="mind. 8 Zeichen/ mind. ein Groß- und Kleinbuchstabe/ mind. eine Zahl"></mp-info-icon>
+            </span>
+            <span style="display: block;">
+              <span class="input-label">&nbsp;</span>
+            <input type="password" placeholder="Passwort wiederholen" />
+            <mp-info-icon text="Passwort erneut eingeben"></mp-info-icon>
+            </span>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <span style="display: block;">Nachdem Sie sich registriert haben, erhalten Sie eine automatisch generierte Bestätigungs-Email</span>
+        <div class="mt-4">
+            <mp-button [routerLink]="['/login']" title="abbrechen"></mp-button>
+            <mp-button title="Registrierung abschließen"></mp-button>
+        </div>
+    </div>
+</div>

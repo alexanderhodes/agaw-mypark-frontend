@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,21 +10,36 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { NavigationItemComponent } from './components/navigation/navigation-item/navigation-item.component';
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { InfoIconComponent } from './components/info-icon/info-icon.component';
 
 
 @NgModule({
-  declarations: [ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, LoginComponent, FooterComponent],
+  declarations: [
+    ButtonComponent,
+    HeaderComponent,
+    NavigationComponent,
+    NavigationItemComponent,
+    LoginComponent,
+    FooterComponent,
+    ResetPasswordComponent,
+    RegistrationComponent,
+    InfoIconComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   exports: [
     ButtonComponent,
     HeaderComponent,
     NavigationComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    ResetPasswordComponent
   ],
   providers: [
     AuthService

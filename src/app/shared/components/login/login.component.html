@@ -3,7 +3,7 @@
 
     <span style="display: block;" class="mb-4">
       <span class="icon" uk-icon="user"></span>
-    <input type="text" placeholder="Benutzername" />
+    <input type="email" placeholder="Benutzername" />
     </span>
     <span style="display: block;" class="mb-4">
       <span class="icon" uk-icon="lock"></span>
@@ -12,6 +12,6 @@
 
     <mp-button title="Anmelden" style="display: block;"></mp-button>
 
-    <a style="display: block;">Passwort vergessen</a>
-    <a style="display: block;">Noch keinen Account? Jetzt Registrieren</a>
+    <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
+    <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt Registrieren</a>
 </div>
