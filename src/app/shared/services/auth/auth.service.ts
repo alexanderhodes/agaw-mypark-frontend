@@ -13,4 +13,8 @@ export class AuthService {
     return this._loggedIn;
   }
 
+  set loggedIn(value: boolean) {
+    this._loggedIn = value;
+  }
+
 }

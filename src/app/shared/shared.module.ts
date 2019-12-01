@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -14,7 +15,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { RegistrationComponent } from './components/registration/registration.component';
 import { InfoIconComponent } from './components/info-icon/info-icon.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
-
 
 @NgModule({
   declarations: [

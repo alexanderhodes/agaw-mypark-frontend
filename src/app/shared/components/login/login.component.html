@@ -10,7 +10,7 @@
     <input type="password" placeholder="Passwort">
     </span>
 
-    <mp-button title="Anmelden" style="display: block;"></mp-button>
+    <mp-button title="Anmelden" (click)="login()" style="display: block;"></mp-button>
 
     <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
     <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt Registrieren</a>
