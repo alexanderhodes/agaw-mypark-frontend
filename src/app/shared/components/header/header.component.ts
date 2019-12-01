@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  private _dropdownOpened;
+
+  constructor() {
+    this._dropdownOpened = false;
+  }
 
   ngOnInit() {
+  }
+
+  openDropdown() {
+    this._dropdownOpened = !this._dropdownOpened;
+    console.log("open dropdown", this._dropdownOpened);
+  }
+
+  get dropdownOpened(): boolean {
+    return this._dropdownOpened;
   }
 
 }

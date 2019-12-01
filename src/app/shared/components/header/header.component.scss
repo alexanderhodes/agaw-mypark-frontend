@@ -4,9 +4,40 @@
     height: 80px;
     width: 80%;
     top: 0;
-    overflow: hidden;
     position: fixed;
     box-shadow: 0 0 5px #d0d0d0;
     z-index: 10;
     background-color: white;
+}
+
+.icon {
+    color: #e20074;
+}
+
+.uk-dropdown {
+    left: -110px !important;
+    width: 275px !important;
+    top: 60px !important;
+}
+
+.header-item {
+    border: none;
+    margin-top: 2rem;
+    margin-right: 0.25rem;
+    text-transform: none;
+    line-height: 0;
+}
+
+.header-item:hover {
+    color: #e20074;
+}
+
+.dropdown-item {
+    display: block;
+    float: right;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    color: #e20074;
 }
