@@ -1,0 +1,37 @@
+<h1>Alle Benutzer</h1>
+<div class="mt-1 mb-1">
+    <span>Aktuell sind 1 Benutzer auf MyPark registriert.</span>
+</div>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Benutzername</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Parkplatz</th>
+                <th scope="col">Verwalter</th>
+                <th scope="col">Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>
+                    <span>{{ user.username }}</span>
+                </td>
+                <td>
+                    <span>{{ user.email }}</span>
+                </td>
+                <td>
+                    <span [attr.uk-icon]="user.parkingspace ? 'check' : 'close'" class="icon" [style.color]="user.parkingspace ? 'green' : 'red'"></span>
+                </td>
+                <td>
+                    <span [attr.uk-icon]="user.admin ? 'check' : 'close'" class="icon" [style.color]="user.admin ? 'green' : 'red'"></span>
+                </td>
+                <td>
+                    <mp-button icon="mail" title="Benutzer kontaktieren"></mp-button>
+                    <mp-button icon="trash" title="Benutzer löschen"></mp-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

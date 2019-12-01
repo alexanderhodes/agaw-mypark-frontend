@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  private _dropdownOpened;
+  private _dropdownOpened: boolean;
 
   constructor() {
     this._dropdownOpened = false;
@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   openDropdown() {
     this._dropdownOpened = !this._dropdownOpened;
-    console.log("open dropdown", this._dropdownOpened);
   }
 
   get dropdownOpened(): boolean {

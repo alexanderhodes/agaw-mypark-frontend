@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { AuthService } from './shared/services/auth/auth.service';
 import { ParkingSpaceModule } from './parking-spaces/parking-spaces.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +16,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ParkingSpaceModule
+    ParkingSpaceModule,
+    AdminModule
   ],
   providers: [ AuthService ],
   bootstrap: [AppComponent]

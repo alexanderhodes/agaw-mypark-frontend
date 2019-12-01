@@ -1,3 +1,5 @@
+import { ParkingspacesAdminComponent } from './admin/components/parkingspaces-admin/parkingspaces-admin.component';
+import { UsersComponent } from './admin/components/users/users.component';
 import { BookingsComponent } from './shared/components/bookings/bookings.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
@@ -12,7 +14,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'bookings', component: BookingsComponent }
+  { path: 'bookings', component: BookingsComponent },
+  { path: 'admin',
+    children: [
+      { path: 'parkingspaces', component: ParkingspacesAdminComponent },
+      { path: 'users', component: UsersComponent },
+    ]
+  }
 ];
 
 @NgModule({

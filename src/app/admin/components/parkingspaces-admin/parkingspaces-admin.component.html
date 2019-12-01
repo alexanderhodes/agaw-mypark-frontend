@@ -1,0 +1,40 @@
+<h1>Übersicht der Parkplätze</h1>
+<div class="mt-1 mb-4">
+    <h2>Parkplatz erstellen</h2>
+    <span>
+    <span style="margin-right: .5rem;">Neuer Parkplatz:</span>
+    <input type="text" placeholder="Nummer" style="margin: 0 .5rem;">
+    <span uk-icon="pencil" class="icon"></span>
+    <mp-button (click)="addParkingspace()" icon="arrow-right" title="Parkplatz erstellen"></mp-button>
+    </span>
+</div>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" style="width: 112px;">Parkplatz</th>
+                <th scope="col" style="width: 80px;">&nbsp;</th>
+                <th scope="col" style="width: 180px;">Zugewiesen</th>
+                <th scope="col" style="text-align: left;">Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
+                <td>
+                    <span class="number">{{ parkingSpace.number }}</span>
+                </td>
+                <td>
+                    <span class="state" [style.background-color]="parkingSpace.status === 'frei' ? 'green' : 'red'">
+                      {{ parkingSpace.status }}
+                    </span>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <mp-button icon="trash" title="löschen"></mp-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
