@@ -1,0 +1,40 @@
+<h1>Meine Buchungen</h1>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col"><span>Datum</span></th>
+                <th scope="col"><span>Startzeit</span></th>
+                <th scope="col"><span>Status</span></th>
+                <th scope="col"><span>Parkplatz</span></th>
+                <th scope="col"><span>Aktionen</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookings">
+                <td>
+                    <span>{{ booking.date }}</span>
+                </td>
+                <td>
+                    <span>{{ booking.time }}</span>
+                </td>
+                <td>
+                    <span>
+                      <div class="status-element"
+                      [style.background-color]="booking.status === 'reserviert' ? 'green' : 'gray'"></div>
+                      <span>{{ booking.status }}</span>
+                    </span>
+                </td>
+                <td>
+                    <span>{{ booking.parkingspace }}</span>
+                </td>
+                <td>
+                    <span>
+                <mp-button *ngIf="booking.status === 'reserviert'" icon="check" title="Benutzung beenden"></mp-button>
+                <mp-button *ngIf="booking.status === 'angefragt'" icon="trash" title="löschen"></mp-button>
+              </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

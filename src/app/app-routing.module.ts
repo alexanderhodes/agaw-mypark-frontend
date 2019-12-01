@@ -1,3 +1,4 @@
+import { BookingsComponent } from './shared/components/bookings/bookings.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'registration', component: RegistrationComponent },
+  { path: 'bookings', component: BookingsComponent }
 ];
 
 @NgModule({

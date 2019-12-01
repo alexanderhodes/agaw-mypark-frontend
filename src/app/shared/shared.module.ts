@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { InfoIconComponent } from './components/info-icon/info-icon.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InfoIconComponent } from './components/info-icon/info-icon.component';
     FooterComponent,
     ResetPasswordComponent,
     RegistrationComponent,
-    InfoIconComponent
+    InfoIconComponent,
+    BookingsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { InfoIconComponent } from './components/info-icon/info-icon.component';
     NavigationComponent,
     LoginComponent,
     FooterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    BookingsComponent
   ],
   providers: [
     AuthService

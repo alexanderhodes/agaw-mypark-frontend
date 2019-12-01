@@ -50,6 +50,11 @@ input {
     font-weight: 300;
 }
 
+input:focus {
+    border: none;
+    border-bottom: 2px #e20074 solid;
+}
+
 .table-container {
     border-radius: 5px;
     border: 1px #d0d0d0 solid;
