@@ -15,8 +15,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authService.loggedIn = true;
-    this.router.navigate(['/parkingspaces']);
+    this.authService.login("user", "password").subscribe(resp => {
+      console.log("response:");
+      console.log(resp);
+      const keys = resp.headers.keys();
+      keys.map(key =>
+        console.log(`${key}: ${resp.headers.get(key)}`));
+        console.log("auth", resp.headers.get('Authorization'));
+      console.log(resp.body);
+    });
+    // this.authService.loggedIn = true;
+    // this.router.navigate(['/parkingspaces']);
   }
 
 }

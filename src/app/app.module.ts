@@ -15,11 +15,10 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     ParkingSpaceModule,
-    AdminModule
+    AdminModule,
+    SharedModule.forRoot()
   ],
-  providers: [ AuthService ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

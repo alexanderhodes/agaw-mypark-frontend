@@ -1,3 +1,5 @@
+import { ParkingSpace } from './../../shared/models/mypark.models';
+import { MyparkApiService } from './../../shared/services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
 import * as uikit from 'uikit';
 
@@ -8,18 +10,19 @@ import * as uikit from 'uikit';
 })
 export class ParkingSpacesListComponent implements OnInit {
 
-  private _parkingSpaces: Array<{ number: string, status: string }>;
+  private _parkingSpaces: Array<ParkingSpace>;
 
-  constructor() { }
+  constructor(private apiService: MyparkApiService) { }
 
   ngOnInit() {
     this._parkingSpaces = [];
-    for (let i = 0; i < 15; i++) {
-      this._parkingSpaces.push({ number: '' + (79 + i), status: (79 + i) % 2 === 0 ? 'frei' : 'belegt' });
-    }
+
+    this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
+      this._parkingSpaces = parkingSpaces;
+    });
   }
 
-  get parkingSpaces(): Array<{ number: string, status: string }> {
+  get parkingSpaces(): Array<ParkingSpace> {
     return this._parkingSpaces;
   }
 

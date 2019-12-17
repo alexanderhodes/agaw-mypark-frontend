@@ -1,6 +1,9 @@
+import { ApiErrorHandler } from './services/api/api-error-handler';
+import { MyparkApiService } from './services/api/mypark-api.service';
+import { ApiService } from './services/api/api.service';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,8 +18,15 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { RegistrationComponent } from './components/registration/registration.component';
 import { InfoIconComponent } from './components/info-icon/info-icon.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
+import { LocalStorageService } from './services/local-storage.service';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    NgbModule,
+    RouterModule
+  ],
   declarations: [
     ButtonComponent,
     HeaderComponent,
@@ -27,25 +37,26 @@ import { BookingsComponent } from './components/bookings/bookings.component';
     ResetPasswordComponent,
     RegistrationComponent,
     InfoIconComponent,
-    BookingsComponent
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    NgbModule,
-    RouterModule
+    BookingsComponent,
   ],
   exports: [
     ButtonComponent,
     HeaderComponent,
     NavigationComponent,
+    NavigationItemComponent,
     LoginComponent,
     FooterComponent,
     ResetPasswordComponent,
-    BookingsComponent
-  ],
-  providers: [
-    AuthService
+    RegistrationComponent,
+    InfoIconComponent,
+    BookingsComponent,
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [ ApiService, MyparkApiService, AuthService, LocalStorageService, ApiErrorHandler ]
+    };
+  }
+}
