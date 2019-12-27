@@ -9,3 +9,8 @@ export interface ParkingSpaceStatus {
     name: string;
     color: string;
 }
+
+export interface Authentication {
+  token: string;
+  expiration: number;
+}

@@ -1,5 +1,4 @@
 import { LocalStorageService } from './../local-storage.service';
-import { SharedModule } from './../../shared.module';
 import { LOCALSTORAGE_KEY_TOKEN } from './../../config/mypark.config';
 import { ApiErrorHandler } from './api-error-handler';
 import { environment } from './../../../../environments/environment.prod';
@@ -24,7 +23,6 @@ export class ApiService {
             tap(),
             catchError(this.errorHandler.handleError<T>(`get ${apiUrl}`))
         );
-        // return this.http.get<T>(apiUrl, headers);
     }
 
     post<T>(url: string, body: any): Observable<T> {
@@ -60,12 +58,16 @@ export class ApiService {
     private createHttpHeaders() {
         const token: string = this.localStorageService.getItem(LOCALSTORAGE_KEY_TOKEN);
 
-        return {
+        return token ? {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
             })
-        };
+        } : {
+          headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+          })
+      };
     }
 
     private createApiUrl(resource: string): string {

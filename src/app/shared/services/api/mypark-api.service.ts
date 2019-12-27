@@ -1,4 +1,4 @@
-import { ParkingSpace } from './../../models/mypark.models';
+import { ParkingSpace, Authentication } from './../../models/mypark.models';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -22,6 +22,10 @@ export class MyparkApiService {
 
     deleteParkingSpace(body: ParkingSpace): Observable<ParkingSpace> {
         return this.apiService.delete<ParkingSpace>(`parkingspaces/${body.number}`);
+    }
+
+    login(username: string, password: string): Observable<Authentication> {
+        return this.apiService.get(`authenticate?username=${username}&password=${password}`);
     }
 
 }

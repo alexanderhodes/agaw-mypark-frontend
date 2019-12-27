@@ -1,5 +1,7 @@
-import { environment } from './../../../../environments/environment.prod';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Authentication } from './../../models/mypark.models';
+import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION } from './../../config/mypark.config';
+import { LocalStorageService } from './../local-storage.service';
+import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,7 +10,9 @@ export class AuthService {
 
   private _loggedIn: boolean;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private myparkApiService: MyparkApiService,
+    private localStorageService: LocalStorageService) {
     this._loggedIn = false;
   }
 
@@ -20,9 +24,30 @@ export class AuthService {
     this._loggedIn = value;
   }
 
-  login(user: string, password: string): Observable<any> {
-    return this.httpClient.get(`http://localhost:8080/api/authenticate?username=${user}&password=${password}`,
-    { observe: "response" });
+  login(username: string, password: string): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.myparkApiService.login(username, password).subscribe((auth: Authentication) => {
+        if (auth.token) {
+          this.localStorageService.setItem(LOCALSTORAGE_KEY_TOKEN, auth.token);
+          this.localStorageService.setItem(LOCALSTORAGE_KEY_EXPIRATION, `${auth.expiration}`);
+          this._loggedIn = true;
+          observer.next(true);
+        } else {
+          this._loggedIn = false;
+          observer.next(false);
+        }
+        observer.complete();
+      });
+    });
+  }
+
+  logout(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.localStorageService.clear();
+      this.loggedIn = false;
+      observer.next(true);
+      observer.complete();
+    });
   }
 
 }
