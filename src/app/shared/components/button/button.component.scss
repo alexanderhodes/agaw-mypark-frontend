@@ -1,4 +1,4 @@
-button {
+.button-container {
     position: relative;
     border: 1px solid #D0D0D0;
     display: inline-block;
@@ -12,11 +12,11 @@ button {
     margin: 0 .5rem;
 }
 
-button:hover {
+.button-container:hover {
     color: #e20074;
 }
 
-button:focus {
+.button-container:focus {
     background-color: #D0D0D0;
     color: white;
 }

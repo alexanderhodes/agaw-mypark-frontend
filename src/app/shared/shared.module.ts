@@ -19,13 +19,16 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { InfoIconComponent } from './components/info-icon/info-icon.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocalStorageService } from './services/local-storage.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     ButtonComponent,
@@ -56,7 +59,8 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ ApiService, MyparkApiService, AuthService, LocalStorageService, ApiErrorHandler ]
+      providers: [ ApiService, MyparkApiService, AuthService, LocalStorageService, ApiErrorHandler
+       ]
     };
   }
 }

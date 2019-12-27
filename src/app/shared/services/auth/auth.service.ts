@@ -27,7 +27,7 @@ export class AuthService {
   login(username: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.myparkApiService.login(username, password).subscribe((auth: Authentication) => {
-        if (auth.token) {
+        if (auth && auth.token) {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_TOKEN, auth.token);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_EXPIRATION, `${auth.expiration}`);
           this._loggedIn = true;

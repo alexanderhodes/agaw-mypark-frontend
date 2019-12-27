@@ -21,9 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this._subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('this.loggedIn before', this.loggedIn);
         this.loggedIn = this.authService.loggedIn;
-        console.log('this.loggedIn', this.loggedIn);
       }
     });
   }

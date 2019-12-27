@@ -1,16 +1,20 @@
 <div class="uk-container" style="text-align: center;">
     <h1>Anmelden</h1>
 
-    <span style="display: block;" class="mb-4">
-      <span class="icon" uk-icon="user"></span>
-    <input type="email" placeholder="Benutzername" />
-    </span>
-    <span style="display: block;" class="mb-4">
-      <span class="icon" uk-icon="lock"></span>
-    <input type="password" placeholder="Passwort">
-    </span>
-
-    <mp-button title="Anmelden" (click)="login()" style="display: block;"></mp-button>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <span style="display: block;" class="mb-4">
+        <span class="icon" uk-icon="user"></span>
+        <input type="email" placeholder="Benutzername" formControlName="username" />
+        </span>
+        <span style="display: block;" class="mb-4">
+        <span class="icon" uk-icon="lock"></span>
+        <input type="password" placeholder="Passwort" formControlName="password">
+        </span>
+        <span class="error-message" *ngIf="result">
+          {{ result }}
+        </span>
+        <mp-button title="Anmelden" style="display: block;"></mp-button>
+    </form>
 
     <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
     <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt Registrieren</a>

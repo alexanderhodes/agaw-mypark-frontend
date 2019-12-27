@@ -1,3 +1,5 @@
+import { User } from './../../models/mypark.models';
+import { MyparkApiService } from './../../services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  constructor() { }
+  email: string = '';
+
+  constructor(private apiService: MyparkApiService) { }
 
   ngOnInit() {
+  }
+
+  resetPassword() {
+    this.apiService.requestPasswordReset(this.email).subscribe((user: User) => {
+      console.log(user);
+    });
   }
 
 }
