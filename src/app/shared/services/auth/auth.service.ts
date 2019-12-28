@@ -1,5 +1,5 @@
 import { Authentication } from './../../models/mypark.models';
-import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION } from './../../config/mypark.config';
+import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION, LOCALSTORAGE_KEY_USERNAME } from './../../config/mypark.config';
 import { LocalStorageService } from './../local-storage.service';
 import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
@@ -8,32 +8,24 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-  private _loggedIn: boolean;
-
   constructor(
     private myparkApiService: MyparkApiService,
     private localStorageService: LocalStorageService) {
-    this._loggedIn = false;
-  }
-
-  get loggedIn(): boolean {
-    return this._loggedIn;
-  }
-
-  set loggedIn(value: boolean) {
-    this._loggedIn = value;
   }
 
   login(username: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
-      this.myparkApiService.login(username, password).subscribe((auth: Authentication) => {
+      const body = new FormData();
+      body.append('username', username);
+      body.append('password', password);
+      this.myparkApiService.login(body).subscribe((auth: Authentication) => {
+        console.log('auth', auth);
         if (auth && auth.token) {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_TOKEN, auth.token);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_EXPIRATION, `${auth.expiration}`);
-          this._loggedIn = true;
+          this.localStorageService.setItem(LOCALSTORAGE_KEY_USERNAME, auth.username);
           observer.next(true);
         } else {
-          this._loggedIn = false;
           observer.next(false);
         }
         observer.complete();
@@ -44,10 +36,24 @@ export class AuthService {
   logout(): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.localStorageService.clear();
-      this.loggedIn = false;
       observer.next(true);
       observer.complete();
     });
+  }
+
+  get loggedIn(): boolean {
+    const expirationInMillis = this.localStorageService.getItem(LOCALSTORAGE_KEY_EXPIRATION);
+    const token = this.localStorageService.getItem(LOCALSTORAGE_KEY_TOKEN);
+    const username = this.localStorageService.getItem(LOCALSTORAGE_KEY_USERNAME);
+    if (expirationInMillis && token && username) {
+      const expirationDate = new Date(+expirationInMillis);
+      return expirationDate > new Date();
+    }
+    return false;
+  }
+
+  get username(): string {
+    return this.localStorageService.getItem(LOCALSTORAGE_KEY_USERNAME);
   }
 
 }

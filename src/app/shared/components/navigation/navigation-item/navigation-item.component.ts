@@ -9,6 +9,7 @@ export class NavigationItemComponent implements OnInit {
 
   private _title: string;
   private _icon: string;
+  private _link: string;
 
   constructor() { }
 
@@ -31,6 +32,16 @@ export class NavigationItemComponent implements OnInit {
   @Input()
   set title(value: string) {
     this._title = value;
+  }
+
+  routerLinks(): string[] {
+    // ['/link']
+    return [`/${this._link}`];
+  }
+
+  @Input()
+  set link(value: string) {
+    this._link = value;
   }
 
 }

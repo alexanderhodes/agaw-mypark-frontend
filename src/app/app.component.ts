@@ -1,27 +1,29 @@
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './shared/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'mp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'mypark-frontend';
-  private _loggedIn: boolean;
+export class AppComponent implements OnInit, OnDestroy {
+  loggedIn: boolean;
+  private _subscription: any;
 
-  constructor(private authService: AuthService) {
-
+  constructor(private authService: AuthService, private router: Router) {
+    this._subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.loggedIn = this.authService.loggedIn;
+      }
+    });
   }
 
   ngOnInit() {
-    this._loggedIn = this.authService.loggedIn;
   }
 
-  get loggedIn(): boolean {
-    return this._loggedIn;
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
-
-
 
 }

@@ -24,8 +24,8 @@ export class MyparkApiService {
         return this.apiService.delete<ParkingSpace>(`parkingspaces/${body.number}`);
     }
 
-    login(username: string, password: string): Observable<Authentication> {
-        return this.apiService.get<Authentication>(`authenticate?username=${username}&password=${password}`);
+    login(body: FormData): Observable<Authentication> {
+        return this.apiService.post<Authentication>(`authenticate`, body);
     }
 
     requestPasswordReset(email: string): Observable<User> {

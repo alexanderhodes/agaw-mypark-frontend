@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _subscription: any;
 
   loggedIn: boolean;
+  username: string;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.loggedIn = this.authService.loggedIn;
+        this.username = this.authService.username;
       }
     });
   }

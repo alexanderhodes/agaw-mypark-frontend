@@ -5,7 +5,7 @@
         <button (click)="openDropdown()" class="uk-button uk-button-default header-item" type="button">
           <span style="font-size: 1.25rem; line-height: 1.25;">
             <span uk-icon="user" style="margin-right: .25rem;"></span>
-            <span>Username</span>
+            <span>{{ username }}</span>
             <span [attr.uk-icon]="dropdownOpened ? 'chevron-up' : 'chevron-down'" style="margin-left: .125rem"></span>
           </span>
         </button>

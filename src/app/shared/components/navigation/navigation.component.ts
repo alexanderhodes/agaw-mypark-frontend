@@ -7,14 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  private _items: { title: string, icon: string }[];
+  private _items: { title: string, icon: string, link: string }[];
 
   constructor() {
     this._items = [];
-    this._items.push({ title: 'Neue Buchung', icon: 'plus' });
-    this._items.push({ title: 'Serienbuchung', icon: 'history' });
-    this._items.push({ title: 'Meine Buchungen', icon: 'star' });
-    this._items.push({ title: 'Übersicht der Parkplätze', icon: 'list' });
+    this._items.push({ title: 'Neue Buchung', icon: 'plus', link: 'bookings' });
+    this._items.push({ title: 'Serienbuchung', icon: 'history', link: 'bookings' });
+    this._items.push({ title: 'Meine Buchungen', icon: 'star', link: 'bookings' });
+    this._items.push({ title: 'Übersicht der Parkplätze', icon: 'list', link: 'parkingspaces' });
   }
 
   ngOnInit() {

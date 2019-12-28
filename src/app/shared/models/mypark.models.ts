@@ -22,4 +22,6 @@ export interface User {
 export interface Authentication {
   token: string;
   expiration: number;
+  roles: Array<string>;
+  username: string;
 }
