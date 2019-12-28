@@ -56,4 +56,8 @@ export class AuthService {
     return this.localStorageService.getItem(LOCALSTORAGE_KEY_USERNAME);
   }
 
+  get isAdmin(): boolean {
+    return false;
+  }
+
 }
