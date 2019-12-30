@@ -1,9 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from './../../../models/mypark.models';
-import { User } from './../../../models/user';
 import { MyparkApiService } from './../../../services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'mp-password',
