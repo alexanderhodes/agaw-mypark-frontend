@@ -20,6 +20,7 @@ import { InfoIconComponent } from './components/info-icon/info-icon.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PasswordComponent } from './components/common/password/password.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RegistrationComponent,
     InfoIconComponent,
     BookingsComponent,
+    PasswordComponent,
   ],
   exports: [
     ButtonComponent,
@@ -53,6 +55,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RegistrationComponent,
     InfoIconComponent,
     BookingsComponent,
+    PasswordComponent
   ]
 })
 export class SharedModule {

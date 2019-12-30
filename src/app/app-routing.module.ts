@@ -1,3 +1,4 @@
+import { PasswordComponent } from './shared/components/common/password/password.component';
 import { AdminGuard } from './components/guards/admin.guard';
 import { UnauthGuard } from './components/guards/unauth.guard';
 import { ParkingspacesAdminComponent } from './admin/components/parkingspaces-admin/parkingspaces-admin.component';
@@ -36,8 +37,10 @@ const routes: Routes = [
     children: [
       { path: 'parkingspaces', component: ParkingspacesAdminComponent },
       { path: 'users', component: UsersComponent },
-    ]
-  }
+    ] },
+  { path: 'common/password/:token',
+    canActivate: [ UnauthGuard ],
+    component: PasswordComponent }
 ];
 
 @NgModule({

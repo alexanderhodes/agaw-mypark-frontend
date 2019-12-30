@@ -32,8 +32,14 @@ export class MyparkApiService {
       return this.apiService.get<User>(`common/password/request/?email=${email}`);
     }
 
-    updatePasswordInPasswordReset(token: string): Observable<User> {
-      return this.apiService.get<User>(`common/password/reset/token/${token}`);
+    validatePasswordResetToken(token: string): Observable<User> {
+        return this.apiService.get(`common/password/validation/${token}`);
     }
+
+    updatePasswordInPasswordReset(token: string, body: FormData): Observable<any> {
+      return this.apiService.post(`common/password/reset/${token}`, body);
+    }
+
+
 
 }
