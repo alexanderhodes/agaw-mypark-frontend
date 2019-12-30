@@ -1,6 +1,7 @@
 <h1>Alle Benutzer</h1>
 <div class="mt-1 mb-1">
-    <span>Aktuell sind 1 Benutzer auf MyPark registriert.</span>
+    <span *ngIf="!users">Es sind aktuell keine Benutzer auf MyPark registriert.</span>
+    <span *ngIf="users">Es sind aktuell {{ users.length }} Benutzer auf MyPark registriert.</span>
 </div>
 <div class="table-container">
     <table>
