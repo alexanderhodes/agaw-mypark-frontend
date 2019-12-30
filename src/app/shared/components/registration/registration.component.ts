@@ -1,3 +1,6 @@
+import { MyparkApiService } from './../../services/api/mypark-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { User } from './../../models/mypark.models';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  private _user: User;
+  private _token: string;
+
+  constructor(private route: ActivatedRoute,
+              private apiService: MyparkApiService) {
+    this._token = this.route.snapshot.paramMap.get('token');
+
+    this.apiService.validateRegistrationToken(this._token).subscribe(response => {
+      console.log('response');
+    });
+  }
 
   ngOnInit() {
   }
