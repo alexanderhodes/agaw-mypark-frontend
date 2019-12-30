@@ -21,7 +21,7 @@ export class ApiService {
 
         return this.http.get<T>(apiUrl, headers).pipe(
             tap(),
-            catchError(this.errorHandler.handleError<T>(`get ${apiUrl}`))
+            // catchError(this.errorHandler.handleError<T>(`get ${apiUrl}`))
         );
     }
 
@@ -31,7 +31,7 @@ export class ApiService {
 
         return this.http.post<T>(apiUrl, body, headers).pipe(
             tap(),
-            catchError(this.errorHandler.handleError<T>(`post ${apiUrl}`))
+            // catchError(this.errorHandler.handleError<T>(`post ${apiUrl}`))
         );
     }
 
@@ -41,7 +41,7 @@ export class ApiService {
 
         return this.http.delete<T>(apiUrl, headers).pipe(
             tap(),
-            catchError(this.errorHandler.handleError<T>(`delete ${apiUrl}`))
+            // catchError(this.errorHandler.handleError<T>(`delete ${apiUrl}`))
         );
     }
 
@@ -51,7 +51,7 @@ export class ApiService {
 
         return this.http.put<T>(apiUrl, body, headers).pipe(
             tap(),
-            catchError(this.errorHandler.handleError<T>(`put ${apiUrl}`))
+            // catchError(this.errorHandler.handleError<T>(`put ${apiUrl}`))
         );
     }
 

@@ -14,12 +14,14 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isAdmin) {
-      return true;
-    }
+      const roles = this.authService.roles;
 
-    this.router.navigateByUrl('/parkingspaces');
-    return false;
+      if (roles && roles.indexOf('ADMIN') > -1) {
+        return true;
+      }
+
+      this.router.navigateByUrl('/parkingspaces');
+      return false;
   }
 
 }

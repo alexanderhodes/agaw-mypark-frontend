@@ -1,5 +1,5 @@
 import { Authentication } from './../../models/mypark.models';
-import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION, LOCALSTORAGE_KEY_USERNAME } from './../../config/mypark.config';
+import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION, LOCALSTORAGE_KEY_USERNAME, LOCALSTORAGE_KEY_ROLES } from './../../config/mypark.config';
 import { LocalStorageService } from './../local-storage.service';
 import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
@@ -24,11 +24,14 @@ export class AuthService {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_TOKEN, auth.token);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_EXPIRATION, `${auth.expiration}`);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_USERNAME, auth.username);
+          this.localStorageService.setItem(LOCALSTORAGE_KEY_ROLES, auth.roles.toString());
           observer.next(true);
         } else {
           observer.next(false);
         }
         observer.complete();
+      }, error => {
+        observer.error(error);
       });
     });
   }
@@ -58,6 +61,11 @@ export class AuthService {
 
   get isAdmin(): boolean {
     return false;
+  }
+
+  get roles(): string[] {
+    return this.localStorageService.getItem(LOCALSTORAGE_KEY_ROLES) ?
+      this.localStorageService.getItem(LOCALSTORAGE_KEY_ROLES).split(',') : [];
   }
 
 }
