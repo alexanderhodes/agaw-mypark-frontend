@@ -18,12 +18,12 @@
                     <span class="number">{{ parkingSpace.number }}</span>
                 </td>
                 <td>
-                    <span class="state" [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'frei' ? 'green' : 'red'">
+                    <span class="state" [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'free' ? 'green' : 'red'">
                       {{ parkingSpace.parkingSpaceStatus.name }}
                     </span>
                 </td>
                 <td>
-                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'frei'" icon="clock" (click)="book(i)" title="sofort buchen"></mp-button>
+                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free'" icon="clock" (click)="book(i)" title="sofort buchen"></mp-button>
                     <mp-button icon="warning" title="Problem melden"></mp-button>
                 </td>
             </tr>
