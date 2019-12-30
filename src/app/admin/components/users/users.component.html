@@ -6,7 +6,7 @@
     <table>
         <thead>
             <tr>
-                <th scope="col">Benutzername</th>
+                <th scope="col">Name</th>
                 <th scope="col">E-Mail</th>
                 <th scope="col">Parkplatz</th>
                 <th scope="col">Verwalter</th>
@@ -16,10 +16,10 @@
         <tbody>
             <tr *ngFor="let user of users">
                 <td>
-                    <span>{{ user.username }}</span>
+                    <span>{{ user.firstName }} {{ user.lastName }}</span>
                 </td>
                 <td>
-                    <span>{{ user.email }}</span>
+                    <span>{{ user.username }}</span>
                 </td>
                 <td>
                     <span [attr.uk-icon]="user.parkingspace ? 'check' : 'close'" class="icon" [style.color]="user.parkingspace ? 'green' : 'red'"></span>
@@ -28,7 +28,7 @@
                     <span [attr.uk-icon]="user.admin ? 'check' : 'close'" class="icon" [style.color]="user.admin ? 'green' : 'red'"></span>
                 </td>
                 <td>
-                    <mp-button icon="mail" title="Benutzer kontaktieren"></mp-button>
+                    <mp-button (click)="contactUser(user)" icon="mail" title="Benutzer kontaktieren"></mp-button>
                     <mp-button icon="trash" title="Benutzer löschen"></mp-button>
                 </td>
             </tr>

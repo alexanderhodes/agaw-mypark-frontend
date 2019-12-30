@@ -44,5 +44,8 @@ export class MyparkApiService {
         return this.apiService.get(`common/register/validation/${token}`);
     }
 
+    getAllUsers(): Observable<User[]> {
+        return this.apiService.get<User[]>(`users`);
+    }
 
 }

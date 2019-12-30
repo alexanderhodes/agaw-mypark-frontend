@@ -1,3 +1,5 @@
+import { User } from './../../../shared/models/mypark.models';
+import { MyparkApiService } from './../../../shared/services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,20 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  private _users: Array<{username: string, email: string, parkingspace: boolean, admin: boolean}>;
+  private _users: User[];
 
-  constructor() {
+  constructor(private apiService: MyparkApiService) {
     this._users = [];
   }
 
   ngOnInit() {
-    this._users.push({username: 'alex', email: 'alexander.hodes@live.com', parkingspace: false, admin: true});
-    this._users.push({username: 'john', email: 'john.doe@internet.com', parkingspace: true, admin: false});
-    this._users.push({username: 'max', email: 'max.mustermann@internet.de', parkingspace: true, admin: true});
-    this._users.push({username: 'jane', email: 'jane.doe@internet.com', parkingspace: false, admin: false});
+    this.apiService.getAllUsers().subscribe((users: User[]) => {
+      this._users = users;
+    });
   }
 
-  get users(): Array<{username: string, email: string, parkingspace: boolean, admin: boolean}> {
+  contactUser(user: User): void {
+    window.open(`mailto:${user.username}&subject='MyPark - Kontakt'`);
+  }
+
+  get users(): User[] {
     return this._users;
   }
 
