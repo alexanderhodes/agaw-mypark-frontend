@@ -1,4 +1,6 @@
+import { ParkingSpace } from './../../../shared/models/mypark.models';
 import { Component, OnInit } from '@angular/core';
+import { MyparkApiService } from 'src/app/shared/services/api/mypark-api.service';
 
 @Component({
   selector: 'mp-parkingspaces-admin',
@@ -7,23 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkingspacesAdminComponent implements OnInit {
 
-  private _parkingSpaces: Array<{ number: string, status: string }>;
+  private _parkingSpaces: ParkingSpace[];
+  number: string;
 
-  constructor() { }
+  constructor(private apiService: MyparkApiService) {
+    this._parkingSpaces = [];
+  }
 
   ngOnInit() {
     this._parkingSpaces = [];
-    for (let i = 0; i < 15; i++) {
-      this._parkingSpaces.push({ number: '' + (79 + i), status: (79 + i) % 2 === 0 ? 'frei' : 'belegt' });
-    }
+
+    this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
+      this._parkingSpaces = parkingSpaces;
+    });
   }
 
-  get parkingSpaces(): Array<{ number: string, status: string }> {
+  get parkingSpaces(): ParkingSpace[] {
     return this._parkingSpaces;
   }
 
   addParkingspace() {
-    this._parkingSpaces.push({ number: '99', status: 'frei' });
+    const parkingSpace: ParkingSpace = { number: this.number };
+    this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
+      console.log('ps', ps);
+      this._parkingSpaces.push(ps);
+      this.number = '';
+    }, error => {
+      // ToDo: handle error
+    });
   }
 
 }

@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './components/users/users.component';
 import { ParkingspacesAdminComponent } from './components/parkingspaces-admin/parkingspaces-admin.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,9 @@ import { ParkingspacesAdminComponent } from './components/parkingspaces-admin/pa
     HttpClientModule,
     NgbModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     UsersComponent,

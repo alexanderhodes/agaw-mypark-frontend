@@ -1,7 +1,7 @@
 
 export interface ParkingSpace {
-    number: number;
-    parkingSpaceStatus: ParkingSpaceStatus;
+    number: string;
+    parkingSpaceStatus?: ParkingSpaceStatus;
 }
 
 export interface ParkingSpaceStatus {
