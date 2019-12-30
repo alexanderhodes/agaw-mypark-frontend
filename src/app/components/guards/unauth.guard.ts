@@ -18,7 +18,7 @@ export class UnauthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/parkingspaces']);
+    this.router.navigateByUrl('/parkingspaces');
     return false;
   }
 }

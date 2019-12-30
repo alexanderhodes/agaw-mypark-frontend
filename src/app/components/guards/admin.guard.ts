@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/parkingspaces']);
+    this.router.navigateByUrl('/parkingspaces');
     return false;
   }
 

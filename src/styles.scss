@@ -146,8 +146,11 @@ a {
     margin-top: 1rem;
 }
 
-.error-message {
-    color: red;
+.message {
     display: block;
     margin-bottom: 0.5rem;
+}
+
+.error-message {
+    color: red;
 }

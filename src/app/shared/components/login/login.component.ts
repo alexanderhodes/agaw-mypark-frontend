@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
       if (success) {
         this.result = '';
-        this.router.navigate(['/parkingspaces']);
+        this.router.navigateByUrl('/parkingspaces');
       } else {
         this.result = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
       }

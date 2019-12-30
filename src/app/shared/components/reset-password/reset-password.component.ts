@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class ResetPasswordComponent implements OnInit {
 
   email: string = '';
+  message: string = '';
+  success: boolean;
 
   constructor(private apiService: MyparkApiService) { }
 
@@ -18,8 +20,13 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword() {
     this.apiService.requestPasswordReset(this.email).subscribe((user: User) => {
-      console.log(user);
+      this.message = 'Die Anfrage war erfolgreich!';
+      this.success = true;
+    }, error => {
+      this.message = 'Die eingegebene E-Mail Adresse ist nicht korrekt';
+      this.success = false;
     });
+    this.email = '';
   }
 
 }

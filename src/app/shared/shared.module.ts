@@ -21,6 +21,7 @@ import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PasswordComponent } from './components/common/password/password.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { PasswordComponent } from './components/common/password/password.compone
     InfoIconComponent,
     BookingsComponent,
     PasswordComponent,
+    ErrorMessageComponent,
   ],
   exports: [
     ButtonComponent,
@@ -55,7 +57,8 @@ import { PasswordComponent } from './components/common/password/password.compone
     RegistrationComponent,
     InfoIconComponent,
     BookingsComponent,
-    PasswordComponent
+    PasswordComponent,
+    ErrorMessageComponent
   ]
 })
 export class SharedModule {
