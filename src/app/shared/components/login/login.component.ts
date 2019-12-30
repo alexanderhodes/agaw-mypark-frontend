@@ -11,7 +11,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
-  public result: string;
+  public message: string;
+  public success: boolean;
 
   constructor(
     private authService: AuthService,
@@ -27,20 +28,21 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    const username: string = this.loginForm.get('username').value;
+    const password: string = this.loginForm.get('password').value;
 
-    this.authService.login(
-      this.loginForm.get('username').value,
-      this.loginForm.get('password').value
-      ).subscribe(response => {
-      const success: boolean = response;
-      console.log('success', success);
+    this.authService.login(username, password).subscribe(response => {
+      this.success = response;
 
-      if (success) {
-        this.result = '';
+      if (this.success) {
+        this.message = '';
         this.router.navigateByUrl('/parkingspaces');
       } else {
-        this.result = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
+        this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
       }
+    }, error => {
+      this.success = false;
+      this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
     });
 
   }

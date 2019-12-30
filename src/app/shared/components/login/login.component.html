@@ -4,15 +4,13 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <span style="display: block;" class="mb-4">
         <span class="icon" uk-icon="user"></span>
-        <input type="email" placeholder="Benutzername" formControlName="username" />
+        <input type="email" required placeholder="Benutzername" formControlName="username" />
         </span>
         <span style="display: block;" class="mb-4">
         <span class="icon" uk-icon="lock"></span>
-        <input type="password" placeholder="Passwort" formControlName="password">
+        <input type="password" required placeholder="Passwort" formControlName="password">{{ loginForm.controls.password.invalid }}
         </span>
-        <span class="error-message" *ngIf="result">
-          {{ result }}
-        </span>
+        <span mp-error-message [success]="success" [message]="message"></span>
         <mp-button title="Anmelden" style="display: block;"></mp-button>
     </form>
 
