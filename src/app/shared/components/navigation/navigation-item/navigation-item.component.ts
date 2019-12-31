@@ -1,3 +1,4 @@
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -11,7 +12,13 @@ export class NavigationItemComponent implements OnInit {
   private _icon: string;
   private _link: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    // this.route.url.subscribe((urlSegment: UrlSegment[]) => {
+    //   console.log('title', this._title);
+    //   console.log('urlSegment', this.route);
+    //   console.log('------------------------');
+    // });
+  }
 
   ngOnInit() {
   }

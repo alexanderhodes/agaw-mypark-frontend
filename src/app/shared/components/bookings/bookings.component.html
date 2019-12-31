@@ -16,22 +16,22 @@
                     <span>{{ booking.date }}</span>
                 </td>
                 <td>
-                    <span>{{ booking.time }}</span>
+                    <span>{{ booking.date }}</span>
                 </td>
                 <td>
                     <span>
                       <div class="status-element"
-                      [style.background-color]="booking.status === 'reserviert' ? 'green' : 'gray'"></div>
-                      <span>{{ booking.status }}</span>
+                      [style.background-color]="booking.bookingStatus.name. === 'reserviert' ? 'green' : 'gray'"></div>
+                      <span>{{ booking.bookingStatus.name }}</span>
                     </span>
                 </td>
                 <td>
-                    <span>{{ booking.parkingspace }}</span>
+                    <span>{{ booking.parkingSpace?.number }}</span>
                 </td>
                 <td>
                     <span>
-                <mp-button *ngIf="booking.status === 'reserviert'" icon="check" title="Benutzung beenden"></mp-button>
-                <mp-button *ngIf="booking.status === 'angefragt'" icon="trash" title="löschen"></mp-button>
+                <mp-button *ngIf="booking.bookingStatus.name === 'reserviert'" icon="check" title="Benutzung beenden"></mp-button>
+                <mp-button *ngIf="booking.bookingStatus.name === 'angefragt'" icon="trash" title="löschen"></mp-button>
               </span>
                 </td>
             </tr>

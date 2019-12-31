@@ -60,7 +60,7 @@ export class AuthService {
   }
 
   get isAdmin(): boolean {
-    return false;
+    return this.roles.indexOf('ADMIN') > -1;
   }
 
   get roles(): string[] {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MyparkApiService } from '../../services/api/mypark-api.service';
+import { Booking } from '../../models/mypark.models';
 
 @Component({
   selector: 'mp-bookings',
@@ -7,24 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingsComponent implements OnInit {
 
-  private _bookings: Array<{ date: string, time: string, status: string, parkingspace: string }>;
+  private _bookings: Booking[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private apiService: MyparkApiService) {
     this._bookings = [];
-
-    for (let i = 0; i < 10; i++) {
-      this._bookings.push({
-        date: 1 + '' + i + '.12.2019',
-        time: '07:00',
-        status: (i > 3) ? 'angefragt' : 'reserviert',
-        parkingspace: (i <= 3) ? `${79 + i}` : ''
-      });
-    }
   }
 
-  get bookings(): Array<{ date: string, time: string, status: string, parkingspace: string }> {
+  ngOnInit() {
+    this.apiService.getBookings().subscribe(bookings => {
+      this._bookings = bookings;
+    });
+  }
+
+  get bookings(): Booking[] {
     return this._bookings;
   }
 

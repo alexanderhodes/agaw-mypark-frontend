@@ -1,4 +1,3 @@
-
 export interface ParkingSpace {
     number: string;
     parkingSpaceStatus?: ParkingSpaceStatus;
@@ -11,7 +10,7 @@ export interface ParkingSpaceStatus {
 }
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   password: string;
   username: string;
@@ -24,4 +23,18 @@ export interface Authentication {
   expiration: number;
   roles: Array<string>;
   username: string;
+}
+
+export interface Booking {
+  id: string;
+  user: User;
+  parkingSpace: ParkingSpace;
+  date: Date;
+  bookingStatus: BookingStatus;
+}
+
+export interface BookingStatus {
+  id: number;
+  name: string;
+  color: string;
 }

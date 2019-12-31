@@ -1,4 +1,4 @@
-import { ParkingSpace, Authentication, User } from './../../models/mypark.models';
+import { ParkingSpace, Authentication, User, Booking } from './../../models/mypark.models';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -46,6 +46,10 @@ export class MyparkApiService {
 
     getAllUsers(): Observable<User[]> {
         return this.apiService.get<User[]>(`users`);
+    }
+
+    getBookings(): Observable<Booking[]> {
+      return this.apiService.get<Booking[]>(`bookings/users`);
     }
 
 }
