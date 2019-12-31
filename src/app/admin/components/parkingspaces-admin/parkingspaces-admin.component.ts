@@ -34,6 +34,9 @@ export class ParkingspacesAdminComponent implements OnInit {
       console.log('ps', ps);
       this._parkingSpaces.push(ps);
       this.number = '';
+      this._parkingSpaces = this._parkingSpaces.sort((a, b) => {
+        return +a.number - +b.number;
+      });
     }, error => {
       // ToDo: handle error
     });

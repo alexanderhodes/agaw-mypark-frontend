@@ -31,4 +31,11 @@ export class ParkingSpacesListComponent implements OnInit {
     uikit.modal.alert('hallo welt');
   }
 
+  get numberOfFreeParkingSpaces(): number {
+    const count = this._parkingSpaces.filter((parkingSpace: ParkingSpace) => {
+      return parkingSpace.parkingSpaceStatus ? parkingSpace.parkingSpaceStatus.name = 'free' : false;
+    }).length;
+    return count;
+  }
+
 }

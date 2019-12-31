@@ -1,6 +1,8 @@
 <h1>Übersicht der Parkplätze</h1>
 <div class="mt-1 mb-1">
-    <span>Es gibt heute noch 2 freie Parkplätze, die per Sofort-Buchung reserviert werden können.</span>
+    <span *ngIf="numberOfFreeParkingSpaces > 0">
+        Es gibt heute noch {{ numberOfFreeParkingSpaces }} freie Parkplätze, die per Sofort-Buchung reserviert werden können.
+    </span>
     <mp-button icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
 <div class="table-container">
