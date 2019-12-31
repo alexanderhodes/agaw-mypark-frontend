@@ -3,7 +3,7 @@
     <span *ngIf="numberOfFreeParkingSpaces > 0">
         Es gibt heute noch {{ numberOfFreeParkingSpaces }} freie Parkplätze, die per Sofort-Buchung reserviert werden können.
     </span>
-    <mp-button icon="clock" title="Sofort-Buchung"></mp-button>
+    <mp-button *ngIf="!hasBooking" (click)="book()" icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
 <div class="table-container">
     <table>
@@ -25,7 +25,7 @@
                     </span>
                 </td>
                 <td>
-                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free'" icon="clock" (click)="book(i)" title="sofort buchen"></mp-button>
+                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock" (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
                     <mp-button icon="warning" title="Problem melden"></mp-button>
                 </td>
             </tr>

@@ -13,10 +13,10 @@
         <tbody>
             <tr *ngFor="let booking of bookings">
                 <td>
-                    <span>{{ booking.date }}</span>
+                    <span>{{ booking.date | date: 'EEE, dd.MM.yyyy' }}</span>
                 </td>
                 <td>
-                    <span>{{ booking.date }}</span>
+                    <span>{{ booking.date | date: 'HH:mm' }}</span>
                 </td>
                 <td>
                     <span>
