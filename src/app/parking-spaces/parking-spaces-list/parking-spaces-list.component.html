@@ -25,12 +25,16 @@
                     </span>
                 </td>
                 <td>
-                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock" (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
-                    <mp-button icon="warning" title="Problem melden"></mp-button>
+                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock"
+                               (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
+                    <mp-button icon="warning" title="Problem melden" (click)="reportProblem(parkingSpace)"></mp-button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<mp-confirmation [id]="id" [title]="title" [text]="text"></mp-confirmation>
+<mp-confirmation (onConfirm)="confirmBooking($event)" [id]="idBookNow" [title]="titleBookNow" [text]="textBookNow">
+</mp-confirmation>
+<mp-confirmation (onConfirm)="confirmProblem($event)" [id]="idProblem" [title]="titleProblem" [text]="textProblem"
+                 [closeText]="closeTextProblem"></mp-confirmation>

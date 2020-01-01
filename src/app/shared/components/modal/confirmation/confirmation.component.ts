@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
-import * as uikit from 'uikit';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ModalService} from '../../../services/common/modal.service';
 
 @Component({
   selector: 'mp-confirmation',
@@ -10,13 +10,16 @@ export class ConfirmationComponent implements OnInit {
 
   private _text: string;
   private _title: string;
-  private _emitClick: EventEmitter<any>;
   private _id: string;
   private _closeText: string;
 
-  constructor() {
-    this._emitClick = new EventEmitter<any>();
-    this._closeText = 'Fenster schließen';
+  @Output()
+  onConfirm: EventEmitter<any>;
+
+
+  constructor(private modalService: ModalService) {
+    this.onConfirm = new EventEmitter<any>();
+    this._closeText = 'schließen';
   }
 
   ngOnInit() {
@@ -42,21 +45,12 @@ export class ConfirmationComponent implements OnInit {
     this._closeText = value;
   }
 
-  @Input()
-  set emitClick(value: EventEmitter<any>) {
-    this._emitClick = value;
-  }
-
   get text(): string {
     return this._text;
   }
 
   get title(): string {
     return this._title;
-  }
-
-  get emitClick(): EventEmitter<any> {
-    return this._emitClick;
   }
 
   get id(): string {
@@ -67,8 +61,13 @@ export class ConfirmationComponent implements OnInit {
     return this._closeText;
   }
 
+  public confirm(text: string) {
+    this.closeModal();
+    this.onConfirm.emit(text);
+  }
+
   public closeModal(): void {
-    uikit.modal(`#${this._id}`).hide();
+    this.modalService.hide(this.id);
   }
 
 }
