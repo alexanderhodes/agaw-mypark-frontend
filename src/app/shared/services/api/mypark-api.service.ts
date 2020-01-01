@@ -1,4 +1,4 @@
-import { ParkingSpace, Authentication, User, Booking, BookingStatus } from './../../models/mypark.models';
+import {ParkingSpace, Authentication, User, Booking, BookingStatus, Problem} from './../../models/mypark.models';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -56,8 +56,16 @@ export class MyparkApiService {
       return this.apiService.post<Booking>(`bookings`, body);
     }
 
-    getBookingForToday(date: String): Observable<Booking> {
-      return this.apiService.get(`bookings/users/${date}`);
+    getBookingForToday(date: string): Observable<Booking> {
+      return this.apiService.get<Booking>(`bookings/users/${date}`);
+    }
+
+    createProblem(body: Problem): Observable<Problem> {
+      return this.apiService.post<Problem>(`problems`, body);
+    }
+
+    getProblems(): Observable<Problem[]> {
+      return this.apiService.get<Problem[]>(`problems`);
     }
 
 }

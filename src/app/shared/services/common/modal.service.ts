@@ -4,14 +4,22 @@ import * as uikit from 'uikit';
 @Injectable()
 export class ModalService {
 
-  constructor() {}
+  private timeout: number;
+
+  constructor() {
+    this.timeout = 100;
+  }
 
   public show(id: string): void {
-    uikit.modal(`#${id}`).show();
+    setTimeout(() => {
+      uikit.modal(`#${id}`).show();
+    }, this.timeout);
   }
 
   public hide(id: string): void {
-    uikit.modal(`#${id}`).hide(id);
+    setTimeout(() => {
+      uikit.modal(`#${id}`).hide(id);
+    }, this.timeout);
   }
 
 }

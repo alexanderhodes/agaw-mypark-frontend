@@ -38,3 +38,11 @@ export interface BookingStatus {
   name: string;
   color: string;
 }
+
+export interface Problem {
+  id: string;
+  date: Date;
+  reason: string;
+  parkingSpace: ParkingSpace;
+  user: User;
+}

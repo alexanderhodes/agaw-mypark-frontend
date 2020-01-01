@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ModalService} from '../../../services/common/modal.service';
+import {ModalConfiguration} from '../../../models/component.models';
 
 @Component({
   selector: 'mp-confirmation',
@@ -12,6 +13,7 @@ export class ConfirmationComponent implements OnInit {
   private _title: string;
   private _id: string;
   private _closeText: string;
+  private _configuration: ModalConfiguration;
 
   @Output()
   onConfirm: EventEmitter<any>;
@@ -26,23 +28,14 @@ export class ConfirmationComponent implements OnInit {
   }
 
   @Input()
-  set id(value: string) {
-    this._id = value;
-  }
-
-  @Input()
-  set title(value: string) {
-    this._title = value;
-  }
-
-  @Input()
-  set text(value: string) {
-    this._text = value;
-  }
-
-  @Input()
-  set closeText(value: string) {
-    this._closeText = value;
+  set configuration(value: ModalConfiguration) {
+    this._configuration = value;
+    if (this._configuration) {
+      this._id = this._configuration.id;
+      this._title = this._configuration.title;
+      this._text = this._configuration.text;
+      this._closeText = this._configuration.closeText;
+    }
   }
 
   get text(): string {
