@@ -1,0 +1,9 @@
+<div [id]="id" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <div style="text-align: center;">
+      <h2>{{ title }}</h2>
+      <p>{{ text }}</p>
+      <mp-button (click)="closeModal()" [title]="closeText"></mp-button>
+    </div>
+  </div>
+</div>
