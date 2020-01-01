@@ -21,7 +21,6 @@ export class ConfirmationComponent implements OnInit {
 
   constructor(private modalService: ModalService) {
     this.onConfirm = new EventEmitter<any>();
-    this._closeText = 'schließen';
   }
 
   ngOnInit() {

@@ -111,7 +111,8 @@ export class ParkingSpacesListComponent implements OnInit {
     return {
       id: 'modelBooking',
       title: 'Sofort-Buchung',
-      text
+      text,
+      closeText: 'schließen'
     };
   }
 
