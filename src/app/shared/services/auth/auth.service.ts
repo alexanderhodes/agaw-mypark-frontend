@@ -1,6 +1,6 @@
 import { Authentication } from './../../models/mypark.models';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION, LOCALSTORAGE_KEY_USERNAME, LOCALSTORAGE_KEY_ROLES } from './../../config/mypark.config';
-import { LocalStorageService } from './../local-storage.service';
+import { LocalStorageService } from '../common/local-storage.service';
 import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

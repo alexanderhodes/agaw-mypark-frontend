@@ -1,4 +1,4 @@
-import { LocalStorageService } from './../local-storage.service';
+import { LocalStorageService } from '../common/local-storage.service';
 import { LOCALSTORAGE_KEY_TOKEN } from './../../config/mypark.config';
 import { ApiErrorHandler } from './api-error-handler';
 import { environment } from './../../../../environments/environment.prod';

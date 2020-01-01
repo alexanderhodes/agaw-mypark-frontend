@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LOCALSTORAGE_KEY_PREFIX } from '../config/mypark.config';
+import { LOCALSTORAGE_KEY_PREFIX } from '../../config/mypark.config';
 
 @Injectable()
 export class LocalStorageService {

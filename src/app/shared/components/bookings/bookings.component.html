@@ -13,15 +13,14 @@
         <tbody>
             <tr *ngFor="let booking of bookings">
                 <td>
-                    <span>{{ booking.date | date: 'EEE, dd.MM.yyyy' }}</span>
+                    <span>{{ booking.date | date: 'EEEE, dd.MM.yyyy' }}</span>
                 </td>
                 <td>
                     <span>{{ booking.date | date: 'HH:mm' }}</span>
                 </td>
                 <td>
                     <span>
-                      <div class="status-element"
-                      [style.background-color]="booking.bookingStatus.name === 'reserviert' ? 'green' : 'gray'"></div>
+                      <div class="status-element" [style.background-color]="booking.bookingStatus.color"></div>
                       <span>{{ booking.bookingStatus.name }}</span>
                     </span>
                 </td>
@@ -30,8 +29,8 @@
                 </td>
                 <td>
                     <span>
-                <mp-button *ngIf="booking.bookingStatus.name === 'reserviert'" icon="check" title="Benutzung beenden"></mp-button>
-                <mp-button *ngIf="booking.bookingStatus.name === 'angefragt'" icon="trash" title="löschen"></mp-button>
+                <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check" title="Benutzung beenden"></mp-button>
+                <mp-button *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
               </span>
                 </td>
             </tr>

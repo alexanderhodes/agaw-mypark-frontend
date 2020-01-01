@@ -56,4 +56,8 @@ export class MyparkApiService {
       return this.apiService.post<Booking>(`bookings`, body);
     }
 
+    getBookingForToday(date: String): Observable<Booking> {
+      return this.apiService.get(`bookings/users/${date}`);
+    }
+
 }
