@@ -21,7 +21,7 @@
                 </td>
                 <td>
                     <span class="state" [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'free' ? 'green' : 'red'">
-                      {{ parkingSpace.parkingSpaceStatus.name }}
+                      {{ parkingSpace.parkingSpaceStatus.name | statusTranslation }}
                     </span>
                 </td>
                 <td>

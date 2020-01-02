@@ -21,7 +21,7 @@
                 <td>
                     <span>
                       <div class="status-element" [style.background-color]="booking.bookingStatus.color"></div>
-                      <span>{{ booking.bookingStatus.name }}</span>
+                      <span>{{ booking.bookingStatus.name | statusTranslation }}</span>
                     </span>
                 </td>
                 <td>

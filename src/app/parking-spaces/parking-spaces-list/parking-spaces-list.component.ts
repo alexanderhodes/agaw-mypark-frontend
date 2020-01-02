@@ -104,6 +104,8 @@ export class ParkingSpacesListComponent implements OnInit {
       this._hasBooking = true;
       this._bookNowModalConfiguration = this.initBookNowModalConfiguration(text);
       this.modalService.show(this._bookNowModalConfiguration.id);
+
+      // ToDo: change ps status to not free
     });
   }
 

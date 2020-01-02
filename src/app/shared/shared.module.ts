@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ApiService, MyparkApiService, AuthService, ApiErrorHandler, LocalStorageService, ModalService }
-          from './services/public_api';
+import { ApiService, MyparkApiService, AuthService, ApiErrorHandler, LocalStorageService,
+          ModalService } from './services/public_api';
 import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, LoginComponent,
           FooterComponent, ResetPasswordComponent, RegistrationComponent, InfoIconComponent, BookingsComponent ,
           PasswordComponent, ErrorMessageComponent, ConfirmationComponent } from './components/public_api';
+import { StatusTranslationPipe } from './pipes/public_api';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemCo
     PasswordComponent,
     ErrorMessageComponent,
     ConfirmationComponent,
+    StatusTranslationPipe,
   ],
   exports: [
     ButtonComponent,
@@ -48,7 +50,8 @@ import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemCo
     BookingsComponent,
     PasswordComponent,
     ErrorMessageComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    StatusTranslationPipe
   ]
 })
 export class SharedModule {
