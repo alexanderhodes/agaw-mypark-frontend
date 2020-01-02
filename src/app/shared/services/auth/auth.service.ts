@@ -1,5 +1,11 @@
-import { Authentication } from './../../models/mypark.models';
-import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_EXPIRATION, LOCALSTORAGE_KEY_USERNAME, LOCALSTORAGE_KEY_ROLES } from './../../config/mypark.config';
+import {Authentication, User} from './../../models/mypark.models';
+import {
+  LOCALSTORAGE_KEY_TOKEN,
+  LOCALSTORAGE_KEY_EXPIRATION,
+  LOCALSTORAGE_KEY_USERNAME,
+  LOCALSTORAGE_KEY_ROLES,
+  LOCALSTORAGE_KEY_NAME
+} from './../../config/mypark.config';
 import { LocalStorageService } from '../common/local-storage.service';
 import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
@@ -25,11 +31,17 @@ export class AuthService {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_EXPIRATION, `${auth.expiration}`);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_USERNAME, auth.username);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_ROLES, auth.roles.toString());
-          observer.next(true);
+
+          this.myparkApiService.getCurrentUser().subscribe((user: User) => {
+            const fullName = `${user.firstName} ${user.lastName}`
+            this.localStorageService.setItem(LOCALSTORAGE_KEY_NAME, fullName);
+            observer.next(true);
+            observer.complete();
+          });
         } else {
           observer.next(false);
+          observer.complete();
         }
-        observer.complete();
       }, error => {
         observer.error(error);
       });
@@ -57,6 +69,10 @@ export class AuthService {
 
   get username(): string {
     return this.localStorageService.getItem(LOCALSTORAGE_KEY_USERNAME);
+  }
+
+  get fullname(): string {
+    return this.localStorageService.getItem(LOCALSTORAGE_KEY_NAME);
   }
 
   get isAdmin(): boolean {

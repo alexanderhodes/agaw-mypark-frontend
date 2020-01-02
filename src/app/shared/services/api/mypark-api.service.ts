@@ -48,6 +48,10 @@ export class MyparkApiService {
         return this.apiService.get<User[]>(`users`);
     }
 
+    getCurrentUser(): Observable<User> {
+      return this.apiService.get<User>(`users/current`);
+    }
+
     getBookings(): Observable<Booking[]> {
       return this.apiService.get<Booking[]>(`bookings/users`);
     }

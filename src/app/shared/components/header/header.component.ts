@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.loggedIn = this.authService.loggedIn;
-        this.username = this.authService.username;
+        this.username = this.authService.fullname;
       }
     });
   }
