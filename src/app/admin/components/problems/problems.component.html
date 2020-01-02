@@ -1,0 +1,29 @@
+<h1>Übersicht der Parkplätze</h1>
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Datum</th>
+      <th scope="col">Uhrzeit</th>
+      <th scope="col">Parkplatz</th>
+      <th scope="col">Grund</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let problem of problems; index as i">
+        <td>
+          <span>{{ problem.date | date: 'EEEE, dd.MM.yyyy' }}</span>
+        </td>
+        <td>
+          <span>{{ problem.date | date: 'HH:mm' }}</span>
+        </td>
+        <td>
+          <span>{{ problem.parkingSpace.number }}</span>
+        </td>
+        <td>
+          <span>{{ problem.reason | statusTranslation }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

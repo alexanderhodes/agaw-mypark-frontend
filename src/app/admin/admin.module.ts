@@ -7,13 +7,15 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from './components/users/users.component';
 import { ParkingspacesAdminComponent } from './components/parkingspaces-admin/parkingspaces-admin.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProblemsComponent } from './components/problems/problems.component';
 
 
 
 @NgModule({
   declarations: [
     UsersComponent,
-    ParkingspacesAdminComponent
+    ParkingspacesAdminComponent,
+    ProblemsComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   exports: [
     UsersComponent,
-    ParkingspacesAdminComponent
+    ParkingspacesAdminComponent,
+    ProblemsComponent
   ],
   providers: [
 

@@ -11,6 +11,7 @@ import { ParkingSpacesListComponent } from './parking-spaces/parking-spaces-list
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './components/guards/auth.guard';
+import {ProblemsComponent} from './admin/components/problems/problems.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     children: [
       { path: 'parkingspaces', component: ParkingspacesAdminComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'problems', component: ProblemsComponent }
     ] },
   { path: 'common/password/:token',
     canActivate: [ UnauthGuard ],

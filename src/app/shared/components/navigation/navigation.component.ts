@@ -40,6 +40,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
       if (this.roles.indexOf('ADMIN') > -1) {
         this._items.push({ title: 'Parkplätze', icon: 'album', link: 'admin/parkingspaces' });
         this._items.push({ title: 'Benutzer', icon: 'users', link: 'admin/users' });
+        this._items.push({ title: 'Probleme', icon: 'bolt', link: 'admin/problems' });
       }
     }
   }

@@ -6,7 +6,9 @@ const translations = {
   requested: 'angefragt',
   declined: 'abgelegt',
   free: 'frei',
-  used: 'belegt'
+  used: 'belegt',
+  'status free is used': 'Parkplatz ist frei wird jedoch verwendet',
+  'status used is free': 'Parkplatz ist belegt wird jedoch nicht verwendet'
 };
 
 @Pipe({
