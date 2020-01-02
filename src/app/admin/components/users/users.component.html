@@ -30,9 +30,11 @@
                 </td>
                 <td>
                     <mp-button (click)="contactUser(user)" icon="mail" title="Benutzer kontaktieren"></mp-button>
-                    <mp-button icon="trash" title="Benutzer löschen"></mp-button>
+                    <mp-button (click)="deleteUser(user)" icon="trash" title="Benutzer löschen"></mp-button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<mp-confirmation (onConfirm)="confirmDeleteUser($event)" [configuration]="deleteModalConfiguration"></mp-confirmation>

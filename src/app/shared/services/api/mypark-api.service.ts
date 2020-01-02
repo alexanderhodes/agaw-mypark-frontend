@@ -52,6 +52,14 @@ export class MyparkApiService {
       return this.apiService.get<User>(`users/current`);
     }
 
+    deleteUser(id: string): Observable<any> {
+      return this.apiService.delete(`users/${id}`);
+    }
+
+    updateUser(id: string, body: User): Observable<User> {
+      return this.apiService.put<User>(`users/${id}`, body);
+    }
+
     getBookings(): Observable<Booking[]> {
       return this.apiService.get<Booking[]>(`bookings/users`);
     }
