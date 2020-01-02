@@ -1,0 +1,13 @@
+.close-icon {
+  cursor: pointer;
+  position: relative;
+  top: -24px;
+  right: -100%;
+  border: 1px solid #D0D0D0;
+  border-radius: 1rem;
+}
+
+.close-icon:hover {
+  color: #e20074;
+  border-color: #e20074;
+}
