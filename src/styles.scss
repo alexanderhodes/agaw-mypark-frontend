@@ -167,3 +167,26 @@ select {
 .error-message {
     color: red;
 }
+
+.input-label {
+  float: left;
+  width: 160px;
+}
+
+input {
+  width: 250px;
+}
+
+.info-icon {
+  margin-left: .5rem;
+}
+
+p {
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .input-label {
+    width: 100%;
+  }
+}

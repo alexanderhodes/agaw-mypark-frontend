@@ -14,6 +14,7 @@ import { AuthGuard } from './components/guards/auth.guard';
 import {ProblemsComponent} from './admin/components/problems/problems.component';
 import {NewBookingComponent} from './parking-spaces/new-booking/new-booking.component';
 import {SeriesBookingComponent} from './parking-spaces/series-booking/series-booking.component';
+import {PersonalDataComponent} from './parking-spaces/personal-data/personal-data.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,9 @@ const routes: Routes = [
     canActivate: [ AuthGuard ] },
   { path: 'series-booking',
     component: SeriesBookingComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'personal-data',
+    component: PersonalDataComponent,
     canActivate: [ AuthGuard ] },
   { path: 'admin',
     canActivate: [ AdminGuard ],

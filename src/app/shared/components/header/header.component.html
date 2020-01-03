@@ -10,7 +10,7 @@
           </span>
         </button>
         <div uk-dropdown="mode: click">
-            <span class="dropdown-item">Benutzerdaten verwalten
+            <span [routerLink]="['/personal-data']" class="dropdown-item">Benutzerdaten verwalten
               <span uk-icon="cog" class="icon"></span>
             </span>
             <span class="dropdown-item" (click)="logout()">Abmelden
