@@ -47,3 +47,11 @@ export interface Problem {
   parkingSpace: ParkingSpace;
   user: User;
 }
+
+export interface SeriesBooking {
+  id: string;
+  user: User;
+  active: boolean;
+  time: string;
+  weekday: number;
+}

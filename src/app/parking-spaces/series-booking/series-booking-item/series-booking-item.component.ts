@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SeriesBookingItem} from '../series-booking.component';
+import {SeriesBooking} from '../../../shared/models/mypark.models';
 
 @Component({
   selector: 'mp-series-booking-item',
@@ -9,20 +9,22 @@ import {SeriesBookingItem} from '../series-booking.component';
 export class SeriesBookingItemComponent implements OnInit {
 
   @Input()
-  item: SeriesBookingItem;
+  item: SeriesBooking;
+  @Input()
+  weekDay: string;
 
   @Output()
-  changed: EventEmitter<SeriesBookingItem>;
+  changed: EventEmitter<SeriesBooking>;
 
   constructor() {
-    this.changed = new EventEmitter<SeriesBookingItem>();
+    this.changed = new EventEmitter<SeriesBooking>();
   }
 
   ngOnInit() {
   }
 
   toggle(): void {
-    this.item.checked = !this.item.checked
+    this.item.active = !this.item.active;
     this.changed.emit(this.item);
   }
 

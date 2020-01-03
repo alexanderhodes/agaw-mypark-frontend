@@ -1,11 +1,11 @@
 <div class="day">
-  <span class="bold">{{ item.weekday }}</span>
+  <span class="bold">{{ weekDay }}</span>
   <div (click)="toggle()" class="toggle"
-       [ngClass]="{'toggle-checked': item.checked}"
-       [attr.uk-icon]="item.checked ? 'check' : 'close'"></div>
+       [ngClass]="{'toggle-checked': item.active}"
+       [attr.uk-icon]="item.active ? 'check' : 'close'"></div>
   <span>
     ab
-    <input type="time" [(ngModel)]="item.time" (ngModelChange)="inputChange()" [disabled]="!item.checked"
+    <input type="time" [(ngModel)]="item.time" (ngModelChange)="inputChange()" [disabled]="!item.active"
            placeholder="08:30">
     Uhr
   </span>

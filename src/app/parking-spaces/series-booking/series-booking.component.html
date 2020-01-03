@@ -4,7 +4,8 @@
     Hier können Sie wiederkehrende Buchungen einrichten, die an den ausgewählten Tagen automatisch gesendet werden.
   </span>
   <div class="uk-column-1-5 mb-4">
-    <mp-series-booking-item *ngFor="let item of seriesBookingItems" [item]="item"></mp-series-booking-item>
+    <mp-series-booking-item *ngFor="let item of seriesBookingItems; index as i" [weekDay]="weekdays[i]" [item]="item">
+    </mp-series-booking-item>
   </div>
   <mp-button (click)="saveSeriesBooking()" title="speichern"></mp-button>
 </div>
