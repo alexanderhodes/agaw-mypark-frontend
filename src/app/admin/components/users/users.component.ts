@@ -13,7 +13,11 @@ export class UsersComponent implements OnInit {
 
   private _users: User[];
   private _deleteModalConfiguration: ModalConfiguration;
+  private _updateAdminRightsModalConfiguration: ModalConfiguration;
   private _deleteUser: User;
+  private _selectedUser: User;
+
+  public isAdmin: boolean;
 
   constructor(private apiService: MyparkApiService, private modalService: ModalService) {
     this._users = [];
@@ -33,6 +37,10 @@ export class UsersComponent implements OnInit {
     return this._deleteModalConfiguration;
   }
 
+  get updateAdminRightsModalConfiguration(): ModalConfiguration {
+    return this._updateAdminRightsModalConfiguration;
+  }
+
   public contactUser(user: User): void {
     window.open(`mailto:${user.username}&subject='MyPark - Kontakt'`);
   }
@@ -44,6 +52,14 @@ export class UsersComponent implements OnInit {
     const text = `Möchten Sie den Benutzer ${user.firstName} ${user.lastName} wirklich löschen?`;
     this._deleteModalConfiguration = this.initDeleteModalConfiguration(text);
     this.modalService.show(this._deleteModalConfiguration.id);
+  }
+
+  public updateAdminRights(user: User, admin: boolean): void {
+    this._selectedUser = user;
+    const text = admin ? `Möchten Sie dem Benutzer ${user.firstName} ${user.lastName} die Admin-Rechte entziehen?` :
+      `Möchten Sie dem Benutzer ${user.firstName} ${user.lastName} Admin-Rechte entfernen?`;
+    this._updateAdminRightsModalConfiguration = this.initUpdateAdminRightsModalConfiguration(text);
+    this.modalService.show(this._updateAdminRightsModalConfiguration.id);
   }
 
   public confirmDeleteUser(event: any): void {
@@ -60,10 +76,26 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  public confirmUpdateAdminRights(event: any): void {
+    const id = this._selectedUser.id;
+    this.apiService.updateAdminRights(id).subscribe((response: User) => {
+      this.isAdmin = !this.isAdmin;
+    });
+  }
+
   private initDeleteModalConfiguration(text: string): ModalConfiguration {
     return {
       id: 'modalDelete',
       title: 'Benutzer löschen',
+      text,
+      closeText: 'bestätigen'
+    };
+  }
+
+  private initUpdateAdminRightsModalConfiguration(text: string): ModalConfiguration {
+    return {
+      id: 'modalUpdateAdminRights',
+      title: 'Admin-Rechte zuweisen',
       text,
       closeText: 'bestätigen'
     };

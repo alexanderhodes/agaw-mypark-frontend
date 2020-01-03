@@ -23,10 +23,13 @@
                     <span>{{ user.username }}</span>
                 </td>
                 <td>
-                    <span [attr.uk-icon]="user.parkingSpace ? 'check' : 'close'" class="icon" [style.color]="user.parkingSpace ? 'green' : 'red'"></span>
+                    <span [attr.uk-icon]="user.parkingSpace ? 'check' : 'close'" class="icon"
+                          [style.color]="user.parkingSpace ? 'green' : 'red'"></span>
                 </td>
                 <td>
-                    <span [attr.uk-icon]="user.admin ? 'check' : 'close'" class="icon" [style.color]="user.admin ? 'green' : 'red'"></span>
+                    <span [attr.uk-icon]="isAdmin ? 'check' : 'close'" class="icon"
+                          [style.color]="isAdmin ? 'green' : 'red'" style="cursor: pointer;"
+                          (click)="updateAdminRights(user, isAdmin)"></span>
                 </td>
                 <td>
                     <mp-button (click)="contactUser(user)" icon="mail" title="Benutzer kontaktieren"></mp-button>
@@ -38,3 +41,4 @@
 </div>
 
 <mp-confirmation (onConfirm)="confirmDeleteUser($event)" [configuration]="deleteModalConfiguration"></mp-confirmation>
+<mp-confirmation (onConfirm)="confirmUpdateAdminRights($event)" [configuration]="updateAdminRightsModalConfiguration"></mp-confirmation>
