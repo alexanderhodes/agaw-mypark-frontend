@@ -4,6 +4,7 @@
     <div style="text-align: center;">
       <h2>{{ title }}</h2>
       <p>{{ text }}</p>
+      <ng-content></ng-content>
       <mp-button (click)="closeModal()" [title]="'abbrechen'"></mp-button>
       <mp-button (click)="confirm('confirm')" [title]="closeText"></mp-button>
     </div>

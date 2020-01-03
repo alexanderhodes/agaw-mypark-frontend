@@ -13,7 +13,6 @@
         <thead>
             <tr>
                 <th scope="col" style="width: 112px;">Parkplatz</th>
-                <th scope="col" style="width: 80px;">&nbsp;</th>
                 <th scope="col" style="width: 180px;">Zugewiesen</th>
                 <th scope="col" style="text-align: left;">Aktionen</th>
             </tr>
@@ -24,10 +23,13 @@
                     <span class="number">{{ parkingSpace.number }}</span>
                 </td>
                 <td>
-
-                </td>
-                <td>
-                    &nbsp;
+                  <div>
+                    <span class="tip">fest vergeben an:</span>
+                    <span class="assignment-wrapper" (click)="assignParkingSpace(parkingSpace)">
+                      <span class="user">Benutzer auswählen</span>
+                      <span uk-icon="plus" class="icon"></span>
+                    </span>
+                  </div>
                 </td>
                 <td>
                     <mp-button icon="trash" title="löschen"></mp-button>
@@ -36,3 +38,11 @@
         </tbody>
     </table>
 </div>
+
+<mp-confirmation (onConfirm)="confirmAssignment($event)" [configuration]="assignmentModalConfiguration">
+  <div style="display: block" class="mb-2">
+    <select [(ngModel)]="selectedUser">
+      <option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName }}</option>
+    </select>
+  </div>
+</mp-confirmation>

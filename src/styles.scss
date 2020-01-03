@@ -60,6 +60,13 @@ input:focus {
     border-bottom: 2px #e20074 solid;
 }
 
+select {
+  border: 1px #d0d0d0 solid;
+  border-radius: 16px;
+  padding: 4px;
+  min-width: 10rem;
+}
+
 .table-container {
     border-radius: 5px;
     border: 1px #d0d0d0 solid;
@@ -91,8 +98,10 @@ input:focus {
 span,
 input,
 p,
-a {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+a,
+select {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 300;
 }
 
@@ -144,6 +153,10 @@ a {
 
 .mt-4 {
     margin-top: 1rem;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .message {

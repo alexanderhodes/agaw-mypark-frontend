@@ -1,0 +1,36 @@
+.tip {
+  display: block;
+  color: #aaa;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-size: .85rem;
+  xposition: absolute;
+  line-height: .85rem;
+}
+
+.assignment-wrapper {
+  cursor: pointer;
+
+  .user {
+    max-width: calc(100% - 30px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+  }
+
+  .icon {
+    font-size: 1rem;
+    padding: 2px;
+    margin-left: 2px;
+  }
+}
+
+.assignment-wrapper:hover {
+  color: #e20074;
+}
+

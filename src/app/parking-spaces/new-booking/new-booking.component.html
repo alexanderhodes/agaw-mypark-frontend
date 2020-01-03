@@ -1,0 +1,16 @@
+<div style="text-align: center">
+  <h1>Parkplatz buchen</h1>
+  <div class="mt-1 mb-1">
+    <span style="display: block;" class="mb-2">
+      am
+      <input [(ngModel)]="day" type="date" required placeholder="Tag" />
+      <span class="icon" uk-icon="calendar"></span>
+    </span>
+    <span style="display: block" class="mb-2">
+      ab
+      <input [(ngModel)]="time" type="time" required placeholder="Uhrzeit" />
+      <span class="clock" uk-icon="calendar"></span>
+    </span>
+    <mp-button (click)="createBooking()" title="Buchung abschicken"></mp-button>
+  </div>
+</div>

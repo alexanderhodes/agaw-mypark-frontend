@@ -31,8 +31,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
       this._items = [];
 
       if (this.roles.indexOf('USER') > -1) {
-        this._items.push({ title: 'Neue Buchung', icon: 'plus', link: 'bookings' });
-        this._items.push({ title: 'Serienbuchung', icon: 'history', link: 'bookings' });
+        this._items.push({ title: 'Neue Buchung', icon: 'plus', link: 'new-booking' });
+        this._items.push({ title: 'Serienbuchung', icon: 'history', link: 'series-booking' });
         this._items.push({ title: 'Meine Buchungen', icon: 'star', link: 'bookings' });
         this._items.push({ title: 'Übersicht der Parkplätze', icon: 'list', link: 'parkingspaces' });
       }

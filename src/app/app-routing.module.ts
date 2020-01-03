@@ -12,6 +12,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './components/guards/auth.guard';
 import {ProblemsComponent} from './admin/components/problems/problems.component';
+import {NewBookingComponent} from './parking-spaces/new-booking/new-booking.component';
+import {SeriesBookingComponent} from './parking-spaces/series-booking/series-booking.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,12 @@ const routes: Routes = [
     canActivate: [ UnauthGuard ] },
   { path: 'bookings',
     component: BookingsComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'new-booking',
+    component: NewBookingComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'series-booking',
+    component: SeriesBookingComponent,
     canActivate: [ AuthGuard ] },
   { path: 'admin',
     canActivate: [ AdminGuard ],
