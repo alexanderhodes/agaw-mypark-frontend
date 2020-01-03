@@ -60,6 +60,10 @@ export class MyparkApiService {
       return this.apiService.put<User>(`users/${id}`, body);
     }
 
+    updateAdminRights(id: string): Observable<User> {
+      return this.apiService.put<User>(`users/${id}/admin`, null);
+    }
+
     getBookings(): Observable<Booking[]> {
       return this.apiService.get<Booking[]>(`bookings/users`);
     }
