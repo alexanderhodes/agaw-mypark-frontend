@@ -14,6 +14,7 @@ export class ParkingspacesAdminComponent implements OnInit {
   private _parkingSpaces: ParkingSpace[];
   private _users: User[];
   private _assignmentModalConfiguration: ModalConfiguration;
+  private _deleteParkingSpaceConfiguration: ModalConfiguration;
   private _selectedParkingSpace: ParkingSpace;
   private _selectedUser: string;
 
@@ -40,6 +41,10 @@ export class ParkingspacesAdminComponent implements OnInit {
     return this._assignmentModalConfiguration;
   }
 
+  get deleteParkingSpaceConfiguration(): ModalConfiguration {
+    return this._deleteParkingSpaceConfiguration;
+  }
+
   get parkingSpaces(): ParkingSpace[] {
     return this._parkingSpaces;
   }
@@ -61,7 +66,7 @@ export class ParkingspacesAdminComponent implements OnInit {
   }
 
   public addParkingSpace(): void {
-    const parkingSpace: ParkingSpace = { number: this.number };
+    const parkingSpace: ParkingSpace = { id: null, number: this.number };
     this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
       this._parkingSpaces.push(ps);
       this.number = '';
@@ -75,9 +80,16 @@ export class ParkingspacesAdminComponent implements OnInit {
 
   public assignParkingSpace(parkingSpace: ParkingSpace): void {
     this._selectedParkingSpace = parkingSpace;
-    const text = `Möchten Sie xyz den Parkplatz ${parkingSpace.number} zuweisen?`;
+    const text = `Welchem Benutzer möchten Sie den Parkplatz ${parkingSpace.number} zuweisen?`;
     this._assignmentModalConfiguration = this.initAssignmentModalConfiguration(text);
     this.modalService.show(this._assignmentModalConfiguration.id);
+  }
+
+  public deleteParkingSpace(parkingSpace: ParkingSpace): void {
+    this._selectedParkingSpace = parkingSpace;
+    const text = `Möchten Sie den Parkplatz ${this._selectedParkingSpace.number} wirklich löschen?`;
+    this._deleteParkingSpaceConfiguration = this.initDeleteParkingSpaceModalConfiguration(text);
+    this.modalService.show(this._deleteParkingSpaceConfiguration.id);
   }
 
   public confirmAssignment(event: any): void {
@@ -105,7 +117,18 @@ export class ParkingspacesAdminComponent implements OnInit {
         this._selectedParkingSpace = null;
       });
     }
+  }
 
+  public confirmDelete(event: any): void {
+    this.apiService.deleteParkingSpace(this._selectedParkingSpace).subscribe((parkingSpace: ParkingSpace) => {
+      const index = this._parkingSpaces.findIndex((searchElement: ParkingSpace) => {
+        return this._selectedParkingSpace.id === searchElement.id;
+      });
+
+      if (index > -1) {
+        this._parkingSpaces.splice(index, 1);
+      }
+    });
   }
 
   private initAssignmentModalConfiguration(text: string): ModalConfiguration {
@@ -114,6 +137,15 @@ export class ParkingspacesAdminComponent implements OnInit {
       title: 'Parkplatz zuweisen',
       text,
       closeText: 'speichern'
+    };
+  }
+
+  private initDeleteParkingSpaceModalConfiguration(text: string): ModalConfiguration {
+    return {
+      id: 'deleteParkingSpace',
+      title: 'Parkplatz löschen',
+      text,
+      closeText: 'bestätigen'
     };
   }
 

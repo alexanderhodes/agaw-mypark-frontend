@@ -32,7 +32,7 @@
                   </div>
                 </td>
                 <td>
-                    <mp-button icon="trash" title="löschen"></mp-button>
+                    <mp-button (click)="deleteParkingSpace(parkingSpace)" icon="trash" title="löschen"></mp-button>
                 </td>
             </tr>
         </tbody>
@@ -46,3 +46,4 @@
     </select>
   </div>
 </mp-confirmation>
+<mp-confirmation (onConfirm)="confirmDelete($event)" [configuration]="_deleteParkingSpaceConfiguration"></mp-confirmation>

@@ -1,12 +1,13 @@
 export interface ParkingSpace {
-    number: string;
-    parkingSpaceStatus?: ParkingSpaceStatus;
+  id: string;
+  number: string;
+  parkingSpaceStatus?: ParkingSpaceStatus;
 }
 
 export interface ParkingSpaceStatus {
-    id: number;
-    name: string;
-    color: string;
+  id: number;
+  name: string;
+  color: string;
 }
 
 export interface User {

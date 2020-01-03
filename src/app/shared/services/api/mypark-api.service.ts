@@ -17,11 +17,11 @@ export class MyparkApiService {
     }
 
     updateParkingSpace(body: ParkingSpace): Observable<ParkingSpace> {
-        return this.apiService.put<ParkingSpace>(`parkingspaces/${body.number}`, body);
+        return this.apiService.put<ParkingSpace>(`parkingspaces/${body.id}`, body);
     }
 
     deleteParkingSpace(body: ParkingSpace): Observable<ParkingSpace> {
-        return this.apiService.delete<ParkingSpace>(`parkingspaces/${body.number}`);
+        return this.apiService.delete<ParkingSpace>(`parkingspaces/${body.id}`);
     }
 
     login(body: FormData): Observable<Authentication> {
