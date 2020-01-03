@@ -15,7 +15,7 @@ export class ParkingspacesAdminComponent implements OnInit {
   private _users: User[];
   private _assignmentModalConfiguration: ModalConfiguration;
   private _selectedParkingSpace: ParkingSpace;
-  private _selectedUser: User;
+  private _selectedUser: string;
 
   number: string;
 
@@ -48,7 +48,7 @@ export class ParkingspacesAdminComponent implements OnInit {
     return this._selectedParkingSpace;
   }
 
-  get selectedUser(): User {
+  get selectedUser(): string {
     return this._selectedUser;
   }
 
@@ -56,11 +56,11 @@ export class ParkingspacesAdminComponent implements OnInit {
     return this._users;
   }
 
-  set selectedUser(value: User) {
+  set selectedUser(value: string) {
     this._selectedUser = value;
   }
 
-  public addParkingspace(): void {
+  public addParkingSpace(): void {
     const parkingSpace: ParkingSpace = { number: this.number };
     this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
       this._parkingSpaces.push(ps);
@@ -83,6 +83,29 @@ export class ParkingspacesAdminComponent implements OnInit {
   public confirmAssignment(event: any): void {
     // ToDo: send request to backend with user
     console.log('confirmed assignment', this._selectedParkingSpace, this._selectedUser);
+
+    const index = this.findIndexOfUser(this._selectedUser);
+
+    if (index > -1) {
+      const user: User = this._users[index];
+      user.parkingSpace = this._selectedParkingSpace;
+
+      console.log('user', user);
+
+      this.apiService.updateUser(this._selectedUser, user).subscribe((response: User) => {
+        console.log('user-response', response);
+
+        if (index > -1) {
+          this._users.splice(index, 1);
+        }
+
+        // ToDo: Übersicht der Parkplätze aktualisieren
+
+        this._selectedUser = null;
+        this._selectedParkingSpace = null;
+      });
+    }
+
   }
 
   private initAssignmentModalConfiguration(text: string): ModalConfiguration {
@@ -93,4 +116,11 @@ export class ParkingspacesAdminComponent implements OnInit {
       closeText: 'speichern'
     };
   }
+
+  private findIndexOfUser(userId: string): number {
+    return this._users.findIndex((searchElement: User) => {
+      return userId === searchElement.id;
+    });
+  }
+
 }
