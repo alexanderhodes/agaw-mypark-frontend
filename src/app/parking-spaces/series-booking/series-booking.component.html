@@ -7,5 +7,6 @@
     <mp-series-booking-item *ngFor="let item of seriesBookingItems; index as i" [weekDay]="weekdays[i]" [item]="item">
     </mp-series-booking-item>
   </div>
+  <span mp-error-message [message]="message" [success]="success"></span>
   <mp-button (click)="saveSeriesBooking()" title="speichern"></mp-button>
 </div>

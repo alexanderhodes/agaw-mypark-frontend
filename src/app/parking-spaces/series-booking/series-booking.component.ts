@@ -11,12 +11,14 @@ export class SeriesBookingComponent implements OnInit {
 
   seriesBookingItems: SeriesBooking[];
   weekdays: string[];
+  success: boolean;
+  message: string;
 
   private isInitial: boolean;
 
   constructor(private apiService: MyparkApiService) {
     this.seriesBookingItems = [];
-    this.weekdays = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"];
+    this.weekdays = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
     this.isInitial = false;
   }
 
@@ -37,23 +39,33 @@ export class SeriesBookingComponent implements OnInit {
   }
 
   public saveSeriesBooking() {
-    console.log(this.seriesBookingItems);
-
-    if (this.isInitial) {
-      // values we're not received from backend
-      this.apiService.createSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
-        console.log('create response', response);
-      });
+    if (this._validateSeriesBookings()) {
+      if (this.isInitial) {
+        // values we're not received from backend
+        this.apiService.createSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
+          this.success = true;
+          this.message = 'Die Serienbuchungen wurden erfolgreich angelegt.';
+        });
+      } else {
+        this.apiService.updateSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
+          this.success = true;
+          this.message = 'Die Änderungen wurden erfolgreich gespeichert.';
+        });
+      }
     } else {
-      this.apiService.updateSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
-        console.log('update response', response);
-      });
+      this.success = false;
+      this.message = 'Bei einer der aktiven Serienbuchungen ist keine Uhrzeit hinterlegt worden.';
     }
-
   }
 
-  public onChange(event: any): void {
-    console.log('changed', event);
+  private _validateSeriesBookings(): boolean {
+    let success = true;
+    this.seriesBookingItems.forEach((seriesBooking: SeriesBooking) => {
+      if (seriesBooking.active && !seriesBooking.time) {
+        success = false;
+      }
+    });
+    return success;
   }
 
 }
