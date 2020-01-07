@@ -15,7 +15,7 @@ export class NewBookingComponent implements OnInit {
   // ToDo: add error message
 
   constructor(private apiService: MyparkApiService) {
-    this.day = Intl.DateTimeFormat('de-de').format(new Date());
+    this.day = this.dateToYMD();
   }
 
   ngOnInit() {
@@ -43,6 +43,14 @@ export class NewBookingComponent implements OnInit {
         // Fehler ist aufgetreten
       }
     });
+  }
+
+  private dateToYMD(): string {
+    const date = new Date();
+    const d = date.getDate();
+    const m = date.getMonth() + 1; //Month from 0 to 11
+    const y = date.getFullYear();
+    return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
   }
 
 }
