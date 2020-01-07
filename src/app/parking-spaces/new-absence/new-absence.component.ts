@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
+import {MyparkApiService, DateService} from '../../shared/services/public_api';
 import {Absence} from '../../shared/models/mypark.models';
 
 @Component({
@@ -13,10 +13,10 @@ export class NewAbsenceComponent implements OnInit {
   public end: string;
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService) {
+  constructor(private apiService: MyparkApiService, private dateService: DateService) {
     this.isLoading = false;
-    this.start = Intl.DateTimeFormat('de-de').format(new Date());
-    this.end = Intl.DateTimeFormat('de-de').format(new Date());
+    this.start = this.dateService.getToday();
+    this.end = this.dateService.getToday();
   }
 
   ngOnInit() {

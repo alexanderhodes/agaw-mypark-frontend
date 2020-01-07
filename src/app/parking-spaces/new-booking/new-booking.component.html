@@ -9,7 +9,7 @@
     <span style="display: block" class="mb-2">
       ab
       <input [(ngModel)]="time" type="time" required placeholder="Uhrzeit" />
-      <span class="clock" uk-icon="calendar"></span>
+      <span class="icon" uk-icon="clock"></span>
     </span>
     <mp-button *ngIf="!isLoading" (click)="createBooking()" title="Buchung erstellen"></mp-button>
     <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Booking} from '../../shared/models/mypark.models';
-import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
+import {MyparkApiService, DateService} from '../../shared/services/public_api';
 
 @Component({
   selector: 'mp-new-booking',
@@ -15,8 +15,8 @@ export class NewBookingComponent implements OnInit {
 
   // ToDo: add error message
 
-  constructor(private apiService: MyparkApiService) {
-    this.day = this.dateToYMD();
+  constructor(private apiService: MyparkApiService, private dateService: DateService) {
+    this.day = this.dateService.getToday();
     this.isLoading = false;
   }
 
@@ -49,14 +49,6 @@ export class NewBookingComponent implements OnInit {
     }, error => {
       this.isLoading = false;
     });
-  }
-
-  private dateToYMD(): string {
-    const date = new Date();
-    const d = date.getDate();
-    const m = date.getMonth() + 1; //Month from 0 to 11
-    const y = date.getFullYear();
-    return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
   }
 
 }
