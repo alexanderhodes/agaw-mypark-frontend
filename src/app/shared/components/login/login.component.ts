@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public message: string;
   public success: boolean;
+  public isLoading: boolean;
 
   constructor(
     private authService: AuthService,
@@ -25,9 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = false;
   }
 
   login(): void {
+    this.isLoading = true;
     const username: string = this.loginForm.get('username').value;
     const password: string = this.loginForm.get('password').value;
 
@@ -40,9 +43,11 @@ export class LoginComponent implements OnInit {
       } else {
         this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
       }
+      this.isLoading = false;
     }, error => {
       this.success = false;
       this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
+      this.isLoading = false;
     });
 
   }

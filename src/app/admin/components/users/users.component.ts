@@ -18,14 +18,18 @@ export class UsersComponent implements OnInit {
   private _selectedUser: User;
 
   public isAdmin: boolean;
+  public isLoading: boolean;
 
   constructor(private apiService: MyparkApiService, private modalService: ModalService) {
     this._users = [];
+    this.isLoading = false;
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.apiService.getAllUsers().subscribe((users: User[]) => {
       this._users = users;
+      this.isLoading = false;
     });
   }
 

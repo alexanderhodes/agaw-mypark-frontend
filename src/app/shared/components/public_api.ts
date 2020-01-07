@@ -11,3 +11,4 @@ export * from './navigation/navigation.component';
 export * from './navigation/navigation-item/navigation-item.component';
 export * from './registration/registration.component';
 export * from './reset-password/reset-password.component';
+export * from './loading-spinner/loading-spinner.component';

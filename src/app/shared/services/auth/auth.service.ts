@@ -4,7 +4,7 @@ import {
   LOCALSTORAGE_KEY_EXPIRATION,
   LOCALSTORAGE_KEY_USERNAME,
   LOCALSTORAGE_KEY_ROLES,
-  LOCALSTORAGE_KEY_NAME
+  LOCALSTORAGE_KEY_NAME, LOCALSTORAGE_KEY_PARKINGSPACE
 } from './../../config/mypark.config';
 import { LocalStorageService } from '../common/local-storage.service';
 import { MyparkApiService } from './../api/mypark-api.service';
@@ -33,8 +33,10 @@ export class AuthService {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_ROLES, auth.roles.toString());
 
           this.myparkApiService.getCurrentUser().subscribe((user: User) => {
-            const fullName = `${user.firstName} ${user.lastName}`
+            const fullName = `${user.firstName} ${user.lastName}`;
             this.localStorageService.setItem(LOCALSTORAGE_KEY_NAME, fullName);
+            const hasParkingSpace = user.parkingSpace ? true : false;
+            this.localStorageService.setItem(LOCALSTORAGE_KEY_PARKINGSPACE, `${hasParkingSpace}`);
             observer.next(true);
             observer.complete();
           });
@@ -82,6 +84,11 @@ export class AuthService {
   get roles(): string[] {
     return this.localStorageService.getItem(LOCALSTORAGE_KEY_ROLES) ?
       this.localStorageService.getItem(LOCALSTORAGE_KEY_ROLES).split(',') : [];
+  }
+
+  get parkingSpace(): boolean {
+    const value = this.localStorageService.getItem(LOCALSTORAGE_KEY_PARKINGSPACE);
+    return value && value === 'true' ? true : false;
   }
 
 }

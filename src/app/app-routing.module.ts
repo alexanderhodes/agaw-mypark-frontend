@@ -15,6 +15,9 @@ import {ProblemsComponent} from './admin/components/problems/problems.component'
 import {NewBookingComponent} from './parking-spaces/new-booking/new-booking.component';
 import {SeriesBookingComponent} from './parking-spaces/series-booking/series-booking.component';
 import {PersonalDataComponent} from './parking-spaces/personal-data/personal-data.component';
+import {SeriesAbsenceComponent} from './parking-spaces/series-absence/series-absence.component';
+import {NewAbsenceComponent} from './parking-spaces/new-absence/new-absence.component';
+import {AbsenceListComponent} from './parking-spaces/absence-list/absence-list.component';
 
 
 const routes: Routes = [
@@ -41,6 +44,15 @@ const routes: Routes = [
     canActivate: [ AuthGuard ] },
   { path: 'series-booking',
     component: SeriesBookingComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'absences',
+    component: AbsenceListComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'new-absence',
+    component: NewAbsenceComponent,
+    canActivate: [ AuthGuard ] },
+  { path: 'series-absence',
+    component: SeriesAbsenceComponent,
     canActivate: [ AuthGuard ] },
   { path: 'personal-data',
     component: PersonalDataComponent,

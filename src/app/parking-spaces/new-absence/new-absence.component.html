@@ -1,0 +1,17 @@
+<div style="text-align: center">
+  <h1>Abwesenheit erstellen</h1>
+  <div class="mt-1 mb-1">
+    <span style="display: block;" class="mb-2">
+      von
+      <input [(ngModel)]="start" type="date" required placeholder="Tag" />
+      <span class="icon" uk-icon="calendar"></span>
+    </span>
+    <span style="display: block" class="mb-2">
+      bis
+      <input [(ngModel)]="end" type="date" required placeholder="Tag" />
+      <span class="icon" uk-icon="calendar"></span>
+    </span>
+    <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
+    <mp-button *ngIf="!isLoading" (click)="createAbsence()" title="Abwesenheit erstellen"></mp-button>
+  </div>
+</div>

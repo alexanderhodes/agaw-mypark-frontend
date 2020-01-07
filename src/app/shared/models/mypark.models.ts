@@ -56,3 +56,17 @@ export interface SeriesBooking {
   time: string;
   weekday: number;
 }
+
+export interface Absence {
+  id: string;
+  user: User;
+  start: Date;
+  end: Date;
+}
+
+export interface SeriesAbsence {
+  id: string;
+  user: User;
+  active: boolean;
+  weekday: number;
+}

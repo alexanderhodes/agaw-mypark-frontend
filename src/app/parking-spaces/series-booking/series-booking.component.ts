@@ -9,10 +9,11 @@ import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
 })
 export class SeriesBookingComponent implements OnInit {
 
-  seriesBookingItems: SeriesBooking[];
-  weekdays: string[];
-  success: boolean;
-  message: string;
+  public seriesBookingItems: SeriesBooking[];
+  public weekdays: string[];
+  public success: boolean;
+  public message: string;
+  public isLoading: boolean;
 
   private isInitial: boolean;
 
@@ -20,9 +21,11 @@ export class SeriesBookingComponent implements OnInit {
     this.seriesBookingItems = [];
     this.weekdays = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
     this.isInitial = false;
+    this.isLoading = false;
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.apiService.getSeriesBookings().subscribe((seriesBookings: SeriesBooking[]) => {
       if (!seriesBookings || seriesBookings.length === 0) {
         for (let i = 1; i <= 5; i++) {
@@ -35,26 +38,31 @@ export class SeriesBookingComponent implements OnInit {
         });
         this.isInitial = false;
       }
+      this.isLoading = false;
     });
   }
 
-  public saveSeriesBooking() {
+  public saveSeriesBooking(): void {
     if (this._validateSeriesBookings()) {
+      this.isLoading = true;
       if (this.isInitial) {
         // values we're not received from backend
         this.apiService.createSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
           this.success = true;
           this.message = 'Die Serienbuchungen wurden erfolgreich angelegt.';
+          this.isLoading = false;
         });
       } else {
         this.apiService.updateSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
           this.success = true;
           this.message = 'Die Änderungen wurden erfolgreich gespeichert.';
+          this.isLoading = false;
         });
       }
     } else {
       this.success = false;
       this.message = 'Bei einer der aktiven Serienbuchungen ist keine Uhrzeit hinterlegt worden.';
+      this.isLoading = false;
     }
   }
 

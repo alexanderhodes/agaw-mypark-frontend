@@ -11,6 +11,8 @@ import { ModalConfiguration } from '../../shared/models/component.models';
 })
 export class ParkingSpacesListComponent implements OnInit {
 
+  public isLoading: boolean;
+
   private _parkingSpaces: Array<ParkingSpace>;
   private _hasBooking: boolean;
   private _problem: Problem;
@@ -20,13 +22,16 @@ export class ParkingSpacesListComponent implements OnInit {
 
   constructor(private apiService: MyparkApiService, private modalService: ModalService) {
     this._hasBooking = true;
+    this.isLoading = false;
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this._parkingSpaces = [];
 
     this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
       this._parkingSpaces = parkingSpaces;
+      this.isLoading = false;
     });
 
     const date = new Date().toLocaleDateString('de-de', { year: 'numeric', month: '2-digit', day: '2-digit' });

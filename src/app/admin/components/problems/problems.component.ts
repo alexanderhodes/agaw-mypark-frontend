@@ -11,11 +11,17 @@ export class ProblemsComponent implements OnInit {
 
   private _problems: Problem[];
 
-  constructor(private apiService: MyparkApiService) { }
+  public isLoading: boolean;
+
+  constructor(private apiService: MyparkApiService) {
+    this.isLoading = false;
+  }
 
   ngOnInit() {
+    this.isLoading = true;
     this.apiService.getProblems().subscribe((problems: Problem[]) => {
       this._problems = problems;
+      this.isLoading = false;
     });
   }
 

@@ -11,7 +11,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   private _items: { title: string, icon: string, link: string }[];
   private _subscription: any;
-  roles: string[];
+  private roles: string[];
+  private hasParkingSpace: boolean;
 
   constructor(
     private router: Router,
@@ -28,14 +29,23 @@ export class NavigationComponent implements OnInit, OnDestroy {
   checkRoles() {
     if (this.roles !== this.authService.roles) {
       this.roles = this.authService.roles;
+      this.hasParkingSpace = this.authService.parkingSpace;
       this._items = [];
 
-      if (this.roles.indexOf('USER') > -1) {
+      if (this.hasParkingSpace) {
+        this._items.push({ title: 'Neue Abwesenheit', icon: 'plus', link: 'new-absence' });
+        this._items.push({ title: 'Serienabwesenheit', icon: 'history', link: 'series-absence' });
+        this._items.push({ title: 'Meine Abwesenheiten', icon: 'star', link: 'absences' });
+      } else {
         this._items.push({ title: 'Neue Buchung', icon: 'plus', link: 'new-booking' });
         this._items.push({ title: 'Serienbuchung', icon: 'history', link: 'series-booking' });
         this._items.push({ title: 'Meine Buchungen', icon: 'star', link: 'bookings' });
+      }
+
+      if (this.roles.indexOf('USER') > -1) {
         this._items.push({ title: 'Übersicht der Parkplätze', icon: 'list', link: 'parkingspaces' });
       }
+
 
       if (this.roles.indexOf('ADMIN') > -1) {
         this._items.push({ title: 'Parkplätze', icon: 'album', link: 'admin/parkingspaces' });

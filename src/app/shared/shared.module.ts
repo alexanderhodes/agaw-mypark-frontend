@@ -9,7 +9,8 @@ import { ApiService, MyparkApiService, AuthService, ApiErrorHandler, LocalStorag
           ModalService } from './services/public_api';
 import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, LoginComponent,
           FooterComponent, ResetPasswordComponent, RegistrationComponent, InfoIconComponent, BookingsComponent ,
-          PasswordComponent, ErrorMessageComponent, ConfirmationComponent } from './components/public_api';
+          PasswordComponent, ErrorMessageComponent, ConfirmationComponent, LoadingSpinnerComponent }
+          from './components/public_api';
 import { StatusTranslationPipe } from './pipes/public_api';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { StatusTranslationPipe } from './pipes/public_api';
     ErrorMessageComponent,
     ConfirmationComponent,
     StatusTranslationPipe,
+    LoadingSpinnerComponent,
   ],
   exports: [
     ButtonComponent,
@@ -51,7 +53,8 @@ import { StatusTranslationPipe } from './pipes/public_api';
     PasswordComponent,
     ErrorMessageComponent,
     ConfirmationComponent,
-    StatusTranslationPipe
+    StatusTranslationPipe,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {

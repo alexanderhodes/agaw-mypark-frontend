@@ -5,7 +5,7 @@
     </span>
     <mp-button *ngIf="!hasBooking" (click)="book()" icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
-<div class="table-container">
+<div class="table-container" *ngIf="!isLoading">
     <table>
         <thead>
             <tr>
@@ -33,6 +33,7 @@
         </tbody>
     </table>
 </div>
+<mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
 
 <mp-confirmation (onConfirm)="confirmBooking($event)" [configuration]="bookNowModalConfiguration"></mp-confirmation>
 <mp-confirmation (onConfirm)="confirmProblem($event)" [configuration]="problemModalConfiguration"></mp-confirmation>

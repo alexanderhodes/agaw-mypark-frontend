@@ -3,7 +3,7 @@
     <span *ngIf="!users">Es sind aktuell keine Benutzer auf MyPark registriert.</span>
     <span *ngIf="users">Es sind aktuell {{ users.length }} Benutzer auf MyPark registriert.</span>
 </div>
-<div class="table-container">
+<div class="table-container" *ngIf="!isLoading">
     <table>
         <thead>
             <tr>
@@ -39,6 +39,7 @@
         </tbody>
     </table>
 </div>
+<mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
 
 <mp-confirmation (onConfirm)="confirmDeleteUser($event)" [configuration]="deleteModalConfiguration"></mp-confirmation>
 <mp-confirmation (onConfirm)="confirmUpdateAdminRights($event)" [configuration]="updateAdminRightsModalConfiguration"></mp-confirmation>

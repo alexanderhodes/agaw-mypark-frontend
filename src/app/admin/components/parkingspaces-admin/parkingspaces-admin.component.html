@@ -8,7 +8,7 @@
     <mp-button (click)="addParkingSpace()" icon="arrow-right" title="Parkplatz erstellen"></mp-button>
     </span>
 </div>
-<div class="table-container">
+<div class="table-container" *ngIf="!isLoading">
     <table>
         <thead>
             <tr>
@@ -38,6 +38,7 @@
         </tbody>
     </table>
 </div>
+<mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
 
 <mp-confirmation (onConfirm)="confirmAssignment($event)" [configuration]="assignmentModalConfiguration">
   <div style="display: block" class="mb-2">

@@ -3,7 +3,7 @@
   <div (click)="toggle()" class="toggle"
        [ngClass]="{'toggle-checked': item.active}"
        [attr.uk-icon]="item.active ? 'check' : 'close'"></div>
-  <span>
+  <span *ngIf="displayTime">
     ab
     <input type="time" [(ngModel)]="item.time" (ngModelChange)="inputChange()" [disabled]="!item.active"
            placeholder="08:30">

@@ -1,4 +1,14 @@
-import {ParkingSpace, Authentication, User, Booking, BookingStatus, Problem, SeriesBooking} from './../../models/mypark.models';
+import {
+  ParkingSpace,
+  Authentication,
+  User,
+  Booking,
+  BookingStatus,
+  Problem,
+  SeriesBooking,
+  Absence,
+  SeriesAbsence
+} from './../../models/mypark.models';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -72,8 +82,32 @@ export class MyparkApiService {
       return this.apiService.post<Booking>(`bookings`, body);
     }
 
+    updateBooking(id: string, body: Booking): Observable<Booking> {
+      return this.apiService.put<Booking>(`bookings/${id}`, body);
+    }
+
+    deleteBooking(id: string): Observable<any> {
+      return this.apiService.delete(`bookings/${id}`);
+    }
+
     getBookingForToday(date: string): Observable<Booking> {
       return this.apiService.get<Booking>(`bookings/users/${date}`);
+    }
+
+    getAbsences(): Observable<Absence[]> {
+      return this.apiService.get<Absence[]>(`absences/user`);
+    }
+
+    createAbsence(body: Absence): Observable<Absence> {
+      return this.apiService.post<Absence>(`absences`, body);
+    }
+
+    updateAbsence(id: string, body: Absence): Observable<Absence> {
+      return this.apiService.put<Absence>(`absences/${id}`, body);
+    }
+
+    deleteAbsence(id: string): Observable<any> {
+      return this.apiService.delete(`absences/${id}`);
     }
 
     createProblem(body: Problem): Observable<Problem> {
@@ -96,4 +130,15 @@ export class MyparkApiService {
       return this.apiService.put<SeriesBooking[]>(`seriesbookings`, body);
     }
 
+    createSeriesAbsence(body: SeriesAbsence[]): Observable<SeriesAbsence[]> {
+      return this.apiService.post<SeriesAbsence[]>(`seriesabsences`, body);
+    }
+
+    getSeriesAbsences(): Observable<SeriesAbsence[]> {
+      return this.apiService.get<SeriesAbsence[]>(`seriesabsences`);
+    }
+
+    updateSeriesAbsences(body: SeriesAbsence[]): Observable<SeriesAbsence[]> {
+      return this.apiService.put<SeriesAbsence[]>(`seriesabsences`, body);
+    }
 }

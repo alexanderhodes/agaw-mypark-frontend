@@ -1,5 +1,5 @@
 <h1>Meine Buchungen</h1>
-<div class="table-container">
+<div class="table-container" *ngIf="!isLoading">
     <table>
         <thead>
             <tr>
@@ -29,11 +29,12 @@
                 </td>
                 <td>
                     <span>
-                <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check" title="Benutzung beenden"></mp-button>
-                <mp-button *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
-              </span>
+                      <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check" title="Benutzung beenden"></mp-button>
+                      <mp-button *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
+                    </span>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+<mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>

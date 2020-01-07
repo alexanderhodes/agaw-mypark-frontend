@@ -9,13 +9,15 @@ import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
 })
 export class NewBookingComponent implements OnInit {
 
-  day: string;
-  time: string;
+  public day: string;
+  public time: string;
+  public isLoading: boolean;
 
   // ToDo: add error message
 
   constructor(private apiService: MyparkApiService) {
     this.day = this.dateToYMD();
+    this.isLoading = false;
   }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class NewBookingComponent implements OnInit {
       bookingStatus: null
     };
     console.log('date', this.day, 'time', this.time, 'bookingDate', date);
+    this.isLoading = true;
     // send http post request and handle response if successful
     this.apiService.createBooking(booking).subscribe((response: Booking) => {
       console.log('response', response);
@@ -42,6 +45,9 @@ export class NewBookingComponent implements OnInit {
       } else {
         // Fehler ist aufgetreten
       }
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
     });
   }
 

@@ -1,0 +1,25 @@
+<h1>Meine Abwesenheiten</h1>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Start</th>
+        <th scope="col">Ende</th>
+        <th scope="col">Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let absence of absences">
+        <td>
+          <span>{{ absence.start | date: 'EEE, dd.MM.yyyy' }}</span>
+        </td>
+        <td>
+          <span>{{ absence.start | date: 'EEE, dd.MM.yyyy' }}</span>
+        </td>
+        <td>
+          <mp-button icon="trash" title="löschen"></mp-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

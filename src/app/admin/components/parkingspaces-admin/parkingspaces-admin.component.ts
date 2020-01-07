@@ -18,18 +18,22 @@ export class ParkingspacesAdminComponent implements OnInit {
   private _selectedParkingSpace: ParkingSpace;
   private _selectedUser: string;
 
-  number: string;
+  public number: string;
+  public isLoading: boolean;
 
   constructor(private apiService: MyparkApiService, private modalService: ModalService) {
     this._parkingSpaces = [];
+    this.isLoading = false;
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this._parkingSpaces = [];
     this._users = [];
 
     this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
       this._parkingSpaces = parkingSpaces;
+      this.isLoading = false;
     });
 
     this.apiService.getAllUsers().subscribe((users: User[]) => {
