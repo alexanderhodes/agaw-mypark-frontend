@@ -1,7 +1,6 @@
 import {ParkingSpace, Booking, Problem} from './../../shared/models/mypark.models';
-import { MyparkApiService } from './../../shared/services/api/mypark-api.service';
+import {MyparkApiService, ModalService, ApiService, AuthService} from './../../shared/services/public_api';
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from '../../shared/services/common/modal.service';
 import { ModalConfiguration } from '../../shared/models/component.models';
 
 @Component({
@@ -20,7 +19,8 @@ export class ParkingSpacesListComponent implements OnInit {
   private _bookNowModalConfiguration: ModalConfiguration;
   private _problemModalConfiguration: ModalConfiguration;
 
-  constructor(private apiService: MyparkApiService, private modalService: ModalService) {
+  constructor(private apiService: MyparkApiService, private modalService: ModalService,
+              private authService: AuthService) {
     this._hasBooking = true;
     this.isLoading = false;
   }
@@ -36,8 +36,10 @@ export class ParkingSpacesListComponent implements OnInit {
 
     const date = new Date().toLocaleDateString('de-de', { year: 'numeric', month: '2-digit', day: '2-digit' });
     this.apiService.getBookingForToday(date).subscribe(booking => {
-      this._hasBooking = booking ? true : false;
+      this._hasBooking = booking || this._hasBooking ? true : false;
     });
+
+    this._hasBooking = this._hasBooking ? this.authService.parkingSpace : false;
   }
 
   get parkingSpaces(): Array<ParkingSpace> {
