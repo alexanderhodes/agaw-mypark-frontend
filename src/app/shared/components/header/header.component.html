@@ -1,21 +1,36 @@
 <div class="header" style="display: block;">
-    <span style="font-weight: 700;font-size: 4rem;line-height: 4rem;">MP</span>
-    <span>MyPark</span>
-    <div class="uk-inline" style="float: right;" *ngIf="loggedIn">
-        <button (click)="openDropdown()" class="uk-button uk-button-default header-item" type="button">
+  <span style="font-weight: 700;font-size: 4rem;line-height: 4rem;">MP</span>
+  <span>MyPark</span>
+  <div class="uk-inline" style="float: right;" *ngIf="loggedIn">
+    <span uk-toggle="target: #menu" (click)="toggleMobileMenu()" class="header-menu"
+          uk-icon="icon: menu; ratio: 2"></span>
+    <button (click)="openDropdown()" class="uk-button uk-button-default header-item" type="button">
           <span style="font-size: 1.25rem; line-height: 1.25;">
             <span uk-icon="user" style="margin-right: .25rem;"></span>
             <span>{{ username }}</span>
             <span [attr.uk-icon]="dropdownOpened ? 'chevron-up' : 'chevron-down'" style="margin-left: .125rem"></span>
           </span>
-        </button>
-        <div uk-dropdown="mode: click">
+    </button>
+    <div uk-dropdown="mode: click">
             <span [routerLink]="['/personal-data']" class="dropdown-item">Benutzerdaten verwalten
               <span uk-icon="cog" class="icon"></span>
             </span>
-            <span class="dropdown-item" (click)="logout()">Abmelden
+      <span class="dropdown-item" (click)="logout()">Abmelden
               <span uk-icon="close" class="icon"></span>
             </span>
-        </div>
     </div>
+  </div>
+</div>
+
+<div id="menu" uk-offcanvas>
+  <div class="uk-offcanvas-bar">
+
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <div class="uk-container">
+      <span style="font-size: 1.25rem; line-height: 1.25; color: black; display: block" class="mb-2">
+        <span>{{ username }}</span>
+      </span>
+      <mp-navigation></mp-navigation>
+    </div>
+  </div>
 </div>

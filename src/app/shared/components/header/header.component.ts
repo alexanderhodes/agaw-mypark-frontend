@@ -45,6 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  toggleMobileMenu() {
+    console.log('toggle mobile menu');
+  }
+
   get dropdownOpened(): boolean {
     return this._dropdownOpened;
   }

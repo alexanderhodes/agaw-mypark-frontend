@@ -41,3 +41,30 @@
 .dropdown-item:hover {
     color: #e20074;
 }
+
+.header-menu {
+  display: none;
+  position: relative;
+  top: 20px;
+  margin-right: 10px;
+}
+
+.uk-offcanvas-bar {
+  position: fixed;
+  width: 100%;
+  background: white;
+}
+
+.uk-close {
+  color: black;
+}
+
+@media(max-width: 760px) {
+  .header-menu {
+    display: block;
+  }
+
+  .header-item {
+    display: none;
+  }
+}

@@ -141,4 +141,12 @@ export class MyparkApiService {
     updateSeriesAbsences(body: SeriesAbsence[]): Observable<SeriesAbsence[]> {
       return this.apiService.put<SeriesAbsence[]>(`seriesabsences`, body);
     }
+
+    getAdminUsers(): Observable<User[]> {
+      return this.apiService.get<User[]>(`users/admin`);
+    }
+
+    getUsersWithParkingSpace(): Observable<User[]> {
+      return this.apiService.get<User[]>(`users/parkingspace`);
+    }
 }

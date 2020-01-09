@@ -31,6 +31,8 @@ export class UsersComponent implements OnInit {
       this._users = users;
       this.isLoading = false;
     });
+
+    this.apiService.getAdminUsers().subscribe(users => console.log('admins', users));
   }
 
   get users(): User[] {

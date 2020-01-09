@@ -41,6 +41,8 @@ export class ParkingspacesAdminComponent implements OnInit {
     this.apiService.getAllUsers().subscribe((users: User[]) => {
       this._users = users;
     });
+
+    this.apiService.getUsersWithParkingSpace().subscribe((users => console.log('with ps', users)));
   }
 
   get assignmentModalConfiguration(): ModalConfiguration {
