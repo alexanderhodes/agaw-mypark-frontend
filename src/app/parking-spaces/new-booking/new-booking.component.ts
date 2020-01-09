@@ -16,8 +16,9 @@ export class NewBookingComponent implements OnInit {
   // ToDo: add error message
 
   constructor(private apiService: MyparkApiService, private dateService: DateService) {
-    this.day = this.dateService.getToday();
     this.isLoading = false;
+    this.day = this.dateService.getToday();
+    this.time = '08:00';
   }
 
   ngOnInit() {
