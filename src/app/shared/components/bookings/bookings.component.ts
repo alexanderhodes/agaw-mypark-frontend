@@ -41,7 +41,7 @@ export class BookingsComponent implements OnInit {
 
   public deleteBooking(booking: Booking): void {
     this._deleteBooking = booking;
-    const date = this.dateService.formatToGerman(booking.date);
+    const date = this.dateService.formatToGermanDate(booking.date);
     const text = `Möchten Sie die Buchung für den ${date} wirklich löschen?`;
     this._deleteModalBookingConfiguration = this.initDeleteModalBookingConfiguration(text);
     this.modalService.show(this._deleteModalBookingConfiguration.id);
