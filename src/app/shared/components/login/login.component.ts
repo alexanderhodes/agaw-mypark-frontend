@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder) {
       this.loginForm = this.fb.group({
-        username:  ['', Validators.required],
+        username:  ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       });
   }
@@ -30,25 +30,28 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log('invalid', this.loginForm.invalid);
+    if (!this.loginForm.invalid) {
+      this.isLoading = true;
+      const username: string = this.loginForm.get('username').value;
+      const password: string = this.loginForm.get('password').value;
 
-    this.isLoading = true;
-    const username: string = this.loginForm.get('username').value;
-    const password: string = this.loginForm.get('password').value;
-
-    this.authService.login(username, password).subscribe(response => {
-      if (response) {
-        this.message = { success: true, text: '' };
-        this.router.navigateByUrl('/parkingspaces');
-      } else {
-        this.message = { success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.' };
-      }
-      this.isLoading = false;
-    }, error => {
-      this.message = { success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.' };
-      this.isLoading = false;
-    });
-
+      this.authService.login(username, password).subscribe(response => {
+        if (response) {
+          this.message = {success: true, text: ''};
+          this.router.navigateByUrl('/parkingspaces');
+        } else {
+          this.message = {success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.'};
+        }
+        this.isLoading = false;
+      }, error => {
+        this.message = {success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.'};
+        this.isLoading = false;
+      });
+    } else {
+      const text = this.loginForm.get('username').invalid ? 'Bitte geben Sie einen gültigen Benutzernamen ein.' :
+        'Bitte geben Sie ein Passwort ein.';
+      this.message = { success: false, text };
+    }
   }
 
 }
