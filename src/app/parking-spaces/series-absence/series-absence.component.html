@@ -3,12 +3,12 @@
   <span class="mb-2" style="display: block">
     Hier können Sie wiederkehrende Buchungen einrichten, die an den ausgewählten Tagen automatisch gesendet werden.
   </span>
-  <div class="uk-column-1-5 mb-4">
+  <div class="uk-column-1-5@m mb-4">
     <mp-series-item *ngFor="let item of seriesAbsences; index as i"
                     [weekDay]="weekdays[i]" [item]="item" [displayTime]="false">
     </mp-series-item>
   </div>
-  <span mp-error-message [message]="message" [success]="success"></span>
+  <span mp-error-message [message]="message" ></span>
   <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
   <mp-button *ngIf="!isLoading" (click)="saveAbsences()" title="speichern"></mp-button>
 </div>

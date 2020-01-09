@@ -2,11 +2,12 @@
 <div class="mt-1 mb-4">
     <h2>Parkplatz erstellen</h2>
     <span>
-    <span style="margin-right: .5rem;">Neuer Parkplatz:</span>
-    <input type="text" [(ngModel)]="number" placeholder="Nummer" style="margin: 0 .5rem;">
-    <span uk-icon="pencil" class="icon"></span>
-    <mp-button (click)="addParkingSpace()" icon="arrow-right" title="Parkplatz erstellen"></mp-button>
+      <span style="margin-right: .5rem;">Neuer Parkplatz:</span>
+      <input type="text" [(ngModel)]="number" placeholder="Nummer" style="margin: 0 .5rem;">
+      <span uk-icon="pencil" class="icon"></span>
+      <mp-button (click)="addParkingSpace()" icon="arrow-right" title="Parkplatz erstellen"></mp-button>
     </span>
+  <span mp-error-message [message]="message"></span>
 </div>
 <div class="table-container" *ngIf="!isLoading">
     <table>

@@ -11,4 +11,9 @@ export class DateService {
     return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
   }
 
+  public formatToGerman(date: Date): string {
+    console.log(date);
+    return Intl.DateTimeFormat('de-de').format(date);
+  }
+
 }

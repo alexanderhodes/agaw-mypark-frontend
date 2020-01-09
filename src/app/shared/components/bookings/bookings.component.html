@@ -30,7 +30,7 @@
                 <td>
                     <span>
                       <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check" title="Benutzung beenden"></mp-button>
-                      <mp-button *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
+                      <mp-button (click)="deleteBooking(booking)" *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
                     </span>
                 </td>
             </tr>
@@ -38,3 +38,4 @@
     </table>
 </div>
 <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
+<mp-confirmation (onConfirm)="confirmDeleteBooking($event)" [configuration]="deleteModalBookingConfiguration"></mp-confirmation>

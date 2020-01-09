@@ -10,7 +10,7 @@
         <span class="icon" uk-icon="lock"></span>
         <input type="password" required placeholder="Passwort" formControlName="password">{{ loginForm.controls.password.invalid }}
         </span>
-        <span *ngIf="!isLoading" mp-error-message [success]="success" [message]="message"></span>
+        <span *ngIf="!isLoading" mp-error-message [message]="message"></span>
         <mp-button *ngIf="!isLoading" title="Anmelden" style="display: block;"></mp-button>
         <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
     </form>

@@ -1,7 +1,7 @@
 import {ParkingSpace, User} from './../../../shared/models/mypark.models';
 import { Component, OnInit } from '@angular/core';
 import { MyparkApiService } from 'src/app/shared/services/api/mypark-api.service';
-import {ModalConfiguration} from '../../../shared/models/component.models';
+import {Message, ModalConfiguration} from '../../../shared/models/component.models';
 import {ModalService} from '../../../shared/services/common/modal.service';
 
 @Component({
@@ -11,6 +11,10 @@ import {ModalService} from '../../../shared/services/common/modal.service';
 })
 export class ParkingspacesAdminComponent implements OnInit {
 
+  public number: string;
+  public isLoading: boolean;
+  public message: Message;
+
   private _parkingSpaces: ParkingSpace[];
   private _users: User[];
   private _assignmentModalConfiguration: ModalConfiguration;
@@ -18,12 +22,10 @@ export class ParkingspacesAdminComponent implements OnInit {
   private _selectedParkingSpace: ParkingSpace;
   private _selectedUser: string;
 
-  public number: string;
-  public isLoading: boolean;
-
   constructor(private apiService: MyparkApiService, private modalService: ModalService) {
     this._parkingSpaces = [];
     this.isLoading = false;
+    this.message = { success: false, text: null };
   }
 
   ngOnInit() {
@@ -70,16 +72,23 @@ export class ParkingspacesAdminComponent implements OnInit {
   }
 
   public addParkingSpace(): void {
-    const parkingSpace: ParkingSpace = { id: null, number: this.number };
-    this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
-      this._parkingSpaces.push(ps);
-      this.number = '';
-      this._parkingSpaces = this._parkingSpaces.sort((a, b) => {
-        return +a.number - +b.number;
+    if (+this.number > 0) {
+      const parkingSpace: ParkingSpace = {id: null, number: this.number};
+      this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
+        this._parkingSpaces.push(ps);
+        this.number = '';
+        this._parkingSpaces = this._parkingSpaces.sort((a, b) => {
+          return +a.number - +b.number;
+        });
+        this.message = { success: true, text: `Der Parkplatz ${ps.number} wurde erfolgreich angelegt` };
+      }, error => {
+        // ToDo: handle error
+        this.message = { success: false, text:
+            'Es ist ein Fehler beim Anlegen aufgetreten. Bitte versuchen Sie es erneut' };
       });
-    }, error => {
-      // ToDo: handle error
-    });
+    } else {
+      this.message = { success: false, text: 'Bitte geben Sie eine Nummer ein' };
+    }
   }
 
   public assignParkingSpace(parkingSpace: ParkingSpace): void {

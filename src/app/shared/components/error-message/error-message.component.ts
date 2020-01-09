@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Message} from '../../models/component.models';
 
 @Component({
   selector: '[mp-error-message]',
@@ -7,30 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ErrorMessageComponent implements OnInit {
 
-  private _success: boolean;
-  private _message: string;
+  private _message: Message;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  @Input()
-  set success(value: boolean) {
-    this._success = value;
-  }
-
-  @Input()
-  set message(value: string) {
-    this._message = value;
-  }
-
-  get success(): boolean {
-    return this._success;
-  }
-
-  get message(): string {
+  get message(): Message {
     return this._message;
   }
 
+  @Input()
+  set message(value: Message) {
+    this._message = value;
+  }
 }

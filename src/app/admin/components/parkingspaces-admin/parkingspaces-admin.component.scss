@@ -17,7 +17,7 @@
     max-width: calc(100% - 30px);
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-line;
     -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;

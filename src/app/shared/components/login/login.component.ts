@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {Message} from '../../models/component.models';
 
 @Component({
   selector: 'mp-login',
@@ -11,8 +12,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
-  public message: string;
-  public success: boolean;
+  public message: Message;
   public isLoading: boolean;
 
   constructor(
@@ -35,18 +35,15 @@ export class LoginComponent implements OnInit {
     const password: string = this.loginForm.get('password').value;
 
     this.authService.login(username, password).subscribe(response => {
-      this.success = response;
-
-      if (this.success) {
-        this.message = '';
+      if (response) {
+        this.message = { success: true, text: '' };
         this.router.navigateByUrl('/parkingspaces');
       } else {
-        this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
+        this.message = { success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.' };
       }
       this.isLoading = false;
     }, error => {
-      this.success = false;
-      this.message = 'Die eingegebenen Anmeldedaten sind nicht korrekt';
+      this.message = { success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.' };
       this.isLoading = false;
     });
 

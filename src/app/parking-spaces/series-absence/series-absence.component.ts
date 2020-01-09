@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SeriesAbsence, SeriesBooking} from '../../shared/models/mypark.models';
 import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
+import {Message} from '../../shared/models/component.models';
 
 @Component({
   selector: 'mp-series-absence',
@@ -11,8 +12,7 @@ export class SeriesAbsenceComponent implements OnInit {
 
   public seriesAbsences: SeriesAbsence[];
   public weekdays: string[];
-  public success: boolean;
-  public message: string;
+  public message: Message;
   public isLoading: boolean;
 
   private isInitial: boolean;
@@ -48,14 +48,12 @@ export class SeriesAbsenceComponent implements OnInit {
     // implement this!!
     if (this.isInitial) {
       this.apiService.updateSeriesAbsences(this.seriesAbsences).subscribe((response: SeriesAbsence[]) => {
-        this.success = true;
-        this.message = 'Die Serienabwesenheiten wurden erfolgreich angelegt.';
+        this.message = { success: true, text: 'Die Serienabwesenheiten wurden erfolgreich angelegt.' };
         this.isLoading = false;
       });
     } else {
       this.apiService.createSeriesAbsence(this.seriesAbsences).subscribe((response: SeriesAbsence[]) => {
-        this.success = true;
-        this.message = 'Die Serienabwesenheiten wurden erfolgreich gespeichert.';
+        this.message = { success: true, text: 'Die Serienabwesenheiten wurden erfolgreich gespeichert.' };
         this.isLoading = false;
       });
     }

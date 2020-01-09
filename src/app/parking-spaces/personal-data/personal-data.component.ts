@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../shared/models/mypark.models';
 import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Message} from '../../shared/models/component.models';
 
 @Component({
   selector: 'mp-personal-data',
@@ -12,8 +13,7 @@ export class PersonalDataComponent implements OnInit {
 
   public form: FormGroup;
   public user: User;
-  public success: boolean;
-  public message: string;
+  public message: Message;
 
   constructor(
     private apiService: MyparkApiService,
@@ -30,8 +30,7 @@ export class PersonalDataComponent implements OnInit {
     // ToDo: validate changed
     this.apiService.updateUser(this.user.id, this.user).subscribe((response: User) => {
       console.log('response', response);
-      this.success = true;
-      this.message = 'Die Speicherung der Daten war erfolgreich.';
+      this.message = { success: true, text: 'Die Speicherung der Daten war erfolgreich.' };
     });
   }
 

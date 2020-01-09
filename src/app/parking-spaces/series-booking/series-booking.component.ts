@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SeriesBooking} from '../../shared/models/mypark.models';
 import {MyparkApiService} from '../../shared/services/api/mypark-api.service';
+import {Message} from '../../shared/models/component.models';
 
 @Component({
   selector: 'mp-series-booking',
@@ -11,8 +12,7 @@ export class SeriesBookingComponent implements OnInit {
 
   public seriesBookingItems: SeriesBooking[];
   public weekdays: string[];
-  public success: boolean;
-  public message: string;
+  public message: Message;
   public isLoading: boolean;
 
   private isInitial: boolean;
@@ -48,20 +48,17 @@ export class SeriesBookingComponent implements OnInit {
       if (this.isInitial) {
         // values we're not received from backend
         this.apiService.createSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
-          this.success = true;
-          this.message = 'Die Serienbuchungen wurden erfolgreich angelegt.';
+          this.message = { success: true, text: 'Die Serienbuchungen wurden erfolgreich angelegt.' };
           this.isLoading = false;
         });
       } else {
         this.apiService.updateSeriesBooking(this.seriesBookingItems).subscribe((response: SeriesBooking[]) => {
-          this.success = true;
-          this.message = 'Die Änderungen wurden erfolgreich gespeichert.';
+          this.message = { success: false, text: 'Die Änderungen wurden erfolgreich gespeichert.' };
           this.isLoading = false;
         });
       }
     } else {
-      this.success = false;
-      this.message = 'Bei einer der aktiven Serienbuchungen ist keine Uhrzeit hinterlegt worden.';
+      this.message = { success: false, text: 'Bei einer aktiven Serienbuchung ist keine Uhrzeit angegeben worden' };
       this.isLoading = false;
     }
   }

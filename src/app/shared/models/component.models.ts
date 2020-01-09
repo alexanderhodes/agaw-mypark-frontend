@@ -5,3 +5,8 @@ export interface ModalConfiguration {
   text: string;
   closeText?: string;
 }
+
+export interface Message {
+  success: boolean;
+  text: string;
+}
