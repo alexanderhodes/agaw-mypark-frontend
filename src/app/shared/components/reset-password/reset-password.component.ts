@@ -2,6 +2,7 @@ import { User } from './../../models/mypark.models';
 import { MyparkApiService } from './../../services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
 import {Message} from '../../models/component.models';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'mp-reset-password',
@@ -10,24 +11,33 @@ import {Message} from '../../models/component.models';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  public email: string;
   public message: Message;
+  public form: FormGroup;
 
-  constructor(private apiService: MyparkApiService) {
+  constructor(private apiService: MyparkApiService,
+              private formBuilder: FormBuilder) {
     this.message = { success: false, text: null };
-    this.email = '';
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
   }
 
   ngOnInit() {
   }
 
-  resetPassword() {
-    this.apiService.requestPasswordReset(this.email).subscribe((user: User) => {
-      this.message = { success: true, text: 'Die Anfrage war erfolgreich.' };
-    }, error => {
-      this.message = { success: false, text: 'Die eingebene E-Mail Adresse ist nicht korrekt.' };
-    });
-    this.email = '';
+  public resetPassword(): void {
+    if (!this.form.invalid) {
+      const email = this.form.get('email').value;
+
+      this.apiService.requestPasswordReset(email).subscribe((user: User) => {
+        this.message = { success: true, text: 'Die Anfrage war erfolgreich.' };
+        this.form.reset();
+      }, error => {
+        this.message = { success: false, text: 'Die eingegebene E-Mail Adresse ist nicht korrekt.' };
+      });
+    } else {
+      this.message = { success: false, text: 'Bitte geben Sie eine korrekte E-Mail-Adresse ein.' };
+    }
   }
 
 }

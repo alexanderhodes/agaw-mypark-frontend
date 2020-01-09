@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    console.log('invalid', this.loginForm.invalid);
+
     this.isLoading = true;
     const username: string = this.loginForm.get('username').value;
     const password: string = this.loginForm.get('password').value;
