@@ -1,20 +1,21 @@
 <div class="uk-container" style="text-align: center;">
-    <h1>Anmelden</h1>
+  <h1>Anmelden</h1>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <span style="display: block;" class="mb-4">
-        <span class="icon" uk-icon="user"></span>
-        <input type="email" required placeholder="Benutzername" formControlName="username" />
-        </span>
-        <span style="display: block;" class="mb-4">
-        <span class="icon" uk-icon="lock"></span>
-        <input type="password" required placeholder="Passwort" formControlName="password">{{ loginForm.controls.password.invalid }}
-        </span>
-        <span *ngIf="!isLoading" mp-error-message [message]="message"></span>
-        <mp-button *ngIf="!isLoading" title="Anmelden" style="display: block;"></mp-button>
-        <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
-    </form>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <span style="display: block;" class="mb-4">
+      <span class="icon" uk-icon="user"></span>
+      <input type="email" required placeholder="Benutzername" formControlName="username"/>
+    </span>
+    <span style="display: block;" class="mb-4">
+      <span class="icon" uk-icon="lock"></span>
+      <input type="password" required placeholder="Passwort" formControlName="password">
+    </span>
+    <span *ngIf="!isLoading" mp-error-message [message]="message"></span>
+    <mp-button *ngIf="!isLoading" title="Anmelden" style="display: block;"></mp-button>
+    <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
+  </form>
 
-    <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
-    <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt Registrieren</a>
+  <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
+  <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt
+    Registrieren</a>
 </div>
