@@ -190,3 +190,30 @@ p {
     width: 100%;
   }
 }
+
+.navigation-button {
+  width: 100%;
+  border: 1px solid #d0d0d0;
+  box-shadow: none;
+  margin-bottom: 12px;
+  height: 40px;
+  padding-left: 12px;
+  padding-right: 6px;
+  background-color: white;
+  text-align: left;
+  cursor: pointer;
+  float: left;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 16px;
+}
+
+.navigation-button:hover {
+  color: #e20074;
+}
+
+.navigation-button:focus {
+  background-color: #D0D0D0;
+  color: white;
+}
+

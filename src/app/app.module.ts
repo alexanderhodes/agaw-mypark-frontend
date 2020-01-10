@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
+import {UnauthModule} from './unauth/unauth.module';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -21,7 +22,8 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     AppRoutingModule,
     ParkingSpaceModule,
     AdminModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    UnauthModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'de-de' }

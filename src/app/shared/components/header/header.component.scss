@@ -59,6 +59,27 @@
   color: black;
 }
 
+.user-icon {
+  display: inline-block;
+  border-radius: 30px;
+  padding: 4px;
+  border: 1px solid black;
+  margin-right: .5rem;
+}
+
+.navigation-header {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: black;
+  display: block;
+  margin: .5rem 0;
+  color: black;
+}
+
+.navigation-header-top {
+  border-top: 2px solid #e20074;
+}
+
 @media(max-width: 760px) {
   .header-menu {
     display: block;
@@ -66,5 +87,9 @@
 
   .header-item {
     display: none;
+  }
+
+  .icon {
+    color: black;
   }
 }

@@ -8,6 +8,7 @@ import { UsersComponent } from './components/users/users.component';
 import { ParkingspacesAdminComponent } from './components/parkingspaces-admin/parkingspaces-admin.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProblemsComponent } from './components/problems/problems.component';
+import {AdminRoutingModule} from './admin-routing.module';
 
 
 
@@ -24,7 +25,8 @@ import { ProblemsComponent } from './components/problems/problems.component';
     RouterModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AdminRoutingModule
   ],
   exports: [
     UsersComponent,

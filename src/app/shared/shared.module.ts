@@ -7,10 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ApiService, MyparkApiService, AuthService, ApiErrorHandler, LocalStorageService, ModalService, DateService
           } from './services/public_api';
-import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, LoginComponent,
-          FooterComponent, ResetPasswordComponent, RegistrationComponent, InfoIconComponent, BookingsComponent,
-          PasswordComponent, ErrorMessageComponent, ConfirmationComponent, LoadingSpinnerComponent
-          } from './components/public_api';
+import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, FooterComponent, InfoIconComponent,
+          PasswordComponent, ErrorMessageComponent, ConfirmationComponent, LoadingSpinnerComponent } from './components/public_api';
 import { StatusTranslationPipe } from './pipes/public_api';
 
 @NgModule({
@@ -27,12 +25,8 @@ import { StatusTranslationPipe } from './pipes/public_api';
     HeaderComponent,
     NavigationComponent,
     NavigationItemComponent,
-    LoginComponent,
     FooterComponent,
-    ResetPasswordComponent,
-    RegistrationComponent,
     InfoIconComponent,
-    BookingsComponent,
     PasswordComponent,
     ErrorMessageComponent,
     ConfirmationComponent,
@@ -44,12 +38,8 @@ import { StatusTranslationPipe } from './pipes/public_api';
     HeaderComponent,
     NavigationComponent,
     NavigationItemComponent,
-    LoginComponent,
     FooterComponent,
-    ResetPasswordComponent,
-    RegistrationComponent,
     InfoIconComponent,
-    BookingsComponent,
     PasswordComponent,
     ErrorMessageComponent,
     ConfirmationComponent,
