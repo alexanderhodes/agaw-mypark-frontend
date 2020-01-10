@@ -3,35 +3,36 @@
     <span *ngIf="numberOfFreeParkingSpaces > 0 && !hasBooking">
         Es gibt heute noch {{ numberOfFreeParkingSpaces }} freie Parkplätze, die per Sofort-Buchung reserviert werden können.
     </span>
-    <mp-button *ngIf="!hasBooking" (click)="book()" icon="clock" title="Sofort-Buchung"></mp-button>
+  <mp-button *ngIf="!hasBooking" (click)="book()" icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
 <div class="table-container" *ngIf="!isLoading">
-    <table>
-        <thead>
-            <tr>
-                <th scope="col" width="112px;">Parkplatz</th>
-                <th scope="col" width="80px;">&nbsp;</th>
-                <th scope="col" style="text-align: left;">Aktionen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
-                <td>
-                    <span class="number">{{ parkingSpace.number }}</span>
-                </td>
-                <td>
-                    <span class="state" [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'free' ? 'green' : 'red'">
-                      {{ parkingSpace.parkingSpaceStatus.name | statusTranslation }}
-                    </span>
-                </td>
-                <td>
-                    <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock"
-                               (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
-                    <mp-button icon="warning" title="Problem melden" (click)="reportProblem(parkingSpace)"></mp-button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col" width="112px;">Parkplatz</th>
+      <th scope="col" width="80px;">&nbsp;</th>
+      <th scope="col" style="text-align: left;">Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
+      <td>
+        <span class="number">{{ parkingSpace.number }}</span>
+      </td>
+      <td>
+        <span class="state"
+              [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'free' ? 'green' : 'red'">
+          {{ parkingSpace.parkingSpaceStatus.name | statusTranslation }}
+        </span>
+      </td>
+      <td>
+        <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock"
+                   (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
+        <mp-button icon="warning" title="Problem melden" (click)="reportProblem(parkingSpace)"></mp-button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
 

@@ -1,41 +1,44 @@
 <h1>Meine Buchungen</h1>
 <div class="table-container" *ngIf="!isLoading">
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Datum</th>
-                <th scope="col">Startzeit</th>
-                <th scope="col">Status</th>
-                <th scope="col">Parkplatz</th>
-                <th scope="col">Aktionen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let booking of bookings">
-                <td>
-                    <span>{{ booking.date | date: 'EEEE, dd.MM.yyyy' }}</span>
-                </td>
-                <td>
-                    <span>{{ booking.date | date: 'HH:mm' }}</span>
-                </td>
-                <td>
-                    <span>
-                      <div class="status-element" [style.background-color]="booking.bookingStatus.color"></div>
-                      <span>{{ booking.bookingStatus.name | statusTranslation }}</span>
-                    </span>
-                </td>
-                <td>
-                    <span>{{ booking.parkingSpace?.number }}</span>
-                </td>
-                <td>
-                    <span>
-                      <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check" title="Benutzung beenden"></mp-button>
-                      <mp-button (click)="deleteBooking(booking)" *ngIf="booking.bookingStatus.name === 'requested'" icon="trash" title="löschen"></mp-button>
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Datum</th>
+      <th scope="col">Startzeit</th>
+      <th scope="col">Status</th>
+      <th scope="col">Parkplatz</th>
+      <th scope="col">Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let booking of bookings">
+      <td>
+        <span>{{ booking.date | date: 'EEEE, dd.MM.yyyy' }}</span>
+      </td>
+      <td>
+        <span>{{ booking.date | date: 'HH:mm' }}</span>
+      </td>
+      <td>
+        <span>
+          <div class="status-element" [style.background-color]="booking.bookingStatus.color"></div>
+          <span>{{ booking.bookingStatus.name | statusTranslation }}</span>
+        </span>
+      </td>
+      <td>
+        <span>{{ booking.parkingSpace?.number }}</span>
+      </td>
+      <td>
+        <span>
+          <mp-button *ngIf="booking.bookingStatus.name === 'confirmed'" icon="check"
+                     title="Benutzung beenden"></mp-button>
+          <mp-button (click)="deleteBooking(booking)" *ngIf="booking.bookingStatus.name === 'requested'"
+                     icon="trash" title="löschen"></mp-button>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
-<mp-confirmation (onConfirm)="confirmDeleteBooking($event)" [configuration]="deleteModalBookingConfiguration"></mp-confirmation>
+<mp-confirmation (onConfirm)="confirmDeleteBooking($event)"
+                 [configuration]="deleteModalBookingConfiguration"></mp-confirmation>

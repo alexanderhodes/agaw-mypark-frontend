@@ -79,8 +79,8 @@ export class ParkingSpacesListComponent implements OnInit {
 
   public reportProblem(parkingSpace: ParkingSpace): void {
     const text = parkingSpace.parkingSpaceStatus.name === 'free' ?
-      'Der Parkplatz ist als frei gekennzeichnet, wird jedoch von einem Fahrzeug verwendet.' :
-      'Der Parkplatz ist als belegt gekennzeichnet, steht jedoch leer und wird daher nicht genutzt.';
+      `Der Parkplatz ${parkingSpace.number} ist als frei gekennzeichnet, wird jedoch von einem Fahrzeug verwendet.` :
+      `Der Parkplatz ${parkingSpace.number} ist als belegt gekennzeichnet, steht jedoch leer und wird daher nicht genutzt.`;
     const reason = parkingSpace.parkingSpaceStatus.name === 'free' ? 'status free is used' : 'status used is free';
 
     this._problem = {
