@@ -1,16 +1,37 @@
-import { RouterModule } from '@angular/router';
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ApiService, AuthService, LocalStorageService, ApiErrorHandler, ModalService, DateService, AbsenceService, BookingService,
-          CommonService, ParkingSpaceService, ProblemService, SeriesBookingService, UserService } from './services/public_api';
-import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, FooterComponent, InfoIconComponent,
-          ErrorMessageComponent, ConfirmationComponent, LoadingSpinnerComponent } from './components/public_api';
-import { StatusTranslationPipe } from './pipes/public_api';
-import { ErrorDirective } from './directives/error.directive';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {
+  AbsenceService,
+  ApiErrorHandler,
+  ApiService,
+  AuthService,
+  BookingService,
+  CommonService,
+  DateService,
+  LocalStorageService,
+  ModalService,
+  ParkingSpaceService,
+  ProblemService,
+  SeriesBookingService,
+  UserService
+} from './services/public_api';
+import {
+  ButtonComponent,
+  ConfirmationComponent,
+  ErrorMessageComponent,
+  FooterComponent,
+  HeaderComponent,
+  InfoIconComponent,
+  LoadingSpinnerComponent,
+  NavigationComponent,
+  NavigationItemComponent
+} from './components/public_api';
+import {StatusTranslationPipe} from './pipes/public_api';
 
 @NgModule({
   imports: [
@@ -32,7 +53,6 @@ import { ErrorDirective } from './directives/error.directive';
     ConfirmationComponent,
     StatusTranslationPipe,
     LoadingSpinnerComponent,
-    ErrorDirective,
   ],
   exports: [
     ButtonComponent,
