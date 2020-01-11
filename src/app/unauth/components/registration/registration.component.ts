@@ -1,4 +1,3 @@
-import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../../shared/models/mypark.models';
 import {Component, OnInit} from '@angular/core';

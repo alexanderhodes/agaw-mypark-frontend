@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ParkingSpace, User} from '../../../shared/models/mypark.models';
-import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
+import { User} from '../../../shared/models/mypark.models';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 import {UserService} from '../../../shared/services/api/user.service';

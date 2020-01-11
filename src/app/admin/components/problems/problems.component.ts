@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
 import {Problem} from '../../../shared/models/mypark.models';
 import {ProblemService} from '../../../shared/services/api/problem.service';
 
