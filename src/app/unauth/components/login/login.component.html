@@ -7,8 +7,10 @@
         <span class="icon" uk-icon="user"></span>
         <input type="email" placeholder="E-Mail Adresse" formControlName="username"/>
       </span>
-      <span *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty" class="form-error-message">
-        Bitte geben Sie eine E-Mail Adresse ein.
+      <span *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || submitted)"
+            class="form-error-message">
+        <span *ngIf="loginForm.get('username').errors.required">Bitte geben Sie eine E-Mail Adresse ein.</span>
+        <span *ngIf="loginForm.get('username').errors.email">Bitte geben Sie eine korrekte E-Mail Adresse ein.</span>
       </span>
     </span>
     <span class="input-group mb-2">
@@ -16,8 +18,9 @@
         <span class="icon" uk-icon="lock"></span>
         <input type="password" placeholder="Passwort" formControlName="password">
       </span>
-      <span *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty" class="form-error-message">
-        Bitte geben Sie einen Passwort ein.
+      <span *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || submitted)"
+            class="form-error-message">
+        <span *ngIf="loginForm.get('password').errors.required">Bitte geben Sie einen Passwort ein.</span>
       </span>
     </span>
     <span *ngIf="!isLoading" mp-error-message [message]="message"></span>

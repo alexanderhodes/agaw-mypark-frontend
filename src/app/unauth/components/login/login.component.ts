@@ -1,7 +1,7 @@
 import {AuthService} from '../../../shared/services/auth/auth.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Validators, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 
 @Component({
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public message: Message;
   public isLoading: boolean;
+  public submitted: boolean;
 
   constructor(
     private authService: AuthService,
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    this.submitted = false;
   }
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.submitted = true;
+    console.log(this.loginForm.get('username').errors);
+    console.log(this.loginForm.get('password').errors);
     if (!this.loginForm.invalid) {
       this.isLoading = true;
       const username: string = this.loginForm.get('username').value;
@@ -47,10 +52,6 @@ export class LoginComponent implements OnInit {
         this.message = {success: false, text: 'Die eingegebenen Anmeldedaten sind nicht korrekt.'};
         this.isLoading = false;
       });
-    } else {
-      const text = this.loginForm.get('username').invalid ? 'Bitte geben Sie einen gültigen Benutzernamen ein.' :
-        'Bitte geben Sie ein Passwort ein.';
-      this.message = {success: false, text};
     }
   }
 
