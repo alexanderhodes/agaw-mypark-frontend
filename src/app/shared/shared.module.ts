@@ -65,7 +65,6 @@ import {StatusTranslationPipe} from './pipes/public_api';
     ConfirmationComponent,
     StatusTranslationPipe,
     LoadingSpinnerComponent,
-    ErrorDirective
   ]
 })
 export class SharedModule {
