@@ -1,0 +1,15 @@
+<div class="uk-container" style="text-align: center;">
+  <h1>Account freischalten</h1>
+  <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
+  <div *ngIf="!isLoading">
+    <div *ngIf="user; else invalidToken">
+      <p>Hallo {{ user.username }}, Ihr Account wurde erfolgreich freigeschaltet.</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #invalidToken>
+  <div>
+    <p>Der angegebene Token ist ungültig.</p>
+  </div>
+</ng-template>

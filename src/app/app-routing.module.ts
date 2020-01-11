@@ -1,23 +1,21 @@
-import { PasswordComponent } from './unauth/components/password/password.component';
-import { AdminGuard } from './shared/guards/admin.guard';
-import { UnauthGuard } from './shared/guards/unauth.guard';
-import { ParkingspacesAdminComponent } from './admin/components/parkingspaces-admin/parkingspaces-admin.component';
-import { UsersComponent } from './admin/components/users/users.component';
-import { BookingsComponent } from './parking-spaces/components/bookings/bookings.component';
-import { RegistrationComponent } from './unauth/components/registration/registration.component';
-import { ResetPasswordComponent } from './unauth/components/reset-password/reset-password.component';
-import { LoginComponent } from './unauth/components/login/login.component';
-import { ParkingSpacesListComponent } from './parking-spaces/components/parking-spaces-list/parking-spaces-list.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './shared/guards/auth.guard';
-import {ProblemsComponent} from './admin/components/problems/problems.component';
+import {PasswordComponent} from './unauth/components/password/password.component';
+import {AdminGuard} from './shared/guards/admin.guard';
+import {UnauthGuard} from './shared/guards/unauth.guard';
+import {BookingsComponent} from './parking-spaces/components/bookings/bookings.component';
+import {RegistrationComponent} from './unauth/components/registration/registration.component';
+import {ResetPasswordComponent} from './unauth/components/reset-password/reset-password.component';
+import {LoginComponent} from './unauth/components/login/login.component';
+import {ParkingSpacesListComponent} from './parking-spaces/components/parking-spaces-list/parking-spaces-list.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './shared/guards/auth.guard';
 import {NewBookingComponent} from './parking-spaces/components/new-booking/new-booking.component';
 import {SeriesBookingComponent} from './parking-spaces/components/series-booking/series-booking.component';
 import {PersonalDataComponent} from './parking-spaces/components/personal-data/personal-data.component';
 import {SeriesAbsenceComponent} from './parking-spaces/components/series-absence/series-absence.component';
 import {NewAbsenceComponent} from './parking-spaces/components/new-absence/new-absence.component';
 import {AbsenceListComponent} from './parking-spaces/components/absence-list/absence-list.component';
+import {ConfirmRegisterComponent} from './unauth/components/confirm-register/confirm-register.component';
 
 
 const routes: Routes = [
@@ -62,7 +60,13 @@ const routes: Routes = [
     loadChildren: () => import(`./admin/admin.module`).then(a => a.AdminModule) },
   { path: 'common/password/:token',
     canActivate: [ UnauthGuard ],
-    component: PasswordComponent }
+    component: PasswordComponent
+  },
+  {
+    path: 'common/confirm-registration/:token',
+    canActivate: [UnauthGuard],
+    component: ConfirmRegisterComponent
+  }
 ];
 
 @NgModule({

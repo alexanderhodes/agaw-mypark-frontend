@@ -70,4 +70,3 @@ export class PersonalDataComponent implements OnInit {
   }
 
 }
-//

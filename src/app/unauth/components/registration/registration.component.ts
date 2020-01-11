@@ -2,8 +2,8 @@ import {User} from '../../../shared/models/mypark.models';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
-import {UserService} from '../../../shared/services/api/user.service';
 import {PasswordMatcher, PasswordValidator} from '../../../shared/functions/password-validator';
+import {CommonService} from '../../../shared/services/api/common.service';
 
 @Component({
   selector: 'mp-registration',
@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   public isLoading: boolean;
   public submitted: boolean;
 
-  constructor(private userService: UserService,
+  constructor(private commonService: CommonService,
               private fb: FormBuilder) {
     this.form = this.fb.group({
       firstName: new FormControl('', Validators.required),
@@ -51,10 +51,19 @@ export class RegistrationComponent implements OnInit {
       };
       this.isLoading = true;
 
-      this.userService.createUser(user).subscribe((response: User) => {
+      this.commonService.register(user).subscribe((response: User) => {
         console.log('response', response);
         this.isLoading = false;
         this.form.reset();
+        this.form.clearValidators();
+        this.submitted = false;
+        this.message = {success: true, text: 'Die Speicherung der Daten war erfolgreich.'};
+      }, error => {
+        this.isLoading = false;
+        this.message = {
+          success: false, text: 'Ihr Benutzer konnte nicht angelegt werden. Bitte prüfen Sie ihre Eingaben,' +
+            'ggf. existiert bereits ein Benutzer mit dieser E-Mail Adresse.'
+        };
       });
     }
   }

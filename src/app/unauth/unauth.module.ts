@@ -1,10 +1,16 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoginComponent, ResetPasswordComponent, RegistrationComponent, PasswordComponent} from './components/public_api';
+import {
+  ConfirmRegisterComponent,
+  LoginComponent,
+  PasswordComponent,
+  RegistrationComponent,
+  ResetPasswordComponent
+} from './components/public_api';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -12,7 +18,8 @@ import {SharedModule} from '../shared/shared.module';
     LoginComponent,
     RegistrationComponent,
     ResetPasswordComponent,
-    PasswordComponent
+    PasswordComponent,
+    ConfirmRegisterComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +34,8 @@ import {SharedModule} from '../shared/shared.module';
     LoginComponent,
     RegistrationComponent,
     ResetPasswordComponent,
-    PasswordComponent
+    PasswordComponent,
+    ConfirmRegisterComponent
   ]
 })
 export class UnauthModule { }

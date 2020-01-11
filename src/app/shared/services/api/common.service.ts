@@ -24,8 +24,12 @@ export class CommonService {
     return this.apiService.post(`common/password/reset/${token}`, body);
   }
 
-  public validateRegistrationToken(token: string): Observable<any> {
-    return this.apiService.get(`common/register/validation/${token}`);
+  public validateRegistrationToken(token: string): Observable<User> {
+    return this.apiService.get<User>(`common/register/validation/${token}`);
+  }
+
+  public register(body: User): Observable<User> {
+    return this.apiService.post<User>(`common/register`, body);
   }
 
 }

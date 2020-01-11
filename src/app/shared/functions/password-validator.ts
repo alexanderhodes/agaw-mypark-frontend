@@ -21,7 +21,7 @@ export function PasswordMatcher(controlName: string, matchingControlName: string
 
 export function PasswordValidator(): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
-    if (control.value.length === 0) {
+    if (control.value === '') {
       return null;
     }
     const matches = PASSWORD_REGEX.test(control.value);
