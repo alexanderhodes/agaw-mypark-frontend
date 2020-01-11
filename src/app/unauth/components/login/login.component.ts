@@ -1,7 +1,7 @@
-import { AuthService } from '../../../shared/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {AuthService} from '../../../shared/services/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 
 @Component({
@@ -19,10 +19,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private fb: FormBuilder) {
-      this.loginForm = this.fb.group({
-        username:  ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required]
-      });
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     } else {
       const text = this.loginForm.get('username').invalid ? 'Bitte geben Sie einen gültigen Benutzernamen ein.' :
         'Bitte geben Sie ein Passwort ein.';
-      this.message = { success: false, text };
+      this.message = {success: false, text};
     }
   }
 

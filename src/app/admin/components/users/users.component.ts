@@ -1,8 +1,8 @@
 import { User } from './../../../shared/models/mypark.models';
-import { MyparkApiService } from './../../../shared/services/api/mypark-api.service';
 import { Component, OnInit } from '@angular/core';
 import {ModalConfiguration} from '../../../shared/models/component.models';
 import {ModalService} from '../../../shared/services/common/modal.service';
+import {UserService} from '../../../shared/services/api/user.service';
 
 @Component({
   selector: 'mp-users',
@@ -20,19 +20,20 @@ export class UsersComponent implements OnInit {
   public isAdmin: boolean;
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService, private modalService: ModalService) {
+  constructor(private userService: UserService,
+              private modalService: ModalService) {
     this._users = [];
     this.isLoading = false;
   }
 
   ngOnInit() {
     this.isLoading = true;
-    this.apiService.getAllUsers().subscribe((users: User[]) => {
+    this.userService.getAllUsers().subscribe((users: User[]) => {
       this._users = users;
       this.isLoading = false;
     });
 
-    this.apiService.getAdminUsers().subscribe(users => console.log('admins', users));
+    this.userService.getAdminUsers().subscribe(users => console.log('admins', users));
   }
 
   get users(): User[] {
@@ -69,7 +70,7 @@ export class UsersComponent implements OnInit {
   }
 
   public confirmDeleteUser(event: any): void {
-    this.apiService.updateUser(this._deleteUser.id, this._deleteUser).subscribe((response) => {
+    this.userService.updateUser(this._deleteUser.id, this._deleteUser).subscribe((response) => {
       console.log('response', response);
       const index = this._users.findIndex((user: User) => {
         return user.id === this._deleteUser.id;
@@ -84,7 +85,7 @@ export class UsersComponent implements OnInit {
 
   public confirmUpdateAdminRights(event: any): void {
     const id = this._selectedUser.id;
-    this.apiService.updateAdminRights(id).subscribe((response: User) => {
+    this.userService.updateAdminRights(id).subscribe((response: User) => {
       this.isAdmin = !this.isAdmin;
     });
   }

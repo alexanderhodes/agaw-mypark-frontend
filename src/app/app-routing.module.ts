@@ -1,4 +1,4 @@
-import { PasswordComponent } from './shared/components/common/password/password.component';
+import { PasswordComponent } from './unauth/components/password/password.component';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { UnauthGuard } from './shared/guards/unauth.guard';
 import { ParkingspacesAdminComponent } from './admin/components/parkingspaces-admin/parkingspaces-admin.component';

@@ -7,15 +7,17 @@ import {
   LOCALSTORAGE_KEY_NAME, LOCALSTORAGE_KEY_PARKINGSPACE
 } from './../../config/mypark.config';
 import { LocalStorageService } from '../common/local-storage.service';
-import { MyparkApiService } from './../api/mypark-api.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {CommonService} from '../api/common.service';
+import {UserService} from '../api/user.service';
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    private myparkApiService: MyparkApiService,
+    private commonService: CommonService,
+    private userService: UserService,
     private localStorageService: LocalStorageService) {
   }
 
@@ -24,7 +26,7 @@ export class AuthService {
       const body = new FormData();
       body.append('username', username);
       body.append('password', password);
-      this.myparkApiService.login(body).subscribe((auth: Authentication) => {
+      this.commonService.login(body).subscribe((auth: Authentication) => {
         console.log('auth', auth);
         if (auth && auth.token) {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_TOKEN, auth.token);
@@ -32,7 +34,7 @@ export class AuthService {
           this.localStorageService.setItem(LOCALSTORAGE_KEY_USERNAME, auth.username);
           this.localStorageService.setItem(LOCALSTORAGE_KEY_ROLES, auth.roles.toString());
 
-          this.myparkApiService.getCurrentUser().subscribe((user: User) => {
+          this.userService.getCurrentUser().subscribe((user: User) => {
             const fullName = `${user.firstName} ${user.lastName}`;
             this.localStorageService.setItem(LOCALSTORAGE_KEY_NAME, fullName);
             const hasParkingSpace = user.parkingSpace ? true : false;

@@ -3,6 +3,7 @@ import {ParkingSpace, User} from '../../../shared/models/mypark.models';
 import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
+import {UserService} from '../../../shared/services/api/user.service';
 
 @Component({
   selector: 'mp-personal-data',
@@ -16,11 +17,11 @@ export class PersonalDataComponent implements OnInit {
   public message: Message;
 
   constructor(
-    private apiService: MyparkApiService,
+    private userService: UserService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.apiService.getCurrentUser().subscribe((user: User) => {
+    this.userService.getCurrentUser().subscribe((user: User) => {
       this.user = user;
 
       this.form = this.fb.group({
@@ -45,7 +46,7 @@ export class PersonalDataComponent implements OnInit {
         password: null
       };
 
-      this.apiService.updateUser(this.user.id, user).subscribe((response: User) => {
+      this.userService.updateUser(this.user.id, user).subscribe((response: User) => {
         console.log('response', response);
         this.message = { success: true, text: 'Die Speicherung der Daten war erfolgreich.' };
       });

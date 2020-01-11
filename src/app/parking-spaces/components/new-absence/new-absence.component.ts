@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MyparkApiService, DateService} from '../../../shared/services/public_api';
+import { DateService, AbsenceService} from '../../../shared/services/public_api';
 import {Absence} from '../../../shared/models/mypark.models';
 
 @Component({
@@ -13,7 +13,8 @@ export class NewAbsenceComponent implements OnInit {
   public end: string;
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService, private dateService: DateService) {
+  constructor(private absenceService: AbsenceService,
+              private dateService: DateService) {
     this.isLoading = false;
     this.start = this.dateService.getToday();
     this.end = this.dateService.getToday();
@@ -33,7 +34,7 @@ export class NewAbsenceComponent implements OnInit {
       start: startDate,
       end: endDate
     };
-    this.apiService.createAbsence(absence).subscribe((response: Absence) => {
+    this.absenceService.createAbsence(absence).subscribe((response: Absence) => {
       console.log('response', response);
 
       if (response) {

@@ -1,7 +1,8 @@
-import { MyparkApiService } from '../../../shared/services/api/mypark-api.service';
-import { ActivatedRoute } from '@angular/router';
-import { User } from '../../../shared/models/mypark.models';
-import { Component, OnInit } from '@angular/core';
+import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
+import {ActivatedRoute} from '@angular/router';
+import {User} from '../../../shared/models/mypark.models';
+import {Component, OnInit} from '@angular/core';
+import {CommonService} from '../../../shared/services/api/common.service';
 
 @Component({
   selector: 'mp-registration',
@@ -14,10 +15,10 @@ export class RegistrationComponent implements OnInit {
   private _token: string;
 
   constructor(private route: ActivatedRoute,
-              private apiService: MyparkApiService) {
+              private commonService: CommonService) {
     this._token = this.route.snapshot.paramMap.get('token');
 
-    this.apiService.validateRegistrationToken(this._token).subscribe(response => {
+    this.commonService.validateRegistrationToken(this._token).subscribe(response => {
       console.log('response');
     });
   }

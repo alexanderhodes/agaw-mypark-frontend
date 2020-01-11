@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Absence} from '../../../shared/models/mypark.models';
-import {MyparkApiService, ModalService, DateService} from '../../../shared/services/public_api';
+import {ModalService, DateService, AbsenceService} from '../../../shared/services/public_api';
 import {ModalConfiguration} from '../../../shared/models/component.models';
 
 @Component({
@@ -16,7 +16,7 @@ export class AbsenceListComponent implements OnInit {
 
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService,
+  constructor(private absenceService: AbsenceService,
               private modalService: ModalService,
               private dateService: DateService) {
     this.isLoading = false;
@@ -24,7 +24,7 @@ export class AbsenceListComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.apiService.getAbsences().subscribe((absences: Absence[]) => {
+    this.absenceService.getAbsences().subscribe((absences: Absence[]) => {
       this._absences = absences;
       this.isLoading = false;
     });
@@ -49,7 +49,7 @@ export class AbsenceListComponent implements OnInit {
   }
 
   public confirmDeleteAbsence(event: any): void {
-    this.apiService.deleteAbsence(this._deleteAbsence.id).subscribe((response) => {
+    this.absenceService.deleteAbsence(this._deleteAbsence.id).subscribe((response) => {
       const index = this._absences.findIndex((absence: Absence) => {
         return absence.id === this._deleteAbsence.id;
       });

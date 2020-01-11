@@ -1,8 +1,9 @@
 import {ParkingSpace, User} from './../../../shared/models/mypark.models';
 import { Component, OnInit } from '@angular/core';
-import { MyparkApiService } from 'src/app/shared/services/api/mypark-api.service';
 import {Message, ModalConfiguration} from '../../../shared/models/component.models';
 import {ModalService} from '../../../shared/services/common/modal.service';
+import {ParkingSpaceService} from '../../../shared/services/api/parking-space.service';
+import {UserService} from '../../../shared/services/api/user.service';
 
 @Component({
   selector: 'mp-parkingspaces-admin',
@@ -22,7 +23,9 @@ export class ParkingspacesAdminComponent implements OnInit {
   private _selectedParkingSpace: ParkingSpace;
   private _selectedUser: string;
 
-  constructor(private apiService: MyparkApiService, private modalService: ModalService) {
+  constructor(private parkingSpaceService: ParkingSpaceService,
+              private userService: UserService,
+              private modalService: ModalService) {
     this._parkingSpaces = [];
     this.isLoading = false;
     this.message = { success: false, text: null };
@@ -33,16 +36,16 @@ export class ParkingspacesAdminComponent implements OnInit {
     this._parkingSpaces = [];
     this._users = [];
 
-    this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
+    this.parkingSpaceService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
       this._parkingSpaces = parkingSpaces;
       this.isLoading = false;
     });
 
-    this.apiService.getAllUsers().subscribe((users: User[]) => {
+    this.userService.getAllUsers().subscribe((users: User[]) => {
       this._users = users;
     });
 
-    this.apiService.getUsersWithParkingSpace().subscribe((users => console.log('with ps', users)));
+    this.parkingSpaceService.getUsersWithParkingSpace().subscribe((users => console.log('with ps', users)));
   }
 
   get assignmentModalConfiguration(): ModalConfiguration {
@@ -76,7 +79,7 @@ export class ParkingspacesAdminComponent implements OnInit {
   public addParkingSpace(): void {
     if (+this.number > 0) {
       const parkingSpace: ParkingSpace = {id: null, number: this.number};
-      this.apiService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
+      this.parkingSpaceService.createParkingSpace(parkingSpace).subscribe((ps: ParkingSpace) => {
         this._parkingSpaces.push(ps);
         this.number = '';
         this._parkingSpaces = this._parkingSpaces.sort((a, b) => {
@@ -119,7 +122,7 @@ export class ParkingspacesAdminComponent implements OnInit {
 
       console.log('user', user);
 
-      this.apiService.updateUser(this._selectedUser, user).subscribe((response: User) => {
+      this.userService.updateUser(this._selectedUser, user).subscribe((response: User) => {
         console.log('user-response', response);
 
         if (index > -1) {
@@ -135,7 +138,7 @@ export class ParkingspacesAdminComponent implements OnInit {
   }
 
   public confirmDelete(event: any): void {
-    this.apiService.deleteParkingSpace(this._selectedParkingSpace).subscribe((parkingSpace: ParkingSpace) => {
+    this.parkingSpaceService.deleteParkingSpace(this._selectedParkingSpace).subscribe((parkingSpace: ParkingSpace) => {
       const index = this._parkingSpaces.findIndex((searchElement: ParkingSpace) => {
         return this._selectedParkingSpace.id === searchElement.id;
       });

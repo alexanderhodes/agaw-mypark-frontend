@@ -4,14 +4,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoginComponent, ResetPasswordComponent, RegistrationComponent} from './components/public_api';
+import {LoginComponent, ResetPasswordComponent, RegistrationComponent, PasswordComponent} from './components/public_api';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegistrationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PasswordComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +26,8 @@ import {SharedModule} from '../shared/shared.module';
   exports: [
     LoginComponent,
     RegistrationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PasswordComponent
   ]
 })
 export class UnauthModule { }

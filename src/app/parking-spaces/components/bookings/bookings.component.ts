@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MyparkApiService, ModalService, DateService } from '../../../shared/services/public_api';
+import { ModalService, DateService, BookingService} from '../../../shared/services/public_api';
 import { Booking } from '../../../shared/models/mypark.models';
 import {ModalConfiguration} from '../../../shared/models/component.models';
 
@@ -16,7 +16,7 @@ export class BookingsComponent implements OnInit {
 
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService,
+  constructor(private bookingService: BookingService,
               private modalService: ModalService,
               private dateService: DateService) {
     this._bookings = [];
@@ -25,7 +25,7 @@ export class BookingsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.apiService.getBookings().subscribe(bookings => {
+    this.bookingService.getBookings().subscribe(bookings => {
       this._bookings = bookings;
       this.isLoading = false;
     });
@@ -48,7 +48,7 @@ export class BookingsComponent implements OnInit {
   }
 
   public confirmDeleteBooking(event: any): void {
-    this.apiService.deleteBooking(this._deleteBooking.id).subscribe((response) => {
+    this.bookingService.deleteBooking(this._deleteBooking.id).subscribe((response) => {
       const index = this._bookings.findIndex((booking: Booking) => {
         return booking.id === this._deleteBooking.id;
       });

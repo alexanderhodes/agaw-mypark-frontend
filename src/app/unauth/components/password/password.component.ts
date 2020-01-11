@@ -1,8 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from './../../../models/mypark.models';
-import { MyparkApiService } from './../../../services/api/mypark-api.service';
+import { User } from '../../../shared/models/mypark.models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {CommonService} from '../../../shared/services/api/common.service';
 
 @Component({
   selector: 'mp-password',
@@ -16,7 +16,7 @@ export class PasswordComponent implements OnInit {
   form: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private apiService: MyparkApiService,
+              private commonService: CommonService,
               private fb: FormBuilder) {
     this.form = this.fb.group({
       password: ['', Validators.required],
@@ -24,7 +24,7 @@ export class PasswordComponent implements OnInit {
     });
 
     this._token = this.route.snapshot.paramMap.get('token');
-    this.apiService.validatePasswordResetToken(this._token).subscribe((user: User) => {
+    this.commonService.validatePasswordResetToken(this._token).subscribe((user: User) => {
       this._user = user;
     });
   }
@@ -36,13 +36,13 @@ export class PasswordComponent implements OnInit {
     return this._user;
   }
 
-  submit() {
+  public submit(): void {
     // ToDo: implement validation
     const password = this.form.get('password').value;
 
     const body = new FormData();
     body.append('password', password);
-    this.apiService.updatePasswordInPasswordReset(this._token, body).subscribe(value => {
+    this.commonService.updatePasswordInPasswordReset(this._token, body).subscribe(value => {
       console.log('submitted', value);
     });
   }

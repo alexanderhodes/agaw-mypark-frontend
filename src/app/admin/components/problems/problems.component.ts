@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MyparkApiService} from '../../../shared/services/api/mypark-api.service';
 import {Problem} from '../../../shared/models/mypark.models';
+import {ProblemService} from '../../../shared/services/api/problem.service';
 
 @Component({
   selector: 'mp-problems',
@@ -13,13 +14,13 @@ export class ProblemsComponent implements OnInit {
 
   public isLoading: boolean;
 
-  constructor(private apiService: MyparkApiService) {
+  constructor(private problemService: ProblemService) {
     this.isLoading = false;
   }
 
   ngOnInit() {
     this.isLoading = true;
-    this.apiService.getProblems().subscribe((problems: Problem[]) => {
+    this.problemService.getProblems().subscribe((problems: Problem[]) => {
       this._problems = problems;
       this.isLoading = false;
     });

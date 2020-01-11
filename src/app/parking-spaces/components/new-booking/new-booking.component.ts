@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Booking} from '../../../shared/models/mypark.models';
-import {MyparkApiService, DateService} from '../../../shared/services/public_api';
+import { DateService, BookingService} from '../../../shared/services/public_api';
 
 @Component({
   selector: 'mp-new-booking',
@@ -15,7 +15,8 @@ export class NewBookingComponent implements OnInit {
 
   // ToDo: add error message
 
-  constructor(private apiService: MyparkApiService, private dateService: DateService) {
+  constructor(private bookingService: BookingService,
+              private dateService: DateService) {
     this.isLoading = false;
     this.day = this.dateService.getToday();
     this.time = '08:00';
@@ -39,7 +40,7 @@ export class NewBookingComponent implements OnInit {
     console.log('date', this.day, 'time', this.time, 'bookingDate', date);
     this.isLoading = true;
     // send http post request and handle response if successful
-    this.apiService.createBooking(booking).subscribe((response: Booking) => {
+    this.bookingService.createBooking(booking).subscribe((response: Booking) => {
       console.log('response', response);
       if (response) {
         // alles war erfolgreich

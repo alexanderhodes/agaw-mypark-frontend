@@ -1,5 +1,10 @@
 import {ParkingSpace, Booking, Problem} from '../../../shared/models/mypark.models';
-import {MyparkApiService, ModalService, ApiService, AuthService} from '../../../shared/services/public_api';
+import {
+  ModalService,
+  AuthService,
+  ParkingSpaceService,
+  BookingService, ProblemService
+} from '../../../shared/services/public_api';
 import { Component, OnInit } from '@angular/core';
 import { ModalConfiguration } from '../../../shared/models/component.models';
 
@@ -19,7 +24,10 @@ export class ParkingSpacesListComponent implements OnInit {
   private _bookNowModalConfiguration: ModalConfiguration;
   private _problemModalConfiguration: ModalConfiguration;
 
-  constructor(private apiService: MyparkApiService, private modalService: ModalService,
+  constructor(private parkingSpaceService: ParkingSpaceService,
+              private bookingService: BookingService,
+              private problemService: ProblemService,
+              private modalService: ModalService,
               private authService: AuthService) {
     this._hasBooking = true;
     this.isLoading = false;
@@ -29,13 +37,13 @@ export class ParkingSpacesListComponent implements OnInit {
     this.isLoading = true;
     this._parkingSpaces = [];
 
-    this.apiService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
+    this.parkingSpaceService.getAllParkingSpaces().subscribe((parkingSpaces: ParkingSpace[]) => {
       this._parkingSpaces = parkingSpaces;
       this.isLoading = false;
     });
 
     const date = new Date().toLocaleDateString('de-de', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    this.apiService.getBookingForToday(date).subscribe(booking => {
+    this.bookingService.getBookingForToday(date).subscribe(booking => {
       this._hasBooking = booking || this._hasBooking ? true : false;
     });
 
@@ -101,14 +109,14 @@ export class ParkingSpacesListComponent implements OnInit {
 
   public confirmProblem(event: any): void {
     // send request
-    this.apiService.createProblem(this._problem).subscribe((problem: Problem) => {
+    this.problemService.createProblem(this._problem).subscribe((problem: Problem) => {
       console.log('problem', problem);
       // maybe send user feedback
     });
   }
 
   private sendBooking(booking: Booking): void {
-    this.apiService.createBooking(booking).subscribe((response: Booking) => {
+    this.bookingService.createBooking(booking).subscribe((response: Booking) => {
       const text = `Ihnen steht für heute ab sofort der Parkplatz mit der Nummer ${booking.parkingSpace.number} zur Verfügung.`;
       this._hasBooking = true;
       this._bookNowModalConfiguration = this.initBookNowModalConfiguration(text);
