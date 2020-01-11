@@ -3,7 +3,7 @@ import {
   ModalService,
   AuthService,
   ParkingSpaceService,
-  BookingService, ProblemService
+  BookingService, ProblemService, UserService
 } from '../../../shared/services/public_api';
 import { Component, OnInit } from '@angular/core';
 import { ModalConfiguration } from '../../../shared/models/component.models';
@@ -19,6 +19,7 @@ export class ParkingSpacesListComponent implements OnInit {
 
   private _parkingSpaces: Array<ParkingSpace>;
   private _hasBooking: boolean;
+  private _personalParkingSpace: ParkingSpace;
   private _problem: Problem;
 
   private _bookNowModalConfiguration: ModalConfiguration;
@@ -27,9 +28,11 @@ export class ParkingSpacesListComponent implements OnInit {
   constructor(private parkingSpaceService: ParkingSpaceService,
               private bookingService: BookingService,
               private problemService: ProblemService,
+              private userService: UserService,
               private modalService: ModalService,
               private authService: AuthService) {
     this._hasBooking = true;
+    this._personalParkingSpace = null;
     this.isLoading = false;
   }
 
@@ -48,6 +51,9 @@ export class ParkingSpacesListComponent implements OnInit {
     });
 
     this._hasBooking = this._hasBooking ? this.authService.parkingSpace : false;
+    if(this.authService.parkingSpace) {
+      this.userService.getCurrentUser().subscribe(user => this._personalParkingSpace = user.parkingSpace);
+    };
   }
 
   get parkingSpaces(): Array<ParkingSpace> {
@@ -71,6 +77,10 @@ export class ParkingSpacesListComponent implements OnInit {
 
   get hasBooking(): boolean {
     return this._hasBooking;
+  }
+
+  get personalParkingSpace(): ParkingSpace {
+    return this._personalParkingSpace;
   }
 
   public book(parkingSpace?: ParkingSpace): void {

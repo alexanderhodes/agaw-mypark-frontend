@@ -10,6 +10,7 @@ import { ApiService, AuthService, LocalStorageService, ApiErrorHandler, ModalSer
 import { ButtonComponent, HeaderComponent, NavigationComponent, NavigationItemComponent, FooterComponent, InfoIconComponent,
           ErrorMessageComponent, ConfirmationComponent, LoadingSpinnerComponent } from './components/public_api';
 import { StatusTranslationPipe } from './pipes/public_api';
+import { ErrorDirective } from './directives/error.directive';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { StatusTranslationPipe } from './pipes/public_api';
     ConfirmationComponent,
     StatusTranslationPipe,
     LoadingSpinnerComponent,
+    ErrorDirective,
   ],
   exports: [
     ButtonComponent,
@@ -42,7 +44,8 @@ import { StatusTranslationPipe } from './pipes/public_api';
     ErrorMessageComponent,
     ConfirmationComponent,
     StatusTranslationPipe,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ErrorDirective
   ]
 })
 export class SharedModule {

@@ -24,6 +24,10 @@ export class UserService {
     return this.apiService.put<User>(`users/${id}`, body);
   }
 
+  public createUser(body: User): Observable<User> {
+    return this.apiService.post<User>(`users`, body);
+  }
+
   public updateAdminRights(id: string): Observable<User> {
     return this.apiService.put<User>(`users/${id}/admin`, null);
   }

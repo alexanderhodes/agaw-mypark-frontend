@@ -175,6 +175,8 @@ select {
 
 .input-group {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input {
@@ -223,3 +225,14 @@ p {
   color: white;
 }
 
+.form-error-message {
+  color: red;
+  font-size: .75rem;
+  color: red;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.text-align-center {
+  text-align: center;
+}

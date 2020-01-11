@@ -3,6 +3,9 @@
     <span *ngIf="numberOfFreeParkingSpaces > 0 && !hasBooking">
         Es gibt heute noch {{ numberOfFreeParkingSpaces }} freie Parkplätze, die per Sofort-Buchung reserviert werden können.
     </span>
+    <span *ngIf="personalParkingSpace">
+      Ihnen ist der Parkplatz {{ personalParkingSpace.number }} zugeordnet.
+    </span>
   <mp-button *ngIf="!hasBooking" (click)="book()" icon="clock" title="Sofort-Buchung"></mp-button>
 </div>
 <div class="table-container" *ngIf="!isLoading">

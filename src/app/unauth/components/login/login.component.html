@@ -2,13 +2,23 @@
   <h1>Anmelden</h1>
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <span style="display: block;" class="mb-4">
-      <span class="icon" uk-icon="user"></span>
-      <input type="email" required placeholder="Benutzername" formControlName="username"/>
+    <span class="input-group mb-2">
+      <span class="input-group">
+        <span class="icon" uk-icon="user"></span>
+        <input type="email" placeholder="E-Mail Adresse" formControlName="username"/>
+      </span>
+      <span *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty" class="form-error-message">
+        Bitte geben Sie eine E-Mail Adresse ein.
+      </span>
     </span>
-    <span style="display: block;" class="mb-4">
-      <span class="icon" uk-icon="lock"></span>
-      <input type="password" required placeholder="Passwort" formControlName="password">
+    <span class="input-group mb-2">
+      <span class="input-group">
+        <span class="icon" uk-icon="lock"></span>
+        <input type="password" placeholder="Passwort" formControlName="password">
+      </span>
+      <span *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty" class="form-error-message">
+        Bitte geben Sie einen Passwort ein.
+      </span>
     </span>
     <span *ngIf="!isLoading" mp-error-message [message]="message"></span>
     <mp-button *ngIf="!isLoading" title="Anmelden" style="display: block;"></mp-button>
@@ -16,6 +26,7 @@
   </form>
 
   <a class="link mt-2" style="display: block;" [routerLink]="['/reset-password']">Passwort vergessen</a>
-  <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">Noch keinen Account? Jetzt
-    Registrieren</a>
+  <a class="link mt-2" style="display: block;" [routerLink]="['/registration']">
+    Noch keinen Account? Jetzt Registrieren
+  </a>
 </div>

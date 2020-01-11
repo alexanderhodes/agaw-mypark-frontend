@@ -3,6 +3,7 @@ import { User} from '../../../shared/models/mypark.models';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 import {UserService} from '../../../shared/services/api/user.service';
+import {PasswordMatcher, PasswordValidator} from '../../../shared/functions/password-validator';
 
 @Component({
   selector: 'mp-personal-data',
@@ -14,10 +15,23 @@ export class PersonalDataComponent implements OnInit {
   public form: FormGroup;
   public user: User;
   public message: Message;
+  public submitted: boolean;
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder) {
+    this.form = this.fb.group({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', PasswordValidator()),
+      passwordRepeat: new FormControl('', PasswordValidator())
+    }, {
+      validators: PasswordMatcher('password', 'passwordRepeat')
+    });
+    this.submitted = false;
+  }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user: User) => {
@@ -35,6 +49,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   public saveChanges(): void {
+    this.submitted = true;
     if (!this.form.invalid) {
       const user: User = {
         id: null,
@@ -53,3 +68,4 @@ export class PersonalDataComponent implements OnInit {
   }
 
 }
+//
