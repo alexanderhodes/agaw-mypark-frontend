@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { User} from '../../../shared/models/mypark.models';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../shared/models/mypark.models';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 import {UserService} from '../../../shared/services/api/user.service';
@@ -25,8 +25,8 @@ export class PersonalDataComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', PasswordValidator()),
-      passwordRepeat: new FormControl('', PasswordValidator())
+      password: new FormControl('', [Validators.required, PasswordValidator()]),
+      passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
     }, {
       validators: PasswordMatcher('password', 'passwordRepeat')
     });
@@ -42,8 +42,10 @@ export class PersonalDataComponent implements OnInit {
         lastName: new FormControl(user.lastName, Validators.required),
         username: new FormControl(user.name, Validators.required),
         email: new FormControl(user.username, [Validators.required, Validators.email]),
-        password: new FormControl(''),
-        passwordRepeat: new FormControl('')
+        password: new FormControl('', [Validators.required, PasswordValidator()]),
+        passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
+      }, {
+        validators: PasswordMatcher('password', 'passwordRepeat')
       });
     });
   }

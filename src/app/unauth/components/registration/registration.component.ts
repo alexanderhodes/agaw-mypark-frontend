@@ -24,8 +24,8 @@ export class RegistrationComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', PasswordValidator()),
-      passwordRepeat: new FormControl('', PasswordValidator())
+      password: new FormControl('', [Validators.required, PasswordValidator()]),
+      passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
     }, {
       validators: PasswordMatcher('password', 'passwordRepeat')
     });

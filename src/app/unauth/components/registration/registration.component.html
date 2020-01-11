@@ -68,7 +68,8 @@
           </span>
           <span *ngIf="form.get('password').invalid && (form.get('password').dirty || submitted)"
                 class="form-error-message">
-            Bitte geben Sie ein gültiges Passwort ein.
+            <span *ngIf="form.get('password').errors.required">Bitte geben Sie ein Passwort ein.</span>
+            <span *ngIf="form.get('password').errors.invalid">Bitte geben Sie ein gültiges Passwort ein.</span>
           </span>
         </span>
         <span class="input-group">
@@ -83,7 +84,11 @@
           </span>
           <span *ngIf="form.get('passwordRepeat').invalid && (form.get('passwordRepeat').dirty || submitted)"
                 class="form-error-message">
-            Bitte geben Sie ein Passwort ein, welches dem obigen entspricht.
+            <span *ngIf="form.get('passwordRepeat').errors.required">Bitte geben Sie ein Passwort ein.</span>
+            <span *ngIf="form.get('passwordRepeat').errors.invalid">Bitte geben Sie ein gültiges Passwort ein.</span>
+            <span *ngIf="form.get('passwordRepeat').errors.mustMatch">
+              Bitte geben Sie ein Passwort ein, welches dem obigen entspricht.
+            </span>
           </span>
         </span>
       </div>
