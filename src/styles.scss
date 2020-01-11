@@ -173,6 +173,10 @@ select {
   width: 160px;
 }
 
+.input-group {
+  display: block;
+}
+
 input {
   width: 250px;
 }
@@ -185,9 +189,11 @@ p {
   font-weight: 500;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 960px) {
   .input-label {
     width: 100%;
+    margin-bottom: .125rem;
+    margin-top: .5rem;
   }
 }
 

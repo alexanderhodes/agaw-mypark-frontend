@@ -1,46 +1,60 @@
 <div class="uk-container">
   <h1>Benutzerdaten verwalten</h1>
   <div uk-grid>
-    <div class="uk-width-1-2@m">
-      <p>Pflichtfelder*</p>
-      <span style="display: block;">
-        <span class="input-label">Benutzername</span>
-        <input type="text" placeholder="Benutzername"/>
-        <mp-info-icon text="frei wählbarer Benutzername z.B. 'Max_Mustermann'"></mp-info-icon>
-      </span>
-      <span style="display: block;">
-        <span class="input-label">E-Mail Adresse</span>
-        <input type="email" placeholder="E-Mail Adresse"/>
-        <mp-info-icon text="Firmen E-Mail-Adresse"></mp-info-icon>
-      </span>
-      <span style="display: block;">
-        <span class="input-label">Kostenstelle</span>
-        <input type="text" placeholder="Kostenstelle"/>
-        <mp-info-icon text="Kostenstelle, der Sie angehören"></mp-info-icon>
-      </span>
-    </div>
-    <div class="uk-width-1-2@m">
-      <p>Optionale Felder</p>
-      <span style="display: block;">
-        <span class="input-label">private E-Mail Adresse</span>
-        <input type="email" placeholder="E-Mail Adresse"/>
-        <mp-info-icon text="private E-Mail-Adresse"></mp-info-icon>
-      </span>
-      <p>Passwort *</p>
-      <span style="display: block;">
-        <span class="input-label">Passwort</span>
-        <input type="password" placeholder="Passwort"/>
-        <mp-info-icon text="mind. 8 Zeichen/ mind. ein Groß- und Kleinbuchstabe/ mind. eine Zahl"></mp-info-icon>
-      </span>
-      <span style="display: block;">
-        <span class="input-label">&nbsp;</span>
-        <input type="password" placeholder="Passwort wiederholen"/>
-        <mp-info-icon text="Passwort erneut eingeben"></mp-info-icon>
-      </span>
-    </div>
-    <div class="mt-4">
-      <span style="text-align: center" mp-error-message [message]="message"></span>
-      <mp-button (click)="saveChanges()" title="speichern"></mp-button>
-    </div>
+    <form [formGroup]="form" (ngSubmit)="saveChanges()">
+      <div class="uk-width-1-2@m">
+        <p>Pflichtfelder*</p>
+        <span class="input-group">
+          <span class="input-label">Vorname</span>
+          <input type="text" placeholder="Vorname" formControlName="firstName">
+          <mp-info-icon text="Vorname"></mp-info-icon>
+        </span>
+        <span>
+          Invalid: {{ form.get('firstName').invalid }}
+          Pristine: {{ form.get('firstName').pristine }}
+          Dirty: {{ form.get('firstName').dirty }}
+        </span>
+        <span class="input-group">
+          <span class="input-label">Nachname</span>
+          <input type="text" placeholder="Nachname" formControlName="lastName">
+          <mp-info-icon text="Nachname"></mp-info-icon>
+        </span>
+        <span class="input-group">
+          <span class="input-label">Benutzername</span>
+          <input type="text" placeholder="Benutzername" formControlName="username">
+          <mp-info-icon text="frei wählbarer Benutzername z.B. 'Max_Mustermann'"></mp-info-icon>
+        </span>
+        <span class="input-group">
+          <span class="input-label">E-Mail Adresse</span>
+          <input type="email" placeholder="E-Mail Adresse" formControlName="email">
+          <mp-info-icon text="Firmen E-Mail-Adresse"></mp-info-icon>
+        </span>
+      </div>
+      <div class="uk-width-1-2@m">
+        <p>Optionale Felder</p>
+        <span class="input-group">
+          <span class="input-label">private E-Mail Adresse</span>
+          <input type="email" placeholder="E-Mail Adresse">
+          <mp-info-icon text="private E-Mail-Adresse"></mp-info-icon>
+        </span>
+        <p>Passwort *</p>
+        <span class="input-group">
+          <span class="input-label">Passwort</span>
+          <input type="password" placeholder="Passwort" formControlName="password">
+          <mp-info-icon text="mind. 8 Zeichen/ mind. ein Groß- und Kleinbuchstabe/ mind. eine Zahl"></mp-info-icon>
+        </span>
+        <span class="input-group">
+          <span class="input-label">&nbsp;</span>
+          <input type="password" placeholder="Passwort wiederholen" formControlName="passwordRepeat">
+          <mp-info-icon text="Passwort erneut eingeben"></mp-info-icon>
+        </span>
+      </div>
+      <div class="mt-4">
+        <span style="text-align: center" mp-error-message [message]="message"></span>
+      </div>
+      <div>
+        <mp-button type="submit" title="speichern"></mp-button>
+      </div>
+    </form>
   </div>
 </div>
