@@ -70,3 +70,13 @@ export interface SeriesAbsence {
   active: boolean;
   weekday: number;
 }
+
+export interface UserAdmin {
+  user: User;
+  admin: boolean;
+}
+
+export interface ParkingSpaceUser {
+  parkingSpace: ParkingSpace;
+  user: User;
+}

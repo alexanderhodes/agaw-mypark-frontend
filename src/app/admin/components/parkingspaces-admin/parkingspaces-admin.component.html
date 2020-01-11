@@ -19,21 +19,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
+            <tr *ngFor="let item of parkingSpacesWithUser; index as i">
                 <td>
-                    <span class="number">{{ parkingSpace.number }}</span>
+                    <span class="number">{{ item.parkingSpace.number }}</span>
                 </td>
                 <td>
                   <div>
                     <span class="tip">fest vergeben an:</span>
-                    <span class="assignment-wrapper" (click)="assignParkingSpace(parkingSpace)">
+                    <span class="assignment-wrapper" *ngIf="!item.user" (click)="assignParkingSpace(item.parkingSpace)">
                       <span class="user">Benutzer auswählen</span>
                       <span uk-icon="plus" class="icon"></span>
+                    </span>
+                    <span class="assignment-wrapper" *ngIf="item.user" (click)="unassignParkingSpace(item)">
+                      <span class="user">{{ item.user.firstName }} {{ item.user.lastName }}</span>
+                      <span uk-icon="minus-circle" class="icon"></span>
                     </span>
                   </div>
                 </td>
                 <td>
-                    <mp-button (click)="deleteParkingSpace(parkingSpace)" icon="trash" title="löschen"></mp-button>
+                    <mp-button (click)="deleteParkingSpace(item.parkingSpace)" icon="trash" title="löschen"></mp-button>
                 </td>
             </tr>
         </tbody>
@@ -48,4 +52,7 @@
     </select>
   </div>
 </mp-confirmation>
-<mp-confirmation (onConfirm)="confirmDelete($event)" [configuration]="_deleteParkingSpaceConfiguration"></mp-confirmation>
+<mp-confirmation (onConfirm)="confirmDelete($event)" [configuration]="deleteParkingSpaceConfiguration">
+</mp-confirmation>
+<mp-confirmation (onConfirm)="confirmUnassignment($event)" [configuration]="unassignmentModalConfiguration">
+</mp-confirmation>

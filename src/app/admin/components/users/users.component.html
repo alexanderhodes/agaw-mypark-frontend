@@ -1,45 +1,46 @@
 <h1>Alle Benutzer</h1>
 <div class="mt-1 mb-1">
-    <span *ngIf="!users">Es sind aktuell keine Benutzer auf MyPark registriert.</span>
-    <span *ngIf="users">Es sind aktuell {{ users.length }} Benutzer auf MyPark registriert.</span>
+  <span *ngIf="!users">Es sind aktuell keine Benutzer auf MyPark registriert.</span>
+  <span *ngIf="users">Es sind aktuell {{ users.length }} Benutzer auf MyPark registriert.</span>
 </div>
 <div class="table-container" *ngIf="!isLoading">
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">E-Mail</th>
-                <th scope="col">Parkplatz</th>
-                <th scope="col">Verwalter</th>
-                <th scope="col">Aktionen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>
-                    <span>{{ user.firstName }} {{ user.lastName }}</span>
-                </td>
-                <td>
-                    <span>{{ user.username }}</span>
-                </td>
-                <td>
-                    <span [attr.uk-icon]="user.parkingSpace ? 'check' : 'close'" class="icon"
-                          [style.color]="user.parkingSpace ? 'green' : 'red'"></span>
-                </td>
-                <td>
-                    <span [attr.uk-icon]="isAdmin ? 'check' : 'close'" class="icon"
-                          [style.color]="isAdmin ? 'green' : 'red'" style="cursor: pointer;"
-                          (click)="updateAdminRights(user, isAdmin)"></span>
-                </td>
-                <td>
-                    <mp-button (click)="contactUser(user)" icon="mail" title="Benutzer kontaktieren"></mp-button>
-                    <mp-button (click)="deleteUser(user)" icon="trash" title="Benutzer löschen"></mp-button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">E-Mail</th>
+      <th scope="col">Parkplatz</th>
+      <th scope="col">Verwalter</th>
+      <th scope="col">Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userAdmins">
+      <td>
+        <span>{{ user.user.firstName }} {{ user.user.lastName }}</span>
+      </td>
+      <td>
+        <span>{{ user.user.username }}</span>
+      </td>
+      <td>
+        <span [attr.uk-icon]="user.user.parkingSpace ? 'check' : 'close'" class="icon"
+              [style.color]="user.user.parkingSpace ? 'green' : 'red'"></span>
+      </td>
+      <td>
+        <span [attr.uk-icon]="user.admin ? 'check' : 'close'" class="icon"
+              [style.color]="user.admin ? 'green' : 'red'" style="cursor: pointer;"
+              (click)="updateAdminRights(user.user, user.admin)"></span>
+      </td>
+      <td>
+        <mp-button (click)="contactUser(user.user)" icon="mail" title="Benutzer kontaktieren"></mp-button>
+        <mp-button (click)="deleteUser(user.user)" icon="trash" title="Benutzer löschen"></mp-button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
 
 <mp-confirmation (onConfirm)="confirmDeleteUser($event)" [configuration]="deleteModalConfiguration"></mp-confirmation>
-<mp-confirmation (onConfirm)="confirmUpdateAdminRights($event)" [configuration]="updateAdminRightsModalConfiguration"></mp-confirmation>
+<mp-confirmation (onConfirm)="confirmUpdateAdminRights($event)"
+                 [configuration]="updateAdminRightsModalConfiguration"></mp-confirmation>

@@ -28,4 +28,8 @@ export class ParkingSpaceService {
     return this.apiService.get<User[]>(`users/parkingspace`);
   }
 
+  public getParkingSpacesWithUsers(): Observable<[]> {
+    return this.apiService.get<[]>(`parkingspaces/admin`);
+  }
+
 }

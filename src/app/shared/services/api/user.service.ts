@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {Observable} from 'rxjs';
-import {Authentication, User} from '../../models/mypark.models';
+import {User, UserAdmin} from '../../models/mypark.models';
 
 @Injectable()
 export class UserService {
@@ -30,6 +30,14 @@ export class UserService {
 
   public getAdminUsers(): Observable<User[]> {
     return this.apiService.get<User[]>(`users/admin`);
+  }
+
+  public getUserAdmins(): Observable<UserAdmin[]> {
+    return this.apiService.get<UserAdmin[]>(`users/isadmin`);
+  }
+
+  public getUsersWithParkingSpaces(withParkingSpace: boolean): Observable<User[]> {
+    return this.apiService.get<User[]>(`users/parkingspace?with=${withParkingSpace}`);
   }
 
 }
