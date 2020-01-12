@@ -1,17 +1,35 @@
 <div style="text-align: center">
   <h1>Abwesenheit erstellen</h1>
-  <div class="mt-1 mb-1">
-    <span style="display: block;" class="mb-2">
-      von
-      <input [(ngModel)]="start" type="date" required placeholder="Tag" />
-      <span class="icon" uk-icon="calendar"></span>
+  <form [formGroup]="form" (ngSubmit)="createAbsence()">
+    <span class="input-group mb-2">
+      <span class="input-group">
+        von
+        <input type="date" placeholder="Tag" formControlName="start"/>
+        <span class="icon" uk-icon="calendar"></span>
+      </span>
+      <span *ngIf="form.get('start').invalid && (form.get('start').dirty || submitted)"
+            class="form-error-message">
+        <span *ngIf="form.get('start').errors.required">Bitte geben Sie ein Beginn ein.</span>
+        <span *ngIf="form.get('start').errors.invalid">Bitte geben Sie ein gültiges Datum ein.</span>
+        <span *ngIf="form.get('start').errors.required">Bitte geben Sie ein Beginn ein.</span>
+        <span *ngIf="form.get('start').errors.future">Bitte geben Sie ein Datum in der Zukunft ein.</span>
+      </span>
     </span>
-    <span style="display: block" class="mb-2">
-      bis
-      <input [(ngModel)]="end" type="date" required placeholder="Tag" />
-      <span class="icon" uk-icon="calendar"></span>
+    <span class="input-group mb-2">
+      <span class="input-group">
+        bis
+        <input type="date" placeholder="Tag" formControlName="end"/>
+        <span class="icon" uk-icon="calendar"></span>
+      </span>
+      <span *ngIf="form.get('end').invalid && (form.get('end').dirty || submitted)"
+            class="form-error-message">
+        <span *ngIf="form.get('end').errors.required">Bitte geben Sie ein Ende ein.</span>
+        <span *ngIf="form.get('end').errors.invalid">Bitte geben Sie ein gültiges Datum ein.</span>
+        <span *ngIf="form.get('end').errors.after">Bitte geben Sie ein Ende ein, das nach dem Beginn liegt.</span>
+        <span *ngIf="form.get('end').errors.future">Bitte geben Sie ein Datum in der Zukunft ein.</span>
+      </span>
     </span>
     <mp-loading-spinner [isLoading]="isLoading"></mp-loading-spinner>
-    <mp-button *ngIf="!isLoading" (click)="createAbsence()" title="Abwesenheit erstellen"></mp-button>
-  </div>
+    <mp-button *ngIf="!isLoading" title="Abwesenheit erstellen"></mp-button>
+  </form>
 </div>

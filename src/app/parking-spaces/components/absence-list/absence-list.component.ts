@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Absence} from '../../../shared/models/mypark.models';
-import {ModalService, DateService, AbsenceService} from '../../../shared/services/public_api';
+import {AbsenceService, DateService, ModalService} from '../../../shared/services/public_api';
 import {ModalConfiguration} from '../../../shared/models/component.models';
 
 @Component({
@@ -27,7 +27,7 @@ export class AbsenceListComponent implements OnInit {
     this.absenceService.getAbsences().subscribe((absences: Absence[]) => {
       this._absences = absences;
       this.isLoading = false;
-    });
+    }, error => this.isLoading = false);
   }
 
   get absences(): Absence[] {
