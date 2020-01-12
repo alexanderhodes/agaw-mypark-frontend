@@ -14,7 +14,7 @@
           <span>{{ absence.start | date: 'EEE, dd.MM.yyyy' }}</span>
         </td>
         <td>
-          <span>{{ absence.start | date: 'EEE, dd.MM.yyyy' }}</span>
+          <span>{{ absence.end | date: 'EEE, dd.MM.yyyy' }}</span>
         </td>
         <td>
           <mp-button (click)="deleteAbsence(absence)" icon="trash" title="löschen"></mp-button>
