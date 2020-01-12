@@ -23,6 +23,7 @@ export class ParkingSpacesListComponent implements OnInit {
   private _hasBooking: boolean;
   private _personalParkingSpace: ParkingSpace;
   private _problem: Problem;
+  private _selectedParkingSpace: ParkingSpace;
 
   private _bookNowModalConfiguration: ModalConfiguration;
   private _problemModalConfiguration: ModalConfiguration;
@@ -53,9 +54,9 @@ export class ParkingSpacesListComponent implements OnInit {
     });
 
     this._hasBooking = this._hasBooking ? this.authService.parkingSpace : false;
-    if(this.authService.parkingSpace) {
+    if (this.authService.parkingSpace) {
       this.userService.getCurrentUser().subscribe(user => this._personalParkingSpace = user.parkingSpace);
-    };
+    }
   }
 
   get parkingSpaces(): Array<ParkingSpace> {
@@ -117,6 +118,17 @@ export class ParkingSpacesListComponent implements OnInit {
 
   public confirmBooking(event: any): void {
     // nothing to do
+    const index = this._parkingSpaces.findIndex((ps: ParkingSpace) => {
+      return ps.id === this._selectedParkingSpace.id;
+    });
+
+    this._parkingSpaces.splice(index, 1);
+    this._parkingSpaces.push(this._selectedParkingSpace);
+    this._parkingSpaces = this._parkingSpaces.sort((a, b) => {
+      return +a.number - +b.number;
+    });
+
+    console.log(this._parkingSpaces);
   }
 
   public confirmProblem(event: any): void {
@@ -134,7 +146,7 @@ export class ParkingSpacesListComponent implements OnInit {
       this._bookNowModalConfiguration = this.initBookNowModalConfiguration(text);
       this.modalService.show(this._bookNowModalConfiguration.id);
 
-      // ToDo: change ps status to not free
+      this._selectedParkingSpace = response.parkingSpace;
     });
   }
 

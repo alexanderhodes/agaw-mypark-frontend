@@ -18,20 +18,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let parkingSpace of parkingSpaces; index as i">
+    <tr *ngFor="let item of parkingSpaces; index as i">
       <td>
-        <span class="number">{{ parkingSpace.number }}</span>
+        <span class="number">{{ item.number }}</span>
       </td>
       <td>
         <span class="state"
-              [style.background-color]="parkingSpace.parkingSpaceStatus.name === 'free' ? 'green' : 'red'">
-          {{ parkingSpace.parkingSpaceStatus.name | statusTranslation }}
+              [style.background-color]="item.parkingSpaceStatus.color">
+          {{ item.parkingSpaceStatus.name | statusTranslation }}
         </span>
       </td>
       <td>
-        <mp-button *ngIf="parkingSpace.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock"
-                   (click)="book(parkingSpace)" title="sofort buchen"></mp-button>
-        <mp-button icon="warning" title="Problem melden" (click)="reportProblem(parkingSpace)"></mp-button>
+        <mp-button *ngIf="item.parkingSpaceStatus.name === 'free' && !hasBooking" icon="clock"
+                   (click)="book(item)" title="sofort buchen"></mp-button>
+        <mp-button icon="warning" title="Problem melden" (click)="reportProblem(item)"></mp-button>
       </td>
     </tr>
     </tbody>
