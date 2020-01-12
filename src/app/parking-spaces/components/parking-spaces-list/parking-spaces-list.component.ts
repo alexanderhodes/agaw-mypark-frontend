@@ -1,12 +1,14 @@
-import {ParkingSpace, Booking, Problem} from '../../../shared/models/mypark.models';
+import {Booking, ParkingSpace, Problem} from '../../../shared/models/mypark.models';
 import {
-  ModalService,
   AuthService,
+  BookingService,
+  ModalService,
   ParkingSpaceService,
-  BookingService, ProblemService, UserService
+  ProblemService,
+  UserService
 } from '../../../shared/services/public_api';
-import { Component, OnInit } from '@angular/core';
-import { ModalConfiguration } from '../../../shared/models/component.models';
+import {Component, OnInit} from '@angular/core';
+import {ModalConfiguration} from '../../../shared/models/component.models';
 
 @Component({
   selector: 'mp-parking-spaces-list',
@@ -127,7 +129,7 @@ export class ParkingSpacesListComponent implements OnInit {
 
   private sendBooking(booking: Booking): void {
     this.bookingService.createBooking(booking).subscribe((response: Booking) => {
-      const text = `Ihnen steht für heute ab sofort der Parkplatz mit der Nummer ${booking.parkingSpace.number} zur Verfügung.`;
+      const text = `Ihnen steht für heute ab sofort der Parkplatz mit der Nummer ${response.parkingSpace.number} zur Verfügung.`;
       this._hasBooking = true;
       this._bookNowModalConfiguration = this.initBookNowModalConfiguration(text);
       this.modalService.show(this._bookNowModalConfiguration.id);
