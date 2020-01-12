@@ -25,8 +25,6 @@ export function DateInFutureValidator(): ValidatorFn {
       return;
     }
     const date = toDate(control.value);
-    console.log('date', date);
-
     if (date.toDateString() === 'Invalid Date') {
       return {invalid: {value: control.value}};
     }
