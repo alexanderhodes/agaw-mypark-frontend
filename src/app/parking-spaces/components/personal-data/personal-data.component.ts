@@ -3,7 +3,6 @@ import {User} from '../../../shared/models/mypark.models';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Message} from '../../../shared/models/component.models';
 import {UserService} from '../../../shared/services/api/user.service';
-import {PasswordMatcher, PasswordValidator} from '../../../shared/functions/password-validator';
 
 @Component({
   selector: 'mp-personal-data',
@@ -25,11 +24,7 @@ export class PersonalDataComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      privateEmail: new FormControl('', Validators.email),
-      password: new FormControl('', [Validators.required, PasswordValidator()]),
-      passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
-    }, {
-      validators: PasswordMatcher('password', 'passwordRepeat')
+      privateEmail: new FormControl('', Validators.email)
     });
     this.submitted = false;
   }
@@ -43,11 +38,7 @@ export class PersonalDataComponent implements OnInit {
         lastName: new FormControl(user.lastName, Validators.required),
         username: new FormControl(user.name, Validators.required),
         email: new FormControl(user.username, [Validators.required, Validators.email]),
-        privateEmail: new FormControl(user.privateEmail, Validators.email),
-        password: new FormControl(''),
-        passwordRepeat: new FormControl('')
-      }, {
-//        validators: PasswordMatcher('password', 'passwordRepeat')
+        privateEmail: new FormControl(user.privateEmail, Validators.email)
       });
     });
   }

@@ -16,6 +16,7 @@ import {SeriesAbsenceComponent} from './parking-spaces/components/series-absence
 import {NewAbsenceComponent} from './parking-spaces/components/new-absence/new-absence.component';
 import {AbsenceListComponent} from './parking-spaces/components/absence-list/absence-list.component';
 import {ConfirmRegisterComponent} from './unauth/components/confirm-register/confirm-register.component';
+import {ChangePasswordComponent} from './parking-spaces/components/change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: 'common/confirm-registration/:token',
     canActivate: [UnauthGuard],
     component: ConfirmRegisterComponent
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

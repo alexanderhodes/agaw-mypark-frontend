@@ -9,7 +9,9 @@
       </span>
       <span *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || submitted)"
             class="form-error-message">
-        <span *ngIf="loginForm.get('username').errors.required">Bitte geben Sie eine E-Mail Adresse ein.</span>
+        <span *ngIf="loginForm.get('username').errors.required">
+          Bitte geben Sie eine E-Mail Adresse oder einen Benutzernamen ein.
+        </span>
         <span *ngIf="loginForm.get('username').errors.email">Bitte geben Sie eine korrekte E-Mail Adresse ein.</span>
       </span>
     </span>

@@ -16,6 +16,10 @@
         Benutzerdaten verwalten
         <span uk-icon="cog" class="icon"></span>
       </span>
+      <span [routerLink]="['/change-password']" class="dropdown-item">
+        Passwort ändern
+        <span uk-icon="lock" class="icon"></span>
+      </span>
       <span class="dropdown-item" (click)="logout()">
         Abmelden
         <span uk-icon="close" class="icon"></span>
@@ -39,6 +43,10 @@
       <button uk-toggle="target: #menu" class="navigation-button" [routerLink]="['/personal-data']">
         <span [attr.uk-icon]="'cog'" class="icon"></span>
         <span>Benutzerdaten verwalten</span>
+      </button>
+      <button uk-toggle="target: #menu" class="navigation-button" [routerLink]="['/change-password']">
+        <span [attr.uk-icon]="'lock'" class="icon"></span>
+        <span>Passwort ändern</span>
       </button>
       <button uk-toggle="target: #menu" class="navigation-button" (click)="logout()">
         <span [attr.uk-icon]="'close'" class="icon"></span>

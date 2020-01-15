@@ -44,4 +44,8 @@ export class UserService {
     return this.apiService.get<User[]>(`users/parkingspace?with=${withParkingSpace}`);
   }
 
+  public updatePassword(body: FormData): Observable<User> {
+    return this.apiService.put<User>(`users/change-password`, body);
+  }
+
 }

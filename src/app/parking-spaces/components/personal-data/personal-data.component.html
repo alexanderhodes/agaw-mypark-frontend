@@ -56,41 +56,6 @@
           <input type="email" placeholder="E-Mail Adresse" formControlName="privateEmail">
           <mp-info-icon text="private E-Mail-Adresse"></mp-info-icon>
         </span>
-        <p class="text-align-center">Passwort *</p>
-        <span class="input-group">
-          <span class="input-group">
-            <span class="input-label">Passwort</span>
-            <input type="password" placeholder="Passwort" formControlName="password">
-            <span *ngIf="form.get('password').pristine || form.get('password').invalid" uk-icon="close" class="icon"></span>
-            <span *ngIf="form.get('password').dirty && form.get('password').valid" uk-icon="check" class="icon"
-                  style="color: green;"></span>
-            <mp-info-icon text="mind. 8 Zeichen/ mind. ein Groß- und Kleinbuchstabe/ mind. eine Zahl"></mp-info-icon>
-          </span>
-          <span *ngIf="form.get('password').invalid && (form.get('password').dirty || submitted)"
-                class="form-error-message">
-            <span *ngIf="form.get('password').errors.required">Bitte geben Sie ein Passwort ein.</span>
-            <span *ngIf="form.get('password').errors.invalid">Bitte geben Sie ein gültiges Passwort ein.</span>
-          </span>
-        </span>
-        <span class="input-group">
-          <span class="input-group">
-            <span class="input-label">&nbsp;</span>
-            <input type="password" placeholder="Passwort wiederholen" formControlName="passwordRepeat">
-            <span *ngIf="form.get('passwordRepeat').pristine || form.get('passwordRepeat').invalid"
-                  uk-icon="close" class="icon"></span>
-            <span *ngIf="form.get('passwordRepeat').dirty && form.get('passwordRepeat').valid"
-                  uk-icon="check" class="icon" style="color: green;"></span>
-            <mp-info-icon text="Passwort erneut eingeben"></mp-info-icon>
-          </span>
-          <span *ngIf="form.get('passwordRepeat').invalid && (form.get('passwordRepeat').dirty || submitted)"
-                class="form-error-message">
-            <span *ngIf="form.get('passwordRepeat').errors.required">Bitte geben Sie ein Passwort ein.</span>
-            <span *ngIf="form.get('passwordRepeat').errors.invalid">Bitte geben Sie ein gültiges Passwort ein.</span>
-            <span *ngIf="form.get('passwordRepeat').errors.mustMatch">
-              Bitte geben Sie ein Passwort ein, welches dem obigen entspricht.
-            </span>
-          </span>
-        </span>
       </div>
 
       <span style="text-align: center; width: 100%" class="mt-2" mp-error-message [message]="message"></span>
