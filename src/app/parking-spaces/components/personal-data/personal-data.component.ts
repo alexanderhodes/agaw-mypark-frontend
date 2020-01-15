@@ -25,6 +25,7 @@ export class PersonalDataComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
+      privateEmail: new FormControl('', Validators.email),
       password: new FormControl('', [Validators.required, PasswordValidator()]),
       passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
     }, {
@@ -42,10 +43,11 @@ export class PersonalDataComponent implements OnInit {
         lastName: new FormControl(user.lastName, Validators.required),
         username: new FormControl(user.name, Validators.required),
         email: new FormControl(user.username, [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, PasswordValidator()]),
-        passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
+        privateEmail: new FormControl(user.privateEmail, Validators.email),
+        password: new FormControl(''),
+        passwordRepeat: new FormControl('')
       }, {
-        validators: PasswordMatcher('password', 'passwordRepeat')
+//        validators: PasswordMatcher('password', 'passwordRepeat')
       });
     });
   }
@@ -59,6 +61,7 @@ export class PersonalDataComponent implements OnInit {
         firstName: this.form.get('firstName').value,
         lastName: this.form.get('lastName').value,
         username: this.form.get('email').value,
+        privateEmail: this.form.get('privateEmail').value,
         password: null
       };
 

@@ -24,6 +24,7 @@ export class RegistrationComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
+      privateEmail: new FormControl('', Validators.email),
       password: new FormControl('', [Validators.required, PasswordValidator()]),
       passwordRepeat: new FormControl('', [Validators.required, PasswordValidator()])
     }, {
@@ -47,7 +48,8 @@ export class RegistrationComponent implements OnInit {
         firstName: this.form.get('firstName').value,
         lastName: this.form.get('lastName').value,
         username: this.form.get('email').value,
-        password: this.form.get('password').value
+        password: this.form.get('password').value,
+        privateEmail: this.form.get('privateEmail').value
       };
       this.isLoading = true;
 
