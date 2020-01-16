@@ -9,7 +9,7 @@ import {SeriesAbsence, SeriesBooking} from '../../../shared/models/mypark.models
 export class SeriesItemComponent implements OnInit {
 
   @Input()
-  item: SeriesBooking | SeriesAbsence;
+  item: SeriesBooking | any;
   @Input()
   weekDay: string;
   @Input()
